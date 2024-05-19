@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxpractice.LoginscreenController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxpractice.LoginController">
    <children>
       <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #595959;">
          <children>
             <ImageView fitHeight="72.0" fitWidth="78.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resources/icon.png" />
+                  <Image url="@../icon.png" />
                </image>
             </ImageView>
             <Label layoutX="86.0" layoutY="21.0" text="FreeHold" textFill="WHITE">
@@ -23,7 +23,7 @@
                   <Font name="Franklin Gothic Book" size="33.0" />
                </font>
             </Label>
-            <Button fx:id="closeButton" graphicTextGap="0.0" layoutX="575.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: #595959;" text="x" textFill="WHITE">
+            <Button fx:id="closeButton2" graphicTextGap="0.0" layoutX="575.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: #595959;" text="x" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB" size="12.0" />
                </font>

@@ -1,5 +1,6 @@
 package org.example.javafxpractice;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,9 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.State;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -65,6 +68,8 @@ public class LoginController implements Initializable {
 
     }
 
+
+    // Login Checker
     public void isValidLogin() {
         DatabaseConnection dbConnection = new DatabaseConnection();
         Connection connection1 = dbConnection.getConnection();

@@ -62,13 +62,21 @@
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="registerTextField" layoutX="213.0" layoutY="468.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #595959;" text="Register" textFill="WHITE">
+      <Button fx:id="registerTextField" layoutX="213.0" layoutY="538.0" mnemonicParsing="false" onAction="#registerButtonOnEvent" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #595959;" text="Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <PasswordField layoutX="90.0" layoutY="415.0" prefWidth="420.0" promptText="Enter Password" />
+      <PasswordField fx:id="passwordTextField1" layoutX="90.0" layoutY="415.0" prefWidth="420.0" promptText="Enter Password" />
+      <Label fx:id="registerLabel" alignment="CENTER" layoutX="227.0" layoutY="512.0" text="User registered successfully!" textAlignment="CENTER" textFill="#01a2e9" visible="false" />
+      <Label layoutX="90.0" layoutY="449.0" prefHeight="29.0" prefWidth="350.0" text="Confirm Password">
+         <font>
+            <Font name="Franklin Gothic Book" size="15.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordTextField2" layoutX="90.0" layoutY="479.0" prefWidth="420.0" promptText="Enter Password" />
+      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="209.0" layoutY="456.0" text="Passwords do not match." textAlignment="CENTER" textFill="#cc0000" visible="false" />
    </children>
 </AnchorPane>

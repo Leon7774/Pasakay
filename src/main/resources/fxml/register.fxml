@@ -30,7 +30,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="185.0" layoutY="134.0" prefWidth="230.0" text="Register" textAlignment="CENTER" wrapText="true">
+      <Label alignment="CENTER" layoutX="60.0" layoutY="116.0" prefHeight="55.0" prefWidth="479.0" text="Let's Build Your Future. Together." textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Franklin Gothic Book" size="34.0" />
          </font>

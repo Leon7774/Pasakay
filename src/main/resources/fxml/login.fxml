@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -48,18 +49,28 @@
                </font>
             </Label>
             <PasswordField fx:id="loginPasswordField" layoutX="92.0" layoutY="190.0" prefHeight="26.0" prefWidth="246.0" promptText="Enter Password" />
-            <Button fx:id="loginButton" layoutX="91.0" layoutY="239.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: #595959;" text="Login" textFill="WHITE" />
+            <Button fx:id="loginButton" layoutX="91.0" layoutY="239.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: #595959;" text="Login" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Button fx:id="closeButton" layoutX="404.0" layoutY="3.0" mnemonicParsing="false" onAction="#closeButtonOnActionEvent" prefHeight="2.0" prefWidth="7.0" style="-fx-background-color: #F2F2F2;" text="x">
                <font>
                   <Font name="Franklin Gothic Demi" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label fx:id="loginLabel" alignment="CENTER" layoutX="30.0" layoutY="252.0" prefHeight="14.0" prefWidth="369.0" text="Lorem Ipsum" textFill="#2b2b2b" visible="false">
+            <Label fx:id="loginLabel" alignment="CENTER" layoutX="29.0" layoutY="273.0" prefHeight="14.0" prefWidth="369.0" text="Lorem Ipsum" textFill="#2b2b2b" visible="false">
                <font>
                   <Font name="Franklin Gothic Book" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="registerButton" layoutX="146.0" layoutY="337.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #01A2E9;" text="Register" textFill="WHITE" />
+            <Button fx:id="registerButton" layoutX="146.0" layoutY="337.0" mnemonicParsing="false" onAction="#registerClicked" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #01A2E9;" text="Register" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Label layoutX="152.0" layoutY="319.0" text="Don't have an account?" />
             <Line endX="158.19998168945312" layoutX="213.0" layoutY="300.0" opacity="0.27" startX="-154.60000610351562" />
          </children>

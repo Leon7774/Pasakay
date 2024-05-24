@@ -104,4 +104,9 @@ public class LoginController implements Initializable {
         BaseUI register = new BaseUI("/fxml/register.fxml");
 
     }
+
+    private void handleEnterKey() {
+        System.out.println("Enter key pressed! Executing code...");
+        // Add your code to be executed here
+    }
 }

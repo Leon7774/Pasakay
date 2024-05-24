@@ -6,17 +6,14 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
     public Connection databaseLink;
 
-    public Connection getConnection() {
-        String databaseName = "mainDB";
-        String databaseUser = "root";
-        String databasePassword = "bitnull10";
-        String url = "jdbc:mysql://localhost/"+databaseName;
-
+    public Connection getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            databaseLink = DriverManager.getConnection(url, databaseUser, databasePassword);
+            databaseLink = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12708922", "sql12708922", "1VJDbVskHr");
         } catch (Exception e) {
+            System.out.println("Yooo something went wrong");
             e.printStackTrace();
+
             e.getCause();
         }
 

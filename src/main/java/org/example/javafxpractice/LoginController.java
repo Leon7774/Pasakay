@@ -101,8 +101,11 @@ public class LoginController implements Initializable {
         Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.close();
         System.out.println("register clicked");
-        BaseUI register = new BaseUI("/fxml/register.fxml");
 
+        SceneChange baseUI = new SceneChange("/fxml/register.fxml", stage);
+        
+        // Optionally, if you need to change the scene later:
+        // baseUI.setScene("/fxml/otherScene.fxml");
     }
 
     private void handleEnterKey() {

@@ -20,9 +20,4 @@ public class SQLHandler {
         Statement statement = connection1.createStatement();
         statement.executeUpdate(query);
     }
-
-
-
-
-
 }

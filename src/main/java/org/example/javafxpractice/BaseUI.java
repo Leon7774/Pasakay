@@ -3,6 +3,7 @@ package org.example.javafxpractice;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -13,7 +14,7 @@ public class BaseUI extends Stage{
     double xOffset = 0;
     double yOffset = 0;
 
-    BaseUI(String path) throws IOException {
+    public BaseUI(String path) throws IOException {
         stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource(path));
         stage.setResizable(false);
@@ -33,9 +34,5 @@ public class BaseUI extends Stage{
         });
 
         stage.show();
-    }
-
-    public static void closeWindow() {
-
     }
 }

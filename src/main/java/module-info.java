@@ -4,6 +4,7 @@ module org.example.javafxpractice {
     requires java.sql;
     requires java.desktop;
     requires mysql.connector.j;
+    requires com.jfoenix;
 
 
     opens org.example.javafxpractice to javafx.fxml;

@@ -82,6 +82,9 @@ public class LoginController implements Initializable {
 
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.close();
+                    BaseUI ui = new BaseUI("/fxml/app.fxml");
                     loginLabel.setText("Login Sucessful");
                     loginLabel.setVisible(true);
                 }else{
@@ -103,7 +106,7 @@ public class LoginController implements Initializable {
         System.out.println("register clicked");
 
         SceneChange baseUI = new SceneChange("/fxml/register.fxml", stage);
-        
+
         // Optionally, if you need to change the scene later:
         // baseUI.setScene("/fxml/otherScene.fxml");
     }

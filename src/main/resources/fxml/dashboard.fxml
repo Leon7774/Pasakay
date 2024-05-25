@@ -1,79 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxpractice.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxpractice.DashboardController">
    <left>
-      <AnchorPane prefHeight="400.0" prefWidth="170.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="666.0" prefWidth="207.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="39.0" layoutY="172.0" text="FreeHold" textFill="WHITE">
+            <Label layoutX="64.0" layoutY="26.0" text="FreeHold" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Book" size="24.0" />
                </font>
             </Label>
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="21.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome,  (USER)" wrappingWidth="164.1484375">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="-3.0" layoutY="158.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Properties" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font></JFXButton>
+            <JFXButton depthTest="ENABLE" layoutX="-1.0" layoutY="616.0" prefHeight="51.0" prefWidth="209.0" style="-fx-background-color: #262626;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0">
+                     <image>
+                        <Image url="@../logout.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="-3.0" layoutY="210.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="-3.0" layoutY="263.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </JFXButton>
          </children>
+         <effect>
+            <DropShadow height="0.0" radius="4.75" />
+         </effect>
       </AnchorPane>
    </left>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="533.0" style="-fx-background-color: #F2F2F2;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="187.0" layoutY="61.0" text="Login" textFill="#2b2b2b">
-               <font>
-                  <Font name="Franklin Gothic Book" size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="102.0" text="Username" textFill="#2b2b2b">
-               <font>
-                  <Font name="Franklin Gothic Book" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="loginUsernameTextField" layoutX="92.0" layoutY="122.0" prefHeight="26.0" prefWidth="245.0" promptText="Enter Username" />
-            <Label layoutX="92.0" layoutY="166.0" text="Password" textFill="#2b2b2b">
-               <font>
-                  <Font name="Franklin Gothic Book" size="16.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="loginPasswordField" layoutX="92.0" layoutY="190.0" prefHeight="26.0" prefWidth="246.0" promptText="Enter Password" />
-            <Button fx:id="loginButton" layoutX="91.0" layoutY="239.0" mnemonicParsing="false" onAction="#onClickLoginButton" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: #595959;" text="Login" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="closeButton" layoutX="404.0" layoutY="3.0" mnemonicParsing="false" onAction="#closeButtonOnActionEvent" prefHeight="2.0" prefWidth="7.0" style="-fx-background-color: #F2F2F2;" text="x">
-               <font>
-                  <Font name="Franklin Gothic Demi" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label fx:id="loginLabel" alignment="CENTER" layoutX="29.0" layoutY="273.0" prefHeight="14.0" prefWidth="369.0" text="Lorem Ipsum" textFill="#2b2b2b" visible="false">
-               <font>
-                  <Font name="Franklin Gothic Book" size="11.0" />
-               </font>
-            </Label>
-            <Button fx:id="registerButton" layoutX="146.0" layoutY="337.0" mnemonicParsing="false" onAction="#registerClicked" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #01A2E9;" text="Register" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label layoutX="152.0" layoutY="319.0" text="Don't have an account?" />
-            <Line endX="158.19998168945312" layoutX="213.0" layoutY="300.0" opacity="0.27" startX="-154.60000610351562" />
-         </children>
-      </AnchorPane>
-   </right>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <right>
+            <AnchorPane prefHeight="666.0" prefWidth="775.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXListView layoutX="37.0" layoutY="166.0" prefHeight="266.0" prefWidth="218.0" />
+                  <Text fontSmoothingType="LCD" layoutX="44.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Properties" wrappingWidth="164.1484375">
+                     <font>
+                        <Font name="Century Gothic Bold" size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </center>
 </BorderPane>

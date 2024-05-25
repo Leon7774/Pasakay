@@ -20,7 +20,7 @@ public class SQLHandlerUtil {
     }
 
     //IMPORTANT! Returns user based on username
-    public static Account findUser(String username) throws SQLException {
+    public static void findUser(String username) throws SQLException {
         String query = "SELECT * FROM userlist WHERE username = '" + username + "'";
 
         Statement statement = connection1.createStatement();
@@ -34,13 +34,12 @@ public class SQLHandlerUtil {
             String lastName = rs.getString("lastname");
             String inusername = rs.getString("username");
 
-            return new Account(userID, firstName, lastName, inusername);
+            Account.setAccount(userID, firstName, lastName, inusername);
 
+            System.out.println(Account.getFirstName());
         } else {
             System.out.println("User not found");
         }
-
-        return null;
     }
 }
 

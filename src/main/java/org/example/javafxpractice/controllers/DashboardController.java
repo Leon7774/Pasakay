@@ -61,22 +61,22 @@ public class DashboardController implements Initializable {
     private List<Property> propertyList() {
         List<Property> ls = new ArrayList<>();
 
-        Property property1 = new Property("Valencia Factory", "0485 Lim Street, Davao City", "Leon","Commercial Factory", true, 4000, 1, 40,304021);
+        Property property1 = new Property("Valencia Factory", "0485 Lim Street, Davao City", "Commercial Factory", true, 4000, 1, 40,304021,4123);
         ls.add(property1);
 
-        Property property2 = new Property("Dream Apartments", "482 Lim Street, Gensan City", "Pacs", "Apartment Complex", true, 4200, 2, 3,509139);
+        Property property2 = new Property("Dream Apartments", "482 Lim Street, Gensan City",  "Apartment Complex", true, 4200, 2, 3,509139,42312);
         ls.add(property2);
 
-        Property property3 = new Property("Dream Apartments", "482 Lim Street, Gensan City", "Pacs", "Apartment Complex", true, 4200, 2, 3,509139);
+        Property property3 = new Property("Dream Apartments", "482 Lim Street, Gensan City",  "Apartment Complex", true, 4200, 2, 3,509139,4213);
         ls.add(property3);
 
-        Property property4 = new Property("Dream Apartments", "482 Lim Street, Gensan City", "Pacs", "Apartment Complex", true, 4200, 2, 3,509139);
+        Property property4 = new Property("Dream Apartments", "482 Lim Street, Gensan City",  "Apartment Complex", true, 4200, 2, 3,509139,32123);
         ls.add(property4);
 
-        Property property5 = new Property("Dream Apartments", "482 Lim Street, Gensan City", "Pacs", "Apartment Complex", true, 4200, 2, 3,509139);
+        Property property5 = new Property("Dream Apartments", "482 Lim Street, Gensan City",  "Apartment Complex", true, 4200, 2, 3,509139,51232);
         ls.add(property5);
 
-        Property property6 = new Property("Dream Apartments", "482 Lim Street, Gensan City", "Pacs", "Apartment Complex", true, 4200, 2, 3,509139);
+        Property property6 = new Property("Dream Apartments", "482 Lim Street, Gensan City",  "Apartment Complex", true, 4200, 2, 3,509139,3124);
         ls.add(property6);
 
         return ls;

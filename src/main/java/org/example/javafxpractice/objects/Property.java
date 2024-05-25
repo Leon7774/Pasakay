@@ -10,9 +10,10 @@ public class Property {
     private int propertyID;
     private int availableUnits;
     private double income;
+    private double unitMonthly;
 
 
-    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income) {
+    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income, double unitMonthly) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -21,6 +22,7 @@ public class Property {
         this.propertyID = propertyID;
         this.availableUnits = availableUnits;
         this.income = income;
+        this.unitMonthly = unitMonthly;
     }
 
     public String getName() {

@@ -1,19 +1,16 @@
-package org.example.javafxpractice;
+package org.example.javafxpractice.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.javafxpractice.util.StageUtil;
+import org.example.javafxpractice.util.SQLHandlerUtil;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
 
 public class RegisterController {
 
@@ -32,7 +29,7 @@ public class RegisterController {
     public void closeButtonOnActionEvent(ActionEvent event) throws IOException {
         Stage stage = (Stage) closeButton2.getScene().getWindow();
         stage.close();
-        BaseUI login = new BaseUI("/fxml/login.fxml");
+        StageUtil login = new StageUtil("/fxml/login.fxml");
     }
 
     public void registerButtonOnEvent(ActionEvent event) throws SQLException, IOException {
@@ -54,10 +51,10 @@ public class RegisterController {
                     passwordLabel.setVisible(true);
                 } else {
                     System.out.println("matched");
-                    SQLHandler.WriteUser(autoCapitalize(firstNameTextField.getText()),autoCapitalize(lastNameTextField.getText()),usernameTextField.getText(),passwordTextField1.getText());
+                    SQLHandlerUtil.WriteUser(autoCapitalize(firstNameTextField.getText()),autoCapitalize(lastNameTextField.getText()),usernameTextField.getText(),passwordTextField1.getText());
                     Stage stage = (Stage) registerTextField.getScene().getWindow();
                     stage.close();
-                    new BaseUI("/fxml/registerconfirmed.fxml");
+                    new StageUtil("/fxml/registerconfirmed.fxml");
 
                     passwordLabel.setVisible(false);
                 }
@@ -74,9 +71,7 @@ public class RegisterController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.close();
 
-
-        // Load and show the login screen
-        new BaseUI("/fxml/login.fxml");
+        new StageUtil("/fxml/login.fxml");
     }
 
     public String autoCapitalize(String str) {

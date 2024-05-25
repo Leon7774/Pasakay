@@ -1,20 +1,19 @@
-package org.example.javafxpractice;
+package org.example.javafxpractice.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class BaseUI extends Stage{
+public class StageUtil extends Stage{
     public Stage stage;
     double xOffset = 0;
     double yOffset = 0;
 
-    public BaseUI(String path) throws IOException {
+    public StageUtil(String path) throws IOException {
         stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource(path));
         stage.setResizable(false);

@@ -1,25 +1,18 @@
-package org.example.javafxpractice;
+package org.example.javafxpractice.controllers;
 
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
+import org.example.javafxpractice.ActiveSystem;
+import org.example.javafxpractice.util.StageUtil;
+import org.example.javafxpractice.util.DatabaseConnection;
+import org.example.javafxpractice.util.SceneUtil;
 
-import javax.swing.*;
-import javax.swing.plaf.nimbus.State;
-import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -84,7 +77,7 @@ public class LoginController implements Initializable {
                 if (queryResult.getInt(1) == 1) {
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
-                    BaseUI ui = new BaseUI("/fxml/app.fxml");
+                    StageUtil ui = new StageUtil("/fxml/dashboard.fxml");
                     loginLabel.setText("Login Sucessful");
                     loginLabel.setVisible(true);
                 }else{
@@ -105,7 +98,7 @@ public class LoginController implements Initializable {
         stage.close();
         System.out.println("register clicked");
 
-        SceneChange baseUI = new SceneChange("/fxml/register.fxml", stage);
+        SceneUtil baseUI = new SceneUtil("/fxml/register.fxml", stage);
 
         // Optionally, if you need to change the scene later:
         // baseUI.setScene("/fxml/otherScene.fxml");

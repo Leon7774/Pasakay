@@ -1,4 +1,4 @@
-package org.example.javafxpractice;
+package org.example.javafxpractice.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

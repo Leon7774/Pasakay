@@ -1,15 +1,14 @@
 package org.example.javafxpractice;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.stage.StageStyle;
+import org.example.javafxpractice.objects.Property;
+import org.example.javafxpractice.util.StageUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
-    private double xOffset = 0;
-    private double yOffset = 0;
 
     public static void main(String[] args) {
         launch();
@@ -17,7 +16,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        BaseUI login = new BaseUI("/fxml/login.fxml");
+        StageUtil login = new StageUtil("/fxml/login.fxml");
 
     }
+
+
+
+
+
+
 }

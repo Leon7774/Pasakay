@@ -9,4 +9,9 @@ module org.example.javafxpractice {
 
     opens org.example.javafxpractice to javafx.fxml;
     exports org.example.javafxpractice;
+    exports org.example.javafxpractice.objects;
+    exports org.example.javafxpractice.controllers;
+    opens org.example.javafxpractice.controllers to javafx.fxml;
+    exports org.example.javafxpractice.util;
+    opens org.example.javafxpractice.util to javafx.fxml;
 }

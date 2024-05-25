@@ -1,0 +1,11 @@
+.profile-layout{
+    -fx-background-color: #ffffff;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.semitransparent{
+    -fx-background-color: rgba(0, 0, 0, 0.04);
+}

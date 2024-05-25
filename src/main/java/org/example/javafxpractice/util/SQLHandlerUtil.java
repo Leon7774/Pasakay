@@ -1,11 +1,11 @@
-package org.example.javafxpractice;
+package org.example.javafxpractice.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SQLHandler {
+public class SQLHandlerUtil {
     public static DatabaseConnection dbconnection = new DatabaseConnection();
     public static Connection connection1 = dbconnection.getConnection();
 

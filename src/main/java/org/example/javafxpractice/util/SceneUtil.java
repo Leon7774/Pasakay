@@ -1,4 +1,4 @@
-package org.example.javafxpractice;
+package org.example.javafxpractice.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +8,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneChange {
+public class SceneUtil {
     private Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public SceneChange(String path, Stage existingStage) throws IOException {
+    public SceneUtil(String path, Stage existingStage) throws IOException {
         this.stage = existingStage;
         Parent root = FXMLLoader.load(getClass().getResource(path));
         stage.setResizable(false);

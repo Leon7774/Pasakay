@@ -37,9 +37,10 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeTable();
+    }
 
-
-
+    private void initializeTable() {
         List<Property> propertyList = propertyList();
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -85,6 +86,12 @@ public class DashboardController implements Initializable {
     public void onTenantTabClick(ActionEvent event) throws IOException {
         dashboardContent.getChildren().clear();
         dashboardContent.getChildren().setAll(FXMLLoaderUtil.getInstance().load("/fxml/node2.fxml"));
+    }
+
+    public void onPropertiesTabClick(ActionEvent event) throws IOException {
+        dashboardContent.getChildren().clear();
+        dashboardContent.getChildren().setAll(FXMLLoaderUtil.getInstance().load("/fxml/propertytab.fxml"));
+        initializeTable();
 
     }
 }

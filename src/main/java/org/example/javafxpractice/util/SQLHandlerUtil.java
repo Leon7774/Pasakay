@@ -37,6 +37,19 @@ public class SQLHandlerUtil {
             Account.setAccount(userID, firstName, lastName, inusername);
 
             System.out.println(Account.getFirstName());
+
+            String propTableQuery = "SELECT * FROM properties JOIN userlist " +
+                    "ON properties.userID = userlist.userID \n" +
+                    "WHERE userlist.userID = " + Account.getUserID();
+
+            ResultSet rs2 = statement.executeQuery(propTableQuery);
+
+            //TODO Finish this shit
+            while(rs2.next()) {
+                String property1 = rs2.getString("property_name");
+                System.out.println(property1);
+            }
+
         } else {
             System.out.println("User not found");
         }

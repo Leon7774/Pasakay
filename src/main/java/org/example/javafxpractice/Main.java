@@ -13,7 +13,6 @@ import java.util.List;
 public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
-        SQLHandlerUtil.findUser("Lion");
         launch();
     }
 

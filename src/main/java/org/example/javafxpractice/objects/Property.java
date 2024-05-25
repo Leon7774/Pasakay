@@ -12,10 +12,9 @@ public class Property {
     private double income;
 
 
-    public Property(String name, String address, String owner, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income) {
+    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income) {
         this.name = name;
         this.address = address;
-        this.owner = owner;
         this.description = description;
         this.isCommercial = isCommercial;
         this.tax = tax;
@@ -40,13 +39,6 @@ public class Property {
         this.address = address;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 
     public boolean isCommercial() {
         return isCommercial;

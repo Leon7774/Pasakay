@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import org.example.javafxpractice.ActiveSystem;
+import org.example.javafxpractice.util.ActiveSystem;
+import org.example.javafxpractice.util.SQLHandlerUtil;
 import org.example.javafxpractice.util.StageUtil;
 import org.example.javafxpractice.util.DatabaseConnection;
 import org.example.javafxpractice.util.SceneUtil;
@@ -75,6 +76,9 @@ public class LoginController implements Initializable {
 
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
+                    //Sets active account based on found account
+                    ActiveSystem.setActiveAccount(SQLHandlerUtil.findUser(loginUsernameTextField.getText()));
+                    ActiveSystem.printActiveAccount();
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
                     StageUtil ui = new StageUtil("/fxml/dashboard.fxml");

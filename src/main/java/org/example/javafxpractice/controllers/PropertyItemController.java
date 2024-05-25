@@ -23,6 +23,6 @@ public class PropertyItemController {
         netIncome.setText("Net Income: " + property.getIncome());
         propertyDescription.setText(property.getDescription());
         propertyName.setText(property.getName());
-        propertyID.setText(String.valueOf(property.getPropertyID()));
+        propertyID.setText("ID: "+ property.getPropertyID());
     }
 }

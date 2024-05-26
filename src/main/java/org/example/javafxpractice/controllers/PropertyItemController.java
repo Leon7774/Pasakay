@@ -49,6 +49,10 @@ public class PropertyItemController {
         if (!editOpen) {
             stage = new StageUtil("/fxml/editProperty.fxml");
             EditPropertyController controller = (EditPropertyController) stage.getController();
+            if (dashboardController == null) {
+                System.out.println("its not here bitifuefeaiufaehwiuh va378rmy87y!!");
+            }
+            controller.setDashboardController(dashboardController);
             controller.initializeData(this);
             editOpen = true;
         }

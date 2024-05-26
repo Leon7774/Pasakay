@@ -18,14 +18,15 @@ public class Account {
         String pAddress = rs.getString("address");
         String description = rs.getString("description");
         int propertyID = rs.getInt("property_id");
-        double netIncome = rs.getDouble("monthly_income");
+        double monthly_income = rs.getDouble("monthly_income");
         double tax = rs.getDouble("monthly_tax");
         boolean isCommercial = rs.getBoolean("is_commercial");
         int availableUnits = rs.getInt("available_units");
         double unitMonthly = rs.getDouble("unit_monthly_price");
         int occupiedUnits = rs.getInt("occupiedUnits");
+        double netIncome = rs.getDouble("net_income");
 
-        Property property = new Property(propertyName, pAddress, description, isCommercial, tax, propertyID, availableUnits, netIncome, unitMonthly,occupiedUnits);
+        Property property = new Property(propertyName, pAddress, description, isCommercial, tax, propertyID, availableUnits, netIncome, unitMonthly,occupiedUnits, netIncome);
 
         propertyList.add(property);
     }

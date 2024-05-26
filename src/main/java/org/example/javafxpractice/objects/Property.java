@@ -12,6 +12,8 @@ public class Property {
     private double income;
     private double unitMonthly;
     private int occupiedUnits;
+    private double netIncome;
+
 
 
     public double getUnitMonthly() {
@@ -22,7 +24,7 @@ public class Property {
         this.unitMonthly = unitMonthly;
     }
 
-    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income, double unitMonthly, int occupiedUnits) {
+    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income, double unitMonthly, int occupiedUnits, double netIncome) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -30,6 +32,7 @@ public class Property {
         this.tax = tax;
         this.propertyID = propertyID;
         this.availableUnits = availableUnits;
+        this.netIncome = netIncome;
         this.income = occupiedUnits * unitMonthly;
         this.unitMonthly = unitMonthly;
         this.occupiedUnits = occupiedUnits;
@@ -69,6 +72,14 @@ public class Property {
 
     public void setCommercial(boolean commercial) {
         isCommercial = commercial;
+    }
+
+    public double getNetIncome() {
+        return netIncome;
+    }
+
+    public void setNetIncome(double netIncome) {
+        this.netIncome = netIncome;
     }
 
     public double getTax() {

@@ -9,9 +9,11 @@ import javafx.stage.Stage;
 import org.example.javafxpractice.objects.Account;
 import org.example.javafxpractice.objects.Property;
 import org.example.javafxpractice.util.FXMLLoaderUtil;
+import org.example.javafxpractice.util.SQLHandlerUtil;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class EditPropertyController implements Initializable {
@@ -48,25 +50,30 @@ public class EditPropertyController implements Initializable {
         propertyAddressPrompt.setText(propertyItemController.propertyAddress.getText());
         propertyDescriptionPrompt.setText(propertyItemController.propertyDescription.getText());
         propertyAvailableUnitsPrompt.setText(propertyItemController.availableUnits.getText().split(" ")[2]);
-        propertyMonthlyPerUnitPrompt.setText(propertyItemController.monthlyPerUnit.getText().split(" ")[4]);
-        monthlyTaxField.setText(propertyItemController.monthlyTax.getText().split(" ")[2]);
+        propertyMonthlyPerUnitPrompt.setText(propertyItemController.monthlyPerUnit.getText().split(" ")[4].substring(1));
+        monthlyTaxField.setText(propertyItemController.monthlyTax.getText().split(" ")[2].substring(1));
     }
 
     @FXML
-    public void applyButtonClicked(ActionEvent event) throws IOException {
-
+    public void applyButtonClicked(ActionEvent event) throws IOException, SQLException {
         property = Account.findPropertyByID(Integer.parseInt(propertyItemController.propertyID.getText().split(" ")[1]));
         property.editProperty(
                 propertyNamePrompt.getText(),
                 propertyAddressPrompt.getText(),
                 propertyDescriptionPrompt.getText(),
-                Double.parseDouble(monthlyTaxField.getText().substring(1)),
+                Double.parseDouble(monthlyTaxField.getText()),
                 Integer.parseInt(propertyAvailableUnitsPrompt.getText()),
-                Double.parseDouble(propertyMonthlyPerUnitPrompt.getText().substring(1)));
+                Double.parseDouble(propertyMonthlyPerUnitPrompt.getText())
+        );
 
-        dashboardController.getDashboardContent().getChildren().clear();
-        dashboardController.getDashboardContent().getChildren().setAll(FXMLLoaderUtil.getInstance().load("/fxml/propertytab.fxml"));
+        SQLHandlerUtil.saveProperty(property);
+
+        dashboardController.getVbox().getChildren().clear();
         dashboardController.initializeTable();
+
+        propertyItemController.setEditButton(false);
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void setDashboardController(DashboardController controller) {

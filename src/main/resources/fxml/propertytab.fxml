@@ -49,7 +49,7 @@
                </image>
             </ImageView>
             <TextField alignment="CENTER_RIGHT" layoutX="574.0" layoutY="27.0" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
-            <JFXButton alignment="CENTER" layoutX="649.0" layoutY="94.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="130.0" text="Add Property">
+            <JFXButton fx:id="addPropertyButton" alignment="CENTER" layoutX="649.0" layoutY="94.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="130.0" text="Add Property">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" preserveRatio="true">
                      <image>

@@ -1,5 +1,6 @@
 package org.example.javafxpractice.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import org.example.javafxpractice.objects.Account;
 import org.example.javafxpractice.objects.Property;
 import org.example.javafxpractice.util.FXMLLoaderUtil;
+import org.example.javafxpractice.util.StageUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,25 +38,28 @@ public class DashboardController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
     @FXML
+    private JFXButton addPropertyButton;
+    @FXML
     private Text welcomeLabel;
+    private boolean opened;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO FIX LABEL
+        //welcomeLabel.setText("Welcome, " + Account.getFirstName());
         initializeTable();
     }
 
     public void initializeTable() {
-
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        for (int i = 0; i < Account.getPropertyList().toArray().length; i++) {
-            System.out.println(Account.getPropertyList().get(i).getAddress());
+        for (Property property : Account.getPropertyList()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertyunit.fxml"));
-
                 HBox hbox = loader.load();
                 PropertyItemController pipController = loader.getController();
-                pipController.setData(Account.getPropertyList().get(i));
+                pipController.setData(property);
+                pipController.setParentController(this); // Set parent controller
                 vboxContent.getChildren().add(hbox);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -63,32 +68,29 @@ public class DashboardController implements Initializable {
     }
 
     public void onTenantTabClick(ActionEvent event) throws IOException {
-        dashboardContent.getChildren().clear();
         dashboardContent.getChildren().setAll(FXMLLoaderUtil.getInstance().load("/fxml/node2.fxml"));
+
     }
 
     public void onPropertiesTabClick(ActionEvent event) throws IOException {
-        dashboardContent.getChildren().clear();
-
-        // Load the new FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
         BorderPane propertyTabPane = loader.load(); // Load the content first
-
-        // Get the controller of the new FXML
-        PropertyItemController propertyTabController = loader.getController(); // Retrieve the controller after loading
-
-        // Pass the current instance of DashboardController to the new controller
-        propertyTabController.setParentController(this);
-
-        // Set the new content
         dashboardContent.getChildren().setAll(propertyTabPane);
-
-        // Initialize the table if needed
         initializeTable();
     }
 
-    public AnchorPane getDashboardContent() {
-        return dashboardContent;
+    public void clearTable() {
+        dashboardContent.getChildren().clear();
     }
 
+    public VBox getVbox() {
+        return vboxContent;
+    }
+
+    @FXML
+    public void propertyAdd() throws IOException {
+        StageUtil addProperty = new StageUtil("/fxml/addProperty.fxml");
+        RegisterPropertyController controller = (RegisterPropertyController) addProperty.getController();
+        controller.setDashboardController(this);
+    }
 }

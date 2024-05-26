@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,7 +12,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -31,12 +31,12 @@
                   <Font name="Century Gothic Bold" size="23.0" />
                </font>
             </Label>
-            <Text fx:id="welcomeLabel" fill="WHITE" fontSmoothingType="LCD" layoutX="22.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome,  (USER)" wrappingWidth="164.1484375">
+            <Text fx:id="welcomeLabel" fill="WHITE" layoutX="21.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome,  (USER)" textAlignment="CENTER" wrappingWidth="164.1484375">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Century Gothic Bold" size="15.0" />
                </font>
             </Text>
-            <JFXButton fx:id="propertyTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="184.0" onAction="#onPropertiesTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Properties" textFill="WHITE">
+            <JFXButton fx:id="propertyTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="334.0" onAction="#onPropertiesTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Properties" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font></JFXButton>
@@ -58,16 +58,21 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="tenantTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="236.0" onAction="#onTenantTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
+            <JFXButton fx:id="tenantTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="386.0" onAction="#onTenantTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="289.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="439.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </JFXButton>
+            <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="59.0" layoutY="99.0">
+               <image>
+                  <Image url="@../user.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow height="0.0" radius="4.75" />
@@ -87,9 +92,9 @@
                   <ScrollPane fx:id="scrollPane" layoutX="40.0" layoutY="132.0" prefHeight="534.0" prefWidth="737.0" stylesheets="@../css/styles.css">
                      <content>
                         <VBox fx:id="vboxContent" prefHeight="533.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="724.0" />
-                           </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
                         </VBox>
                      </content>
                      <styleClass>
@@ -109,7 +114,7 @@
                      </image>
                   </ImageView>
                   <TextField alignment="CENTER_RIGHT" layoutX="574.0" layoutY="27.0" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
-                  <JFXButton alignment="CENTER" layoutX="649.0" layoutY="94.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="130.0" text="Add Property">
+                  <JFXButton fx:id="addPropertyButton" alignment="CENTER" layoutX="649.0" layoutY="94.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#propertyAdd" prefHeight="35.0" prefWidth="130.0" text="Add Property">
                      <graphic>
                         <ImageView fitHeight="27.0" fitWidth="27.0" preserveRatio="true">
                            <image>

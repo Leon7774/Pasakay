@@ -86,6 +86,17 @@ public class Property {
         return tax;
     }
 
+    public void addTenant() {
+        occupiedUnits++;
+        availableUnits--;
+        income = occupiedUnits * unitMonthly;
+    }
+
+    public double passTime() {
+        netIncome += unitMonthly * occupiedUnits;
+        return unitMonthly * occupiedUnits;
+    }
+
     public void setTax(double tax) {
         this.tax = tax;
     }

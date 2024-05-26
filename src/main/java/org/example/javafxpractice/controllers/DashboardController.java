@@ -86,18 +86,26 @@ public class DashboardController implements Initializable {
         initializeTable();
     }
 
-    public void clearTable() {
-        dashboardContent.getChildren().clear();
+    public void refreshTable() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
+        BorderPane propertyTabPane = loader.load(); // Load the content first
+        dashboardContent.getChildren().setAll(propertyTabPane);
+        initializeTable();
     }
 
     public VBox getVbox() {
         return vboxContent;
     }
 
+
     @FXML
     public void propertyAdd() throws IOException {
         StageUtil addProperty = new StageUtil("/fxml/addProperty.fxml");
         RegisterPropertyController controller = (RegisterPropertyController) addProperty.getController();
         controller.setDashboardController(this);
+    }
+
+    public void fastForward() {
+        Account.passTime();
     }
 }

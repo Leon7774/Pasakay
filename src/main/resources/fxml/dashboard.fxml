@@ -83,7 +83,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="567.0" style="-fx-background-color: #ffffff;" text="Fast Forward One Month">
+            <JFXButton fx:id="fastForwardButton" buttonType="RAISED" layoutX="17.0" layoutY="567.0" onAction="#fastForward" style="-fx-background-color: #ffffff;" text="Fast Forward One Month">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>

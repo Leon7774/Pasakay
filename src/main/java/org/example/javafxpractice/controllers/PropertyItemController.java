@@ -27,6 +27,8 @@ public class PropertyItemController {
     private StageUtil stage;
     private boolean editOpen;
 
+    public Property propertyA;
+
     public DashboardController dashboardController;
 
     public void setParentController(DashboardController dashboardController) {
@@ -43,6 +45,8 @@ public class PropertyItemController {
         monthlyPerUnit.setText("Monthly Rent per Unit: $" + String.format("%.2f", property.getUnitMonthly()));
         occupiedUnits.setText("Occupied Units: " + property.getOccupiedUnits());
         monthlyTax.setText("Monthly Tax: $" + String.format("%.2f", property.getTax()));
+
+        propertyA = property;
     }
 
     public void onEditClick(ActionEvent event) throws IOException {
@@ -61,7 +65,8 @@ public class PropertyItemController {
 
     public void onAddTenant() throws IOException {
         stage = new StageUtil("/fxml/registertenant.fxml");
-
+        RegisterTenantController controller = (RegisterTenantController) stage.getController();
+        controller.setPropertyItemController(this);
     }
 
 }

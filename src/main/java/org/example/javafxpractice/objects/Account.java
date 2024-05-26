@@ -11,6 +11,7 @@ public class Account{
     private static String lastName;
     private static String userName;
     private static List<Property> propertyList;
+    private static double balance;
 
     //TODO Property List
     public void addToPropertyList(ResultSet rs) throws SQLException {
@@ -32,13 +33,20 @@ public class Account{
     }
 
 
-    public static void setAccount(int userID2, String firstName2, String lastName2, String userName2) {
+    public static void setAccount(int userID2, String firstName2, String lastName2, String userName2, double balance) {
         userID = userID2;
         firstName = firstName2;
         lastName = lastName2;
         userName = userName2;
 
         propertyList = new ArrayList<>();
+        balance = 0;
+    }
+
+    public static void passTime() {
+        for (Property a : propertyList) {
+            a.passTime();
+        }
     }
 
     public static int getUserID() {

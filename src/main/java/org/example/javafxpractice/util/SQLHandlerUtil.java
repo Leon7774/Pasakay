@@ -2,6 +2,7 @@ package org.example.javafxpractice.util;
 
 import org.example.javafxpractice.objects.Account;
 import org.example.javafxpractice.objects.Property;
+import org.example.javafxpractice.objects.Tenant;
 
 import java.sql.*;
 
@@ -34,8 +35,9 @@ public class SQLHandlerUtil {
             String firstName = rs.getString("firstname");
             String lastName = rs.getString("lastname");
             String inusername = rs.getString("username");
+            double balance = rs.getDouble("balance");
 
-            Account.setAccount(userID, firstName, lastName, inusername);
+            Account.setAccount(userID, firstName, lastName, inusername, balance);
 
             System.out.println(Account.getFirstName());
 
@@ -212,6 +214,20 @@ public class SQLHandlerUtil {
         }
 
         return null;
+    }
+
+    public static void saveTenant(String firstname, String lastname, int age, String status, String sex, int propertyID) throws SQLException {
+        String SQL = "INSERT INTO tenants(firstname,lastname, age, status, sex, propertyID) VALUES(?,?,?,?,?,?)";
+        PreparedStatement statement = connection1.prepareStatement(SQL);
+        statement.setString(1, firstname);
+        statement.setString(2, lastname);
+        statement.setInt(3, age);
+        statement.setString(4, status);
+        statement.setString(5, sex);
+        statement.setInt(6, propertyID);
+        statement.executeUpdate();
+
+
     }
 
     public static Property getLatestProperty() throws SQLException {

@@ -11,9 +11,10 @@ public class Property {
     private int availableUnits;
     private double income;
     private double unitMonthly;
+    private int occupiedUnits;
 
 
-    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income, double unitMonthly) {
+    public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income, double unitMonthly, int occupiedUnits) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -23,6 +24,7 @@ public class Property {
         this.availableUnits = availableUnits;
         this.income = income;
         this.unitMonthly = unitMonthly;
+        this.occupiedUnits = occupiedUnits;
     }
 
     public String getName() {
@@ -88,5 +90,27 @@ public class Property {
 
     public void setPropertyID(int propertyID) {
         this.propertyID = propertyID;
+    }
+
+    public String toString() {
+        return "Property Details:" +
+                "\n  Name: " + name +
+                "\n  Address: " + address +
+                "\n  Owner: " + owner +
+                "\n  Description: " + description +
+                "\n  Commercial: " + (isCommercial ? "Yes" : "No") +
+                "\n  Tax: " + tax +
+                "\n  Property ID: " + propertyID +
+                "\n  Available Units: " + availableUnits +
+                "\n  Income: " + income +
+                "\n  Unit Monthly: " + unitMonthly;
+    }
+
+    public int getOccupiedUnits() {
+        return occupiedUnits;
+    }
+
+    public void setOccupiedUnits(int occupiedUnits) {
+        this.occupiedUnits = occupiedUnits;
     }
 }

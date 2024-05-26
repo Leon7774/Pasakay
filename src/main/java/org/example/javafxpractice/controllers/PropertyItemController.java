@@ -13,6 +13,7 @@ public class PropertyItemController {
     public Label availableUnits;
     public Label netIncome;
     public Label propertyDescription;
+    public Label occupiedUnits;
     public JFXButton editButton;
     public JFXButton deleteButton;
     public JFXButton viewUnitsButton;
@@ -24,5 +25,7 @@ public class PropertyItemController {
         propertyDescription.setText(property.getDescription());
         propertyName.setText(property.getName());
         propertyID.setText("ID: "+ property.getPropertyID());
+        //TODO FIX THIS
+        //occupiedUnits.setText("Occupied Units: "(?property.get));
     }
 }

@@ -59,4 +59,9 @@ public class PropertyItemController {
         editOpen = b;
     }
 
+    public void onAddTenant() throws IOException {
+        stage = new StageUtil("/fxml/registertenant.fxml");
+
+    }
+
 }

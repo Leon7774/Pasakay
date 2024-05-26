@@ -77,7 +77,7 @@
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <JFXButton fx:id="editButton1" buttonType="RAISED" layoutX="24.0" layoutY="132.0" onAction="#onEditClick" style="-fx-background-color: #01A2E9;" text="Add Tenant" textFill="WHITE">
+            <JFXButton fx:id="addTenant" buttonType="RAISED" layoutX="24.0" layoutY="132.0" onAction="#onAddTenant" style="-fx-background-color: #01A2E9;" text="Add Tenant" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

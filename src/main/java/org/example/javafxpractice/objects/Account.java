@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account {
+public class Account{
     private static int userID;
     private static String firstName;
     private static String lastName;

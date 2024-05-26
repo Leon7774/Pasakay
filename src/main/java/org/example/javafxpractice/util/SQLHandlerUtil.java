@@ -140,19 +140,8 @@ public class SQLHandlerUtil {
     }
 
     public static void propertyAdd(String name, String address, String description, double tax, double monthly, int units) throws SQLException {
-        String sql = "INSERT INTO properties (property_name,address,description,net_income,is_commercial,monthly_income,monthly_tax,available_units,unit_monthly_price,occupiedUnits) VALUES \n" +
-                "(property_name = ?, " +
-                "address = ?, " +
-                "description = ?, " +
-                "net_income = ?, " +
-                "is_commercial = ?, " +
-                "monthly_income = ?, " +
-                "monthly_tax = ?, " +
-                "available_units = ?, " +
-                "unit_monthly_price = ?, " +
-                "occupiedUnits = ?, " +
-                "userID = ?);";
-
+        String sql = "INSERT INTO properties (property_name,address,description,net_income,is_commercial,monthly_income,monthly_tax,available_units,unit_monthly_price,occupiedUnits,userID) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 
         PreparedStatement preparedStatement = connection1.prepareStatement(sql);
 

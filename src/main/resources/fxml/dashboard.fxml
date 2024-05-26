@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -31,14 +32,9 @@
                   <Font name="Century Gothic Bold" size="23.0" />
                </font>
             </Label>
-            <Text fx:id="welcomeLabel" fill="WHITE" layoutX="21.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome,  (USER)" textAlignment="CENTER" wrappingWidth="164.1484375">
+            <JFXButton fx:id="propertyTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="352.0" onAction="#onPropertiesTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Properties" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="15.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="propertyTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="334.0" onAction="#onPropertiesTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Properties" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
                </font></JFXButton>
             <JFXButton depthTest="ENABLE" layoutX="-1.0" layoutY="616.0" prefHeight="51.0" prefWidth="209.0" style="-fx-background-color: #262626;" text="Logout" textFill="WHITE">
                <font>
@@ -58,21 +54,50 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="tenantTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="386.0" onAction="#onTenantTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
+            <JFXButton fx:id="tenantTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="404.0" onAction="#onTenantTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="439.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Tenants" textFill="WHITE">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
+                  <Font name="Century Gothic Bold" size="15.0" />
                </font>
             </JFXButton>
             <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="59.0" layoutY="99.0">
                <image>
                   <Image url="@../user.png" />
                </image>
+               <effect>
+                  <DropShadow height="25.68" offsetX="2.0" offsetY="2.0" radius="12.925" spread="0.17" width="28.02">
+                     <color>
+                        <Color red="0.15789473056793213" green="0.15789473056793213" blue="0.15789473056793213" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </ImageView>
+            <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="74.0" layoutY="503.0">
+               <image>
+                  <Image url="@../clock.png" />
+               </image>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.1473684161901474" green="0.1473684161901474" blue="0.1473684161901474" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="17.0" layoutY="567.0" style="-fx-background-color: #ffffff;" text="Fast Forward One Month">
+               <font>
+                  <Font name="Century Gothic Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <Text fx:id="welcomeLabel1" fill="WHITE" layoutX="18.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" wrappingWidth="166.54846119880676">
+               <font>
+                  <Font name="Century Gothic Bold" size="15.0" />
+               </font>
+            </Text>
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="24.0" layoutY="192.0" prefHeight="38.0" prefWidth="156.0" text="Welcome, (name)" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow height="0.0" radius="4.75" />

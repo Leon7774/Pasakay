@@ -35,7 +35,7 @@ public class RegisterPropertyController implements Initializable {
     }
 
     public void setDashboardController(DashboardController controller) {
-        this.dashboardController = dashboardController;
+        this.dashboardController = controller;
     }
 
     public void applyButtonClicked(ActionEvent event) throws SQLException {
@@ -53,6 +53,11 @@ public class RegisterPropertyController implements Initializable {
             Account.getPropertyList().add(SQLHandlerUtil.getLatestProperty());
 
             //TODO make account successfully handled
+            Stage stage = (Stage) emptyWarningLabel.getScene().getWindow();
+            stage.close();
+
+            dashboardController.getVbox().getChildren().clear();
+            dashboardController.initializeTable();
         }
 
     }

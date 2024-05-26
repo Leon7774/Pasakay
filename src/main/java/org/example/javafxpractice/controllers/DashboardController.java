@@ -40,14 +40,21 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXButton addPropertyButton;
     @FXML
-    private Text welcomeLabel;
-    private boolean opened;
+    private Label welcomeLabel;
+    private static boolean opened = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO FIX LABEL
-        //welcomeLabel.setText("Welcome, " + Account.getFirstName());
+        setWelcomeLabel();
         initializeTable();
+    }
+
+    public void setWelcomeLabel() {
+        if (!opened) {
+            welcomeLabel.setText("Welcome, " + Account.getFirstName());
+            opened = true;
+        }
     }
 
     public void initializeTable() {

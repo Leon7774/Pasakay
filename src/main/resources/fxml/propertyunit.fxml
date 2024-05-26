@@ -23,14 +23,14 @@
       </AnchorPane>
       <AnchorPane prefHeight="138.0" prefWidth="654.0">
          <children>
-            <Label fx:id="propertyID" layoutX="14.0" layoutY="62.0" prefHeight="18.0" prefWidth="150.0" text="ID: 3124">
+            <Label fx:id="propertyID" layoutX="14.0" layoutY="35.0" prefHeight="18.0" prefWidth="150.0" text="ID: 3124">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="propertyAddress" layoutX="14.0" layoutY="40.0" prefHeight="23.0" prefWidth="223.0" text="421 Beverly Hills, California">
+            <Label fx:id="propertyAddress" alignment="TOP_LEFT" layoutX="14.0" layoutY="76.0" prefHeight="43.0" prefWidth="223.0" text="421 Beverly Hills, California" wrapText="true">
                <font>
-                  <Font name="Century Gothic" size="16.0" />
+                  <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
             <Label fx:id="availableUnits" layoutX="319.0" layoutY="14.0" prefHeight="23.0" prefWidth="281.0" text="Available Units: ">
@@ -38,12 +38,12 @@
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="netIncome" alignment="CENTER_RIGHT" layoutX="296.0" layoutY="95.0" prefHeight="23.0" prefWidth="265.0" text="Net Income: $4,592,123.00" textAlignment="RIGHT">
+            <Label fx:id="netIncome" alignment="CENTER_RIGHT" layoutX="186.0" layoutY="124.0" prefHeight="23.0" prefWidth="265.0" text="Net Income: $4,592,123.00" textAlignment="RIGHT">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="propertyDescription" layoutX="14.0" layoutY="80.0" prefHeight="23.0" prefWidth="223.0" text="Apartment Complex">
+            <Label fx:id="propertyDescription" layoutX="14.0" layoutY="53.0" prefHeight="23.0" prefWidth="223.0" text="Apartment Complex">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
@@ -53,11 +53,11 @@
                   <Font name="Century Gothic Bold" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="465.0" layoutY="123.0" style="-fx-background-color: #BBBBBB;" text="Edit">
+            <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="465.0" layoutY="123.0" onAction="#onEditClick" style="-fx-background-color: #BBBBBB;" text="Edit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton fx:id="DeleteButton" buttonType="RAISED" layoutX="512.0" layoutY="123.0" style="-fx-background-color: #BBBBBB;" text="Delete">
+            <JFXButton fx:id="deleteButton" buttonType="RAISED" layoutX="512.0" layoutY="123.0" style="-fx-background-color: #BBBBBB;" text="Delete">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
@@ -66,12 +66,17 @@
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="monthlyPerUnit" layoutX="319.0" layoutY="53.0" prefHeight="23.0" prefWidth="281.0" text="Monthly Rent Per Unit:">
+            <Label fx:id="monthlyPerUnit" layoutX="319.0" layoutY="52.0" prefHeight="23.0" prefWidth="281.0" text="Monthly Rent Per Unit:">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
             <Line endX="263.20001220703125" layoutX="257.0" layoutY="175.0" startX="-303.20001220703125" stroke="#00000065" />
+            <Label fx:id="monthlyTax" layoutX="319.0" layoutY="72.0" prefHeight="23.0" prefWidth="281.0" text="Monthly Tax: ">
+               <font>
+                  <Font name="Century Gothic" size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

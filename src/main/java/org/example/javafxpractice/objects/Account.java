@@ -23,8 +23,9 @@ public class Account {
         boolean isCommercial = rs.getBoolean("is_commercial");
         int availableUnits = rs.getInt("available_units");
         double unitMonthly = rs.getDouble("unit_monthly_price");
+        int occupiedUnits = rs.getInt("occupiedUnits");
 
-        Property property = new Property(propertyName, pAddress, description, isCommercial, tax, propertyID, availableUnits, netIncome, unitMonthly);
+        Property property = new Property(propertyName, pAddress, description, isCommercial, tax, propertyID, availableUnits, netIncome, unitMonthly,occupiedUnits);
 
         propertyList.add(property);
     }
@@ -81,5 +82,14 @@ public class Account {
 
     public static void printActiveAccount() {
         System.out.println(Account.getFirstName());
+    }
+
+    public static Property findPropertyByID(int id) {
+        for (Property a : propertyList) {
+            if (a.getPropertyID() == id) {
+                return a;
+            }
+        }
+        return null;
     }
 }

@@ -14,6 +14,14 @@ public class Property {
     private int occupiedUnits;
 
 
+    public double getUnitMonthly() {
+        return unitMonthly;
+    }
+
+    public void setUnitMonthly(double unitMonthly) {
+        this.unitMonthly = unitMonthly;
+    }
+
     public Property(String name, String address, String description, boolean isCommercial, double tax, int propertyID, int availableUnits, double income, double unitMonthly, int occupiedUnits) {
         this.name = name;
         this.address = address;
@@ -22,9 +30,20 @@ public class Property {
         this.tax = tax;
         this.propertyID = propertyID;
         this.availableUnits = availableUnits;
-        this.income = income;
+        this.income = occupiedUnits * unitMonthly;
         this.unitMonthly = unitMonthly;
         this.occupiedUnits = occupiedUnits;
+    }
+
+    public void editProperty(String name, String address, String description, double tax, int availableUnits, double unitMonthly) {
+        this.name = name;
+        this.address = address;
+        this.description = description;
+        this.tax = tax;
+        this.propertyID = propertyID;
+        this.availableUnits = availableUnits;
+        this.unitMonthly = unitMonthly;
+
     }
 
     public String getName() {

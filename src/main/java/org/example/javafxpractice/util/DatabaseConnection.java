@@ -9,7 +9,7 @@ public class DatabaseConnection {
     public Connection getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            databaseLink = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12708922", "sql12708922", "1VJDbVskHr");
+            databaseLink = DriverManager.getConnection("jdbc:mysql://localhost/maindb", "root", "bitnull10");
         } catch (Exception e) {
             System.out.println("Yooo something went wrong");
             e.printStackTrace();

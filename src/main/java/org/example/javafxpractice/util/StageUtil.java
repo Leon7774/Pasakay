@@ -9,13 +9,15 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class StageUtil extends Stage{
-    public Stage stage;
+    private Stage stage;
     double xOffset = 0;
     double yOffset = 0;
+    FXMLLoader loader;
 
     public StageUtil(String path) throws IOException {
         stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource(path));
+        loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = loader.load();
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("FreeHold");
@@ -33,5 +35,17 @@ public class StageUtil extends Stage{
         });
 
         stage.show();
+    }
+
+    public FXMLLoader getLoader() {
+        return loader;
+    }
+
+    public Object getController() {
+        return loader.getController(); // Returns the controller instance
+    }
+
+    public void closeStage() {
+        stage.close();
     }
 }

@@ -46,6 +46,7 @@ public class SQLHandlerUtil {
             ResultSet rs2 = statement.executeQuery(propTableQuery);
 
             //TODO Finish this shit
+
             while(rs2.next()) {
                 String propertyName = rs2.getString("property_name");
                 int propertyID = rs2.getInt("property_id");
@@ -56,7 +57,7 @@ public class SQLHandlerUtil {
                 double unit_monthly_price = rs2.getDouble("unit_monthly_price");
                 boolean isCommercial = rs2.getBoolean("is_Commercial");
                 double monthly_tax = rs2.getDouble("monthly_tax");
-                int occupiedUnits = rs2.getInt("occupied_units");
+                int occupiedUnits = rs2.getInt("occupiedUnits");
 
                 Property property = new Property(
                         propertyName,
@@ -70,6 +71,7 @@ public class SQLHandlerUtil {
                         unit_monthly_price,
                         occupiedUnits
                         );
+
                 Account.getPropertyList().add(property);
             }
 
@@ -77,11 +79,13 @@ public class SQLHandlerUtil {
                 System.out.println(a.toString());
             }
 
-
-
         } else {
             System.out.println("User not found");
         }
+    }
+
+    public void saveToDataBase() {
+
     }
 }
 

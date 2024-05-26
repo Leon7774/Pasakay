@@ -19,6 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         StageUtil login = new StageUtil("/fxml/login.fxml");
+        System.out.println("$");
 
     }
 

@@ -26,7 +26,7 @@
             </Text>
             <ScrollPane fx:id="scrollPane" layoutX="40.0" layoutY="132.0" prefHeight="534.0" prefWidth="737.0" stylesheets="@../css/styles.css">
                <content>
-                  <VBox fx:id="vboxContent" prefHeight="533.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
+                  <VBox fx:id="vboxContent" prefHeight="532.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="724.0" />
                      </children>

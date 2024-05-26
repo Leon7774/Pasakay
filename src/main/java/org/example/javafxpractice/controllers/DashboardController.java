@@ -27,6 +27,7 @@ public class DashboardController implements Initializable {
     @FXML
     private JFXListView<Label> listview;
     private Stage stage;
+
     @FXML
     private AnchorPane dashboardContent;
     @FXML
@@ -41,7 +42,7 @@ public class DashboardController implements Initializable {
         initializeTable();
     }
 
-    private void initializeTable() {
+    public void initializeTable() {
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -66,8 +67,17 @@ public class DashboardController implements Initializable {
 
     public void onPropertiesTabClick(ActionEvent event) throws IOException {
         dashboardContent.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
+
+        PropertyItemController controller = loader.getController();
+        controller.setParentController(this);
+
         dashboardContent.getChildren().setAll(FXMLLoaderUtil.getInstance().load("/fxml/propertytab.fxml"));
         initializeTable();
-
     }
+
+    public AnchorPane getDashboardContent() {
+        return dashboardContent;
+    }
+
 }

@@ -2,6 +2,8 @@ package org.example.javafxpractice.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.javafxpractice.Main;
 import org.example.javafxpractice.objects.Account;
 import org.example.javafxpractice.objects.Property;
 import org.example.javafxpractice.util.FXMLLoaderUtil;
@@ -86,6 +89,26 @@ public class DashboardController implements Initializable {
         initializeTable();
     }
 
+    public void onLogoutTabClick(ActionEvent event) {
+        // Close the current stage
+        Stage currentStage = (Stage) dashboardContent.getScene().getWindow();
+        currentStage.close();
+
+        // Launch a new login stage
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+                Stage loginStage = new Stage();
+                loginStage.setTitle("Login");
+                loginStage.setScene(new javafx.scene.Scene(loader.load()));
+                loginStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+
     public void refreshTable() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
         BorderPane propertyTabPane = loader.load(); // Load the content first
@@ -109,3 +132,4 @@ public class DashboardController implements Initializable {
         Account.passTime();
     }
 }
+

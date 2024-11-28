@@ -41,7 +41,11 @@ public class RegisterController {
             if(firstNameTextField.getText().equals("") && lastNameTextField.getText().equals("") && usernameTextField.getText().equals("")) {
                 passwordLabel.setText("Please fill out all the fields");
                 passwordLabel.setVisible(true);
-            }else{
+            } else if (firstNameTextField.getText().length() > 50) {
+                passwordLabel.setText("Name is over limit (50)");
+                passwordLabel.setVisible(true);
+
+            } else {
                 if (passwordTextField1.getText().isBlank()) {
                     passwordLabel.setText("Please enter a password");
                     passwordLabel.setVisible(true);
@@ -51,7 +55,7 @@ public class RegisterController {
                     passwordLabel.setVisible(true);
                 } else {
                     System.out.println("matched");
-                    SQLHandlerUtil.WriteUser(autoCapitalize(firstNameTextField.getText()),autoCapitalize(lastNameTextField.getText()),usernameTextField.getText(),passwordTextField1.getText());
+                    SQLHandlerUtil.WriteUser(autoCapitalize(firstNameTextField.getText()), autoCapitalize(lastNameTextField.getText()), usernameTextField.getText(), passwordTextField1.getText());
                     Stage stage = (Stage) registerTextField.getScene().getWindow();
                     stage.close();
                     new StageUtil("/fxml/registerconfirmed.fxml");

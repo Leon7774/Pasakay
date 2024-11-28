@@ -226,8 +226,6 @@ public class SQLHandlerUtil {
         statement.setString(5, sex);
         statement.setInt(6, propertyID);
         statement.executeUpdate();
-
-
     }
 
     public static Property getLatestProperty() throws SQLException {

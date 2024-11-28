@@ -2,8 +2,10 @@ package org.example.javafxpractice.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -67,6 +69,7 @@ public class LoginController implements Initializable {
     public void isValidLogin() {
         DatabaseConnection dbConnection = new DatabaseConnection();
         Connection connection1 = dbConnection.getConnection();
+
 
         String verifyLogin = "SELECT count(1) FROM userlist WHERE userName = '" + loginUsernameTextField.getText() + "'AND password ='" + loginPasswordField.getText() + "'";
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.EditPropertyController">
+   <top>
+      <AnchorPane prefHeight="114.0" prefWidth="521.0" style="-fx-background-color: #1D1D1D;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="36.0" layoutY="31.0" prefHeight="18.0" prefWidth="473.0" text="Edit Property" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="41.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="353.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="propertyNamePrompt" layoutX="228.0" layoutY="27.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="PropertyName">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="46.0" layoutY="33.0" text="Property Name:" />
+            <TextField fx:id="propertyAddressPrompt" layoutX="228.0" layoutY="66.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="PropertyName">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="46.0" layoutY="72.0" text="Property Address:" />
+            <TextField fx:id="propertyDescriptionPrompt" layoutX="228.0" layoutY="103.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="PropertyName">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="46.0" layoutY="109.0" text="Property Description:" />
+            <TextField fx:id="propertyAvailableUnitsPrompt" layoutX="228.0" layoutY="142.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="PropertyName">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="46.0" layoutY="148.0" text="Available Units:" />
+            <TextField fx:id="propertyMonthlyPerUnitPrompt" layoutX="228.0" layoutY="181.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="PropertyName">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="46.0" layoutY="187.0" text="Monthly Rent Per Unit ($): " />
+            <JFXButton fx:id="applyButton" buttonType="RAISED" layoutX="345.0" layoutY="289.0" onAction="#applyButtonClicked" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #01A2E9;" text="Apply" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="462.0" layoutY="289.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00;" text="Cancel" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <TextField fx:id="monthlyTaxField" layoutX="228.0" layoutY="219.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="PropertyName">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <Label layoutX="46.0" layoutY="225.0" text="Monthly Tax ($):" />
+         </children>
+      </AnchorPane>
+   </center>
+   <effect>
+      <DropShadow height="112.24" radius="46.2625" spread="0.36" width="74.81">
+         <color>
+            <Color opacity="0.693009078502655" />
+         </color>
+      </DropShadow>
+   </effect>
+</BorderPane>

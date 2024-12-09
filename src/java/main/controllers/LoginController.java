@@ -1,9 +1,11 @@
 package main.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -25,17 +27,22 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    public TextField loginUsernameTextField;
+    private ImageView closeButton;
+
     @FXML
-    public Button loginButton;
-    @FXML
-    public Button registerButton;
+    private JFXButton loginButton;
+
     @FXML
     private Label loginLabel;
+
     @FXML
     private PasswordField loginPasswordField;
+
     @FXML
-    private Button closeButton;
+    private TextField loginUsernameTextField;
+
+    @FXML
+    private JFXButton registerButton;
 
 
     public void onClickLoginButton(ActionEvent event) {

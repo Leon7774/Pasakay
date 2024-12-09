@@ -75,7 +75,7 @@ public class SQLHandlerUtil {
                         netIncome
                         );
 
-                Account.getPropertyList().add(property);
+                Account.addProperty(property);
             }
 
         } else {

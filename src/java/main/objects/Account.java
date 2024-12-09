@@ -85,6 +85,10 @@ public class Account{
         return propertyList;
     }
 
+    public static void addProperty(Property property) {
+        propertyList.add(property);
+    }
+
     public static void setPropertyList(List<Property> propertyList) {
         Account.propertyList = propertyList;
     }
@@ -101,4 +105,6 @@ public class Account{
         }
         return null;
     }
+
+    
 }

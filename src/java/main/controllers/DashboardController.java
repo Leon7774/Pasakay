@@ -92,11 +92,7 @@ public class DashboardController implements Initializable {
         // Launch a new login stage
         Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-                Stage loginStage = new Stage();
-                loginStage.setTitle("Login");
-                loginStage.setScene(new javafx.scene.Scene(loader.load()));
-                loginStage.show();
+                StageUtil util = new StageUtil("/fxml/login.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

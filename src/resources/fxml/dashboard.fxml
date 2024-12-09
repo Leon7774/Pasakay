@@ -22,15 +22,21 @@
    <left>
       <AnchorPane prefHeight="666.0" prefWidth="207.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="67.0" fitWidth="83.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="83.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icon.png" />
                </image>
+               <effect>
+                  <DropShadow radius="7.0525" width="9.21" />
+               </effect>
             </ImageView>
-            <Label layoutX="73.0" layoutY="32.0" text="FreeHold" textFill="WHITE">
+            <Label layoutX="80.0" layoutY="33.0" prefHeight="27.0" prefWidth="122.0" text="FreeHold" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="23.0" />
+                  <Font name="Futura Bold" size="22.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
             <JFXButton fx:id="propertyTab" buttonType="RAISED" defaultButton="true" layoutX="-2.0" layoutY="352.0" onAction="#onPropertiesTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Properties" textFill="WHITE">
                <font>
@@ -44,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="24.0">
+                  <ImageView fitHeight="33.0" fitWidth="35.0">
                      <image>
                         <Image url="@../logout.png" />
                      </image>
@@ -90,12 +96,12 @@
             </JFXButton>
             <Text fx:id="welcomeLabel1" fill="WHITE" layoutX="18.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" wrappingWidth="166.54846119880676">
                <font>
-                  <Font name="Century Gothic Bold" size="15.0" />
+                  <Font name="Helvetica Neue Bold" size="15.0" />
                </font>
             </Text>
             <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="24.0" layoutY="192.0" prefHeight="38.0" prefWidth="156.0" text="Welcome, (name)" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
+                  <Font name="Euphemia UCAS Bold" size="12.0" />
                </font>
             </Label>
          </children>

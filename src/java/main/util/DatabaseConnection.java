@@ -13,11 +13,11 @@ public class DatabaseConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
             databaseLink = DriverManager.getConnection("jdbc:mysql://localhost/DBMS", "root", "REDACTED");
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             System.out.println("MySQL JDBC Driver not found!");
-            e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("Error connecting to the database.");
             e.printStackTrace();
+            System.out.println("Error connecting to the database.");
         }
 
         System.out.println(

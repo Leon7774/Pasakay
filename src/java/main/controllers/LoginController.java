@@ -66,7 +66,15 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Attach an event handler for the Enter key on the password field
+        loginPasswordField.setOnAction(event -> onClickLoginButton(event));
+        loginUsernameTextField.setOnAction(event -> onClickLoginButton(event));
 
+        // Attach event handler for the close button
+        closeButton.setOnMouseClicked(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.close();
+        });
     }
 
 
@@ -74,7 +82,6 @@ public class LoginController implements Initializable {
     public void isValidLogin() {
         DatabaseConnection dbConnection = new DatabaseConnection();
         Connection connection1 = dbConnection.getConnection();
-
 
         String verifyLogin = "SELECT count(1) FROM userlist WHERE userName = '" + loginUsernameTextField.getText() + "'AND password ='" + loginPasswordField.getText() + "'";
 

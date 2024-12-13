@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -76,6 +78,18 @@ public class LoginController implements Initializable {
             stage.close();
         });
     }
+
+    @FXML
+    void dilightClose(MouseEvent event) {
+        closeButton.setImage(new Image("/close-highlight.png"));
+    }
+
+
+    @FXML
+    void highlightClose(MouseEvent event) {
+        closeButton.setImage(new Image("/close.png"));
+    }
+
 
 
     // Login Checker

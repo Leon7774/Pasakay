@@ -1,8 +1,10 @@
 package main.util;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -37,6 +39,16 @@ public class SceneUtil {
     public void setScene(String path) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(path));
         stage.getScene().setRoot(root);
+    }
+
+    @FXML
+    void dilightClose(MouseEvent event) {
+
+    }
+
+    @FXML
+    void highlightClose(MouseEvent event) {
+
     }
 
     public void showModal(String path) throws IOException {

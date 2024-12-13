@@ -1,14 +1,14 @@
-package main.util;
+package main.util.exclude;
 
 import main.objects.Account;
 import main.objects.Property;
+import main.util.DatabaseConnection;
 
 import java.sql.*;
 
 public class SQLHandlerUtil {
     public static DatabaseConnection dbconnection = new DatabaseConnection();
     public static Connection connection1 = dbconnection.getConnection();
-
 
     public static void WriteUser(String firstname, String lastname, String username, String password) throws SQLException {
 
@@ -113,7 +113,7 @@ public class SQLHandlerUtil {
 
         // Set the parameters
 
-        // Name
+        // Name1
         preparedStatement.setString(1, name);
         //Address
         preparedStatement.setString(2, address);

@@ -10,27 +10,8 @@ public class Account{
     private static String firstName;
     private static String lastName;
     private static String userName;
-    private static List<Property> propertyList;
+    private static List<Agent> agentList;
     private static double balance;
-
-    //TODO Property List
-    public void addToPropertyList(ResultSet rs) throws SQLException {
-        String propertyName = rs.getString("property_name");
-        String pAddress = rs.getString("address");
-        String description = rs.getString("description");
-        int propertyID = rs.getInt("property_id");
-        double monthly_income = rs.getDouble("monthly_income");
-        double tax = rs.getDouble("monthly_tax");
-        boolean isCommercial = rs.getBoolean("is_commercial");
-        int availableUnits = rs.getInt("available_units");
-        double unitMonthly = rs.getDouble("unit_monthly_price");
-        int occupiedUnits = rs.getInt("occupiedUnits");
-        double netIncome = rs.getDouble("net_income");
-
-        Property property = new Property(propertyName, pAddress, description, isCommercial, tax, propertyID, availableUnits, netIncome, unitMonthly,occupiedUnits, netIncome);
-
-        propertyList.add(property);
-    }
 
 
     public static void setAccount(int userID2, String firstName2, String lastName2, String userName2, double balance) {

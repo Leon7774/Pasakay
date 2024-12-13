@@ -102,12 +102,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="407.0" layoutY="3.0" onMouseClicked="#closeButtonOnActionEvent" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="407.0" layoutY="3.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../close.png" />
+                  <Image url="@../close-highlight.png" />
                </image>
                <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
          </children>

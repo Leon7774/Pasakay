@@ -23,7 +23,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icon.png" />
+                  <Image url="@../images/icon.png" />
                </image>
                <effect>
                   <DropShadow>
@@ -104,7 +104,7 @@
                </cursor></JFXButton>
             <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="407.0" layoutY="3.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../close-highlight.png" />
+                  <Image url="@../images/close-highlight.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

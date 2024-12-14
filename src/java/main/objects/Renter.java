@@ -5,6 +5,8 @@ public class Renter {
     String firstName;
     String lastName;
     String status;
+    String sex;
+    int age;
 
     public int getRenterID() {
         return renterID;
@@ -53,9 +55,4 @@ public class Renter {
     public void setAge(int age) {
         this.age = age;
     }
-
-    String sex;
-    int age;
-
-
 }

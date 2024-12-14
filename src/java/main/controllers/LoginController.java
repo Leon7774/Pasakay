@@ -3,7 +3,6 @@ package main.controllers;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -81,13 +80,13 @@ public class LoginController implements Initializable {
 
     @FXML
     void dilightClose(MouseEvent event) {
-        closeButton.setImage(new Image("/close-highlight.png"));
+        closeButton.setImage(new Image("/images/close-highlight.png"));
     }
 
 
     @FXML
     void highlightClose(MouseEvent event) {
-        closeButton.setImage(new Image("/close.png"));
+        closeButton.setImage(new Image("/images/close.png"));
     }
 
 
@@ -97,7 +96,7 @@ public class LoginController implements Initializable {
         DatabaseConnection dbConnection = new DatabaseConnection();
         Connection connection1 = dbConnection.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM userlist WHERE userName = '" + loginUsernameTextField.getText() + "'AND password ='" + loginPasswordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM user WHERE userName = '" + loginUsernameTextField.getText() + "'AND password ='" + loginPasswordField.getText() + "'";
 
         try {
             Statement statement = connection1.createStatement();
@@ -137,9 +136,5 @@ public class LoginController implements Initializable {
         // baseUI.setScene("/fxml/otherScene.fxml");
     }
 
-    private void handleEnterKey() {
-        System.out.println("Enter key pressed! Executing code...");
-        // Add your code to be executed here
-    }
 
 }

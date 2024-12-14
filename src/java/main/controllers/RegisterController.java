@@ -78,6 +78,7 @@ public class RegisterController {
         new StageUtil("/fxml/login.fxml");
     }
 
+    // Method that auto-capitalizes strings, useful for name inputs
     public String autoCapitalize(String str) {
         String[] r = str.split(" ");
         String[] c = new String[r.length];

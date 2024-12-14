@@ -20,14 +20,8 @@ public class Account{
         lastName = lastName2;
         userName = userName2;
 
-        propertyList = new ArrayList<>();
+        agentList = new ArrayList<>();
         balance = 0;
-    }
-
-    public static void passTime() {
-        for (Property a : propertyList) {
-            a.passTime();
-        }
     }
 
     public static int getUserID() {
@@ -62,30 +56,24 @@ public class Account{
         Account.userName = userName;
     }
 
-    public static List<Property> getPropertyList() {
-        return propertyList;
-    }
-
-    public static void addProperty(Property property) {
-        propertyList.add(property);
-    }
-
-    public static void setPropertyList(List<Property> propertyList) {
-        Account.propertyList = propertyList;
-    }
-
     public static void printActiveAccount() {
         System.out.println(Account.getFirstName());
     }
 
-    public static Property findPropertyByID(int id) {
-        for (Property a : propertyList) {
-            if (a.getPropertyID() == id) {
+    public static void addAgent(Agent agent) {
+        agentList.add(agent);
+    }
+
+    public static List<Agent> getAgentList() {
+        return agentList;
+    }
+
+    public static Agent findAgentById(int id) {
+        for (Agent a : agentList) {
+            if (a.getAgentID() == id) {
                 return a;
             }
         }
         return null;
     }
-
-    
 }

@@ -1,7 +1,6 @@
-package main.util.exclude;
+package main.util.excluded;
 
 import main.objects.Account;
-import main.objects.Property;
 import main.util.DatabaseConnection;
 
 import java.sql.*;
@@ -171,7 +170,6 @@ public class SQLHandlerUtil {
 
 
         preparedStatement.executeUpdate();
-
     }
 
     public Property searchSQLByID(int ID) throws SQLException {

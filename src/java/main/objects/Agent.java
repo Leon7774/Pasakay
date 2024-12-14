@@ -1,20 +1,78 @@
 package main.objects;
 
+import javafx.scene.control.ListCell;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Agent {
     private String firstname;
     private String lastname;
     private int agentID;
     private double netIncome;
+    private int contactNumber;
+    private String address;
+    private int age;
     private int occupiedCars;
     private int availableCars;
+    private List<Car> cars;
 
-    public Agent(String firstname, String lastname, int agentID, double netIncome) {
+
+    public Agent(String firstname, String lastname, int agentID, String address, int age, int contactNumber) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.agentID = agentID;
-        this.netIncome = netIncome;
         this.occupiedCars = 0;
         this.availableCars = 0;
+        this.contactNumber = contactNumber;
+        this.address = address;
+        this.age = age;
+        this.netIncome = 0;
+        this.cars = new ArrayList<>();
+    }
+
+    public Agent(String firstname, String lastname, int age, String address, int contactNumber) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.occupiedCars = 0;
+        this.availableCars = 0;
+        this.contactNumber = contactNumber;
+        this.address = address;
+        this.age = age;
+        this.netIncome = 0;
+        this.cars = new ArrayList<>();
+    }
+
+    public int getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(int contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public String getFirstname() {

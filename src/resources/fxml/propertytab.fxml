@@ -45,7 +45,7 @@
             <Line endX="642.6000366210938" endY="1.0000152587890625" layoutX="123.0" layoutY="131.0" startX="-100.0" />
             <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="724.0" layoutY="30.0">
                <image>
-                  <Image url="@../search.png" />
+                  <Image url="@../images/search.png" />
                </image>
             </ImageView>
             <TextField alignment="CENTER_RIGHT" layoutX="574.0" layoutY="27.0" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
@@ -53,7 +53,7 @@
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" preserveRatio="true">
                      <image>
-                        <Image url="@../plus.png" />
+                        <Image url="@../images/plus.png" />
                      </image>
                   </ImageView>
                </graphic>

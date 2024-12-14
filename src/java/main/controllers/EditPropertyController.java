@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.objects.Account;
-import main.objects.Property;
 import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
@@ -17,17 +16,29 @@ import java.util.ResourceBundle;
 
 public class EditPropertyController implements Initializable {
 
-    public TextField propertyNamePrompt;
-    public TextField propertyAddressPrompt;
-    public TextField propertyDescriptionPrompt;
-    public TextField propertyAvailableUnitsPrompt;
-    public TextField propertyMonthlyPerUnitPrompt;
-    public TextField monthlyTaxField;
-    public JFXButton applyButton;
-    public JFXButton cancelButton;
+    @FXML
+    private TextField agentAddressPrompt;
+
+    @FXML
+    private TextField agentAgePrompt;
+
+    @FXML
+    private TextField agentContactPrompt;
+
+    @FXML
+    private TextField agentFirstNamePrompt;
+
+    @FXML
+    private TextField agentLastNamePrompt;
+
+    @FXML
+    private JFXButton applyButton;
+
+    @FXML
+    private JFXButton cancelButton;
+
     private PropertyItemController propertyItemController;
     private DashboardController dashboardController;
-    private Property property;
 
     public void onCancelClick(ActionEvent event) {
         propertyItemController.setEditButton(false);
@@ -41,18 +52,18 @@ public class EditPropertyController implements Initializable {
         System.out.println("Initialized");
     }
 
-    //Gets data from propertyitemcontroller
     public void initializeData(PropertyItemController controller) {
         this.propertyItemController = controller;
 
-        propertyNamePrompt.setText(propertyItemController.propertyName.getText());
-        propertyAddressPrompt.setText(propertyItemController.propertyAddress.getText());
-        propertyDescriptionPrompt.setText(propertyItemController.propertyDescription.getText());
-        propertyAvailableUnitsPrompt.setText(propertyItemController.availableUnits.getText().split(" ")[2]);
-        propertyMonthlyPerUnitPrompt.setText(propertyItemController.monthlyPerUnit.getText().split(" ")[4].substring(1));
-        monthlyTaxField.setText(propertyItemController.monthlyTax.getText().split(" ")[2].substring(1));
+        agentFirstNamePrompt.setText(propertyItemController.getActiveAgent().getFirstname());
+        agentLastNamePrompt.setText(propertyItemController.getActiveAgent().getLastname());
+        agentAddressPrompt.setText(propertyItemController.getActiveAgent().getAddress());
+        agentAgePrompt.setText(String.valueOf(propertyItemController.getActiveAgent().getAge()));
+        agentContactPrompt.setText(String.valueOf(propertyItemController.getActiveAgent().getContactNumber()));
     }
 
+
+    /*
     @FXML
     public void applyButtonClicked(ActionEvent event) throws IOException, SQLException {
         property = Account.findPropertyByID(Integer.parseInt(propertyItemController.propertyID.getText().split(" ")[1]));
@@ -74,6 +85,7 @@ public class EditPropertyController implements Initializable {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+     */
 
     public void setDashboardController(DashboardController controller) {
         this.dashboardController = controller;

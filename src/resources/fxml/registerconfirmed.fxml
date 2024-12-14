@@ -6,14 +6,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="380.0" style="-fx-background-color: #595959;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="380.0" style="-fx-background-color: #595959; -fx-border-radius: 20px;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterController">
    <children>
-      <Text fill="WHITE" layoutX="48.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration Successful" textAlignment="CENTER" wrappingWidth="283.13671875">
+      <Text fill="WHITE" layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration Successful" textAlignment="CENTER" wrappingWidth="351.13671875">
          <font>
-            <Font size="24.0" />
+            <Font name="Futura Bold" size="24.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Text>
-      <Button fx:id="returnToLoginButton" layoutX="141.0" layoutY="127.0" mnemonicParsing="false" onAction="#returnToLoginClicked" style="-fx-background-color: #F2F2F2;" text="Return to Login" />
+      <Button fx:id="returnToLoginButton" layoutX="141.0" layoutY="127.0" mnemonicParsing="false" onAction="#returnToLoginClicked" style="-fx-background-color: #F2F2F2;" text="Return to Login">
+         <effect>
+            <DropShadow />
+         </effect></Button>
    </children>
    <effect>
       <DropShadow spread="0.37" />

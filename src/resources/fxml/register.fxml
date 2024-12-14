@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="registerPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterController">
+<AnchorPane fx:id="registerPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterController">
    <children>
       <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #595959;">
          <children>
             <ImageView fitHeight="72.0" fitWidth="78.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icon.png" />
+                  <Image url="@../images/icon.png" />
                </image>
             </ImageView>
             <Label layoutX="86.0" layoutY="21.0" text="FreeHold" textFill="WHITE">
@@ -34,49 +34,50 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="60.0" layoutY="116.0" prefHeight="55.0" prefWidth="479.0" text="Let's Build Your Future. Together." textAlignment="CENTER" wrapText="true">
+      <Label alignment="CENTER" focusTraversable="false" layoutX="60.0" layoutY="116.0" prefHeight="55.0" prefWidth="479.0" text="Let's Build Your Future. Together." textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Franklin Gothic Book" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="90.0" layoutY="193.0" prefHeight="29.0" prefWidth="350.0" text="First Name">
+      <Label focusTraversable="false" layoutX="90.0" layoutY="193.0" prefHeight="29.0" prefWidth="350.0" text="First Name">
          <font>
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="firstNameTextField" layoutX="90.0" layoutY="218.0" prefWidth="420.0" promptText="Enter First Name" />
-      <Label layoutX="90.0" layoutY="257.0" prefHeight="29.0" prefWidth="350.0" text="Last Name">
+      <Label focusTraversable="false" layoutX="90.0" layoutY="257.0" prefHeight="29.0" prefWidth="350.0" text="Last Name">
          <font>
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="lastNameTextField" layoutX="90.0" layoutY="282.0" prefWidth="420.0" promptText="Enter Last Name" />
-      <Label layoutX="90.0" layoutY="323.0" prefHeight="29.0" prefWidth="350.0" text="Username">
+      <Label focusTraversable="false" layoutX="90.0" layoutY="323.0" prefHeight="29.0" prefWidth="350.0" text="Username">
          <font>
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="usernameTextField" layoutX="90.0" layoutY="348.0" prefWidth="420.0" promptText="Enter Username" />
-      <Label layoutX="90.0" layoutY="385.0" prefHeight="29.0" prefWidth="350.0" text="Password">
+      <Label focusTraversable="false" layoutX="90.0" layoutY="385.0" prefHeight="29.0" prefWidth="350.0" text="Password">
          <font>
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Label>
+      <PasswordField fx:id="passwordTextField1" layoutX="90.0" layoutY="415.0" prefWidth="420.0" promptText="Enter Password" />
+      <Label fx:id="registerLabel" alignment="CENTER" focusTraversable="false" layoutX="227.0" layoutY="512.0" text="User registered successfully!" textAlignment="CENTER" textFill="#01a2e9" visible="false" />
+      <PasswordField fx:id="passwordTextField2" layoutX="90.0" layoutY="479.0" prefWidth="420.0" promptText="Enter Password" />
+      <Label layoutX="90.0" layoutY="449.0" prefHeight="29.0" prefWidth="350.0" text="Confirm Password">
+         <font>
+            <Font name="Franklin Gothic Book" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="135.0" layoutY="512.0" prefHeight="17.0" prefWidth="331.0" text="Passwords do not match." textAlignment="CENTER" textFill="#cc0000" visible="false" />
       <Button fx:id="registerTextField" layoutX="213.0" layoutY="538.0" mnemonicParsing="false" onAction="#registerButtonOnEvent" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #595959;" text="Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <PasswordField fx:id="passwordTextField1" layoutX="90.0" layoutY="415.0" prefWidth="420.0" promptText="Enter Password" />
-      <Label fx:id="registerLabel" alignment="CENTER" layoutX="227.0" layoutY="512.0" text="User registered successfully!" textAlignment="CENTER" textFill="#01a2e9" visible="false" />
-      <Label layoutX="90.0" layoutY="449.0" prefHeight="29.0" prefWidth="350.0" text="Confirm Password">
-         <font>
-            <Font name="Franklin Gothic Book" size="15.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="passwordTextField2" layoutX="90.0" layoutY="479.0" prefWidth="420.0" promptText="Enter Password" />
-      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="135.0" layoutY="512.0" prefHeight="17.0" prefWidth="331.0" text="Passwords do not match." textAlignment="CENTER" textFill="#cc0000" visible="false" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

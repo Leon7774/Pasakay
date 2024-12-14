@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.objects.Account;
-import main.objects.Property;
+import main.objects.Agent;
 import main.util.FXMLLoaderUtil;
 import main.util.StageUtil;
 
@@ -46,6 +46,7 @@ public class DashboardController implements Initializable {
         //TODO FIX LABEL
         setWelcomeLabel();
         initializeTable();
+        welcomeLabel.setText("Welcome, " + Account.getFirstName());
     }
 
     public void setWelcomeLabel() {
@@ -58,12 +59,12 @@ public class DashboardController implements Initializable {
     public void initializeTable() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        for (Property property : Account.getPropertyList()) {
+        for (Agent agent : Account.getAgentList()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertyunit.fxml"));
                 HBox hbox = loader.load();
                 PropertyItemController pipController = loader.getController();
-                pipController.setData(property);
+                pipController.setData(agent);
                 pipController.setParentController(this); // Set parent controller
                 vboxContent.getChildren().add(hbox);
             } catch (IOException e) {
@@ -72,16 +73,16 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void onTenantTabClick(ActionEvent event) throws IOException {
-        dashboardContent.getChildren().setAll(FXMLLoaderUtil.getInstance().load("/fxml/node2.fxml"));
-
-    }
-
     public void onPropertiesTabClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
         BorderPane propertyTabPane = loader.load(); // Load the content first
         dashboardContent.getChildren().setAll(propertyTabPane);
         initializeTable();
+    }
+
+    @FXML
+    void onAgentTabClick(ActionEvent event) {
+
     }
 
     public void onLogoutTabClick(ActionEvent event) {
@@ -99,7 +100,6 @@ public class DashboardController implements Initializable {
         });
     }
 
-
     public void refreshTable() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
         BorderPane propertyTabPane = loader.load(); // Load the content first
@@ -113,14 +113,10 @@ public class DashboardController implements Initializable {
 
 
     @FXML
-    public void propertyAdd() throws IOException {
-        StageUtil addProperty = new StageUtil("/fxml/addProperty.fxml");
-        RegisterPropertyController controller = (RegisterPropertyController) addProperty.getController();
+    public void agentAdd() throws IOException {
+        StageUtil addAgent = new StageUtil("/fxml/registerAgent.fxml");
+        RegisterPropertyController controller = (RegisterPropertyController) addAgent.getController();
         controller.setDashboardController(this);
-    }
-
-    public void fastForward() {
-        Account.passTime();
     }
 }
 

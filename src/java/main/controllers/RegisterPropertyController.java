@@ -2,9 +2,11 @@ package main.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.util.SQLHandlerUtil;
@@ -15,15 +17,29 @@ import java.util.ResourceBundle;
 
 public class RegisterPropertyController implements Initializable {
 
-    public TextField registerName;
-    public TextField registerAddress;
-    public TextField registerDescription;
-    public TextField registerUnits;
-    public TextField registerMonthly;
-    public TextField registerTax;
-    public JFXButton applyButton;
-    public JFXButton cancelButton;
-    public Label emptyWarningLabel;
+    @FXML
+    private TextField agentAddressPrompt;
+
+    @FXML
+    private TextField agentAgePrompt;
+
+    @FXML
+    private TextField agentContactPrompt;
+
+    @FXML
+    private TextField agentFirstNamePrompt;
+
+    @FXML
+    private TextField agentLastNamePrompt;
+
+    @FXML
+    private JFXButton applyButton;
+
+    @FXML
+    private JFXButton cancelButton;
+
+    @FXML
+    private Text emptyWarningLabel;
     public DashboardController dashboardController;
 
     @Override
@@ -37,19 +53,26 @@ public class RegisterPropertyController implements Initializable {
         this.dashboardController = controller;
     }
 
+
     public void applyButtonClicked(ActionEvent event) throws SQLException {
         if (
-                registerName.getText().isBlank() ||
-                        registerAddress.getText().isBlank() ||
-                        registerDescription.getText().isBlank() ||
-                        registerTax.getText().isBlank() ||
-                        registerMonthly.getText().isBlank() ||
-                        registerUnits.getText().isBlank()
+                agentFirstNamePrompt.getText().isBlank() ||
+                        agentLastNamePrompt.getText().isBlank() ||
+                        agentAddressPrompt.getText().isBlank() ||
+                        agentAgePrompt.getText().isBlank() ||
+                        agentContactPrompt.getText().isBlank()
         ) {
             emptyWarningLabel.setVisible(true);
         } else {
-            SQLHandlerUtil.propertyAdd(registerName.getText(), registerAddress.getText(), registerDescription.getText(), Double.parseDouble(registerTax.getText()), Double.parseDouble(registerMonthly.getText()), Integer.parseInt(registerUnits.getText()));
-            Account.getPropertyList().add(SQLHandlerUtil.getLatestProperty());
+            Account.getAgentList().add(
+                    // SQLHandlerUtil.addAgent injects a new agent to the database, and it also returns the created agent to the source code,
+                    // - which is added to the agent list of the user
+                    SQLHandlerUtil.addAgent(agentFirstNamePrompt.getText(),
+                            agentLastNamePrompt.getText(),
+                            Integer.parseInt(agentAgePrompt.getText()),
+                            agentAddressPrompt.getText(),
+                            Integer.parseInt(agentContactPrompt.getText()))
+            );
 
             //TODO make account successfully handled
             Stage stage = (Stage) emptyWarningLabel.getScene().getWindow();
@@ -58,13 +81,10 @@ public class RegisterPropertyController implements Initializable {
             dashboardController.getVbox().getChildren().clear();
             dashboardController.initializeTable();
         }
-
     }
 
-
-
     public void onCancelClick(ActionEvent event) {
-        Stage stage = (Stage) registerName.getScene().getWindow();
+        Stage stage = (Stage) agentFirstNamePrompt.getScene().getWindow();
         stage.close();
     }
 

@@ -1,6 +1,7 @@
 package main.sqltest;
 
 import main.util.DatabaseConnection;
+import main.util.SQLHandlerUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ public class SQLTest {
     public static Connection dbConnection = connection.getConnection();
 
     public static void main(String[] args) throws SQLException {
-        createAgent("Mike", "Tyson", 5);
+        SQLHandlerUtil.addAgent("Mike", "Tyson", 42, "Tubo Street", 932412);
     }
 
     public static void createAgent(String first_name, String last_name, int userID) throws SQLException {
@@ -22,4 +23,6 @@ public class SQLTest {
         statement.setInt(3, userID);
         statement.executeUpdate();
     }
+
+
 }

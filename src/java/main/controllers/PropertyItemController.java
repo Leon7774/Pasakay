@@ -4,46 +4,63 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-import main.objects.Property;
+import main.objects.Agent;
 import main.util.StageUtil;
 import java.io.IOException;
 
 public class PropertyItemController {
     @FXML
-    public Label propertyName;
-    public Label propertyID;
-    public Label propertyAddress;
-    public Label availableUnits;
-    public Label netIncome;
-    public Label propertyDescription;
-    public Label occupiedUnits;
-    public Label monthlyPerUnit;
-    public Label monthlyTax;
-    public JFXButton editButton;
-    public JFXButton deleteButton;
+    private Label agentAddress;
+
+    @FXML
+    private Label agentAge;
+
+    @FXML
+    private Label agentCars;
+
+    @FXML
+    private Label agentID;
+
+    @FXML
+    private Label agentName;
+
+    @FXML
+    private JFXButton deleteButton;
+
+    @FXML
+    private JFXButton editButton;
+
+    @FXML
+    private Label netIncome;
+
+    @FXML
+    private Label agentRentedCars;
+
+    @FXML
+    private JFXButton viewAgent;
+
+    private boolean editOpen = false;
     private StageUtil stage;
-    private boolean editOpen;
-
-    public Property propertyA;
-
+    private Agent activeAgent;
     public DashboardController dashboardController;
+
 
     public void setParentController(DashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 
-    public void setData(Property property) {
-        propertyAddress.setText(property.getAddress());
-        availableUnits.setText("Available Units: " + property.getAvailableUnits());
-        netIncome.setText("Net Income: $" + String.format("%.2f", property.getIncome()));
-        propertyDescription.setText(property.getDescription());
-        propertyName.setText(property.getName());
-        propertyID.setText("ID: "+ property.getPropertyID());
-        monthlyPerUnit.setText("Monthly Rent per Unit: $" + String.format("%.2f", property.getUnitMonthly()));
-        occupiedUnits.setText("Occupied Units: " + property.getOccupiedUnits());
-        monthlyTax.setText("Monthly Tax: $" + String.format("%.2f", property.getTax()));
+    public void setData(Agent agent) {
+        activeAgent = agent;
+        agentName.setText(agent.getFirstname() + " " + agent.getLastname());
+        agentCars.setText("Number of Assigned Cars: " + agent.getCars());
+        agentRentedCars.setText("Cars Currently in Rent: " + agent);
 
-        propertyA = property;
+        // TODO !!!
+        // Make income method
+        netIncome.setText("Net Income: $" +10000);
+        agentAge.setText("Age: " + String.valueOf(agent.getAge()));
+        agentAddress.setText(agent.getAddress());
+        agentID.setText("Agent ID: " + agent.getAgentID());
     }
 
     public void onEditClick(ActionEvent event) throws IOException {
@@ -60,10 +77,63 @@ public class PropertyItemController {
         editOpen = b;
     }
 
-    public void onAddTenant() throws IOException {
+    /*
+    public void onViewAgent() throws IOException {
         stage = new StageUtil("/fxml/registertenant.fxml");
         RegisterTenantController controller = (RegisterTenantController) stage.getController();
-        controller.setPropertyItemController(this);
     }
 
+     */
+
+    @FXML
+    void onViewAgent(ActionEvent event) {
+
+    }
+
+
+
+    // FXML Getters
+    public Label getAgentAddress() {
+        return agentAddress;
+    }
+
+    public Label getAgentAge() {
+        return agentAge;
+    }
+
+    public Label getAgentCars() {
+        return agentCars;
+    }
+
+    public Label getAgentID() {
+        return agentID;
+    }
+
+    public Label getAgentName() {
+        return agentName;
+    }
+
+    public JFXButton getDeleteButton() {
+        return deleteButton;
+    }
+
+    public JFXButton getEditButton() {
+        return editButton;
+    }
+
+    public Label getNetIncome() {
+        return netIncome;
+    }
+
+    public Label getAgentRentedCars() {
+        return agentRentedCars;
+    }
+
+    public JFXButton getViewAgent() {
+        return viewAgent;
+    }
+
+    public Agent getActiveAgent() {
+        return activeAgent;
+    }
 }

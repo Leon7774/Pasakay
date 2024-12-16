@@ -2,11 +2,19 @@ package main.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
+import main.objects.Account;
 import main.objects.Agent;
+import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Optional;
 
 public class PropertyItemController {
     @FXML
@@ -65,12 +73,35 @@ public class PropertyItemController {
 
     public void onEditClick(ActionEvent event) throws IOException {
         if (!editOpen) {
-            stage = new StageUtil("/fxml/editProperty.fxml");
+
+            Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+            stage = new StageUtil("/fxml/editAgent.fxml", currentStage);
             EditPropertyController controller = (EditPropertyController) stage.getController();
             controller.setDashboardController(dashboardController); // Pass DashboardController reference
             controller.initializeData(this);
             editOpen = true;
         }
+    }
+
+    @FXML
+    public void onDeleteClick(ActionEvent event) throws SQLException, IOException {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Confirmation");
+        alert.setHeaderText("Agent Deletion");
+        alert.setContentText("Are you sure you want to delete this agent?");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        System.out.println(getAgentID());
+
+        if(result == ButtonType.OK) {
+
+            System.out.println(SQLHandlerUtil.deleteAgent(activeAgent.getAgentID()));
+            SQLHandlerUtil.findUser(Account.getUserName());
+        }
+
+        dashboardController.refreshTable();
     }
 
     public void setEditButton(boolean b) {

@@ -4,13 +4,16 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import main.objects.Agent;
+import main.util.StageUtil;
 
 import java.io.IOException;
 
@@ -61,17 +64,12 @@ public class AgentViewController {
         System.out.println("Hello World");
     }
 
-
-    //TODO
-    //Back Button
     @FXML
     void onBackClick(ActionEvent event) throws IOException {
-        /*
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
-        BorderPane pane = fxmlLoader.load();
-        dashboardContent.getChildren().setAll(pane);
 
-         */
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+
+        StageUtil stage = new StageUtil("/fxml/dashboard.fxml");
     }
 
     public void setAgentData(Agent agent) {

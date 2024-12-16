@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterCarController">
+   <top>
+      <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="73.0" layoutY="9.0" prefHeight="51.0" prefWidth="271.0" text="Rental Schedule" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="color-overlay">
+               <image>
+                  <Image url="@../images/registerCar.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" hue="-0.05" saturation="1.0" />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <effect>
+      <DropShadow height="112.24" radius="46.2625" spread="0.36" width="74.81">
+         <color>
+            <Color opacity="0.693009078502655" />
+         </color>
+      </DropShadow>
+   </effect>
+   <left>
+      <AnchorPane prefHeight="390.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="lastNamePrompt" layoutX="243.0" layoutY="72.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Last Name" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="61.0" layoutY="77.0" text="Last Name:" />
+            <Label layoutX="61.0" layoutY="115.0" text="Status:" />
+            <TextField fx:id="agePrompt" layoutX="243.0" layoutY="189.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Age" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <Label layoutX="61.0" layoutY="194.0" text="Age:" />
+            <JFXButton fx:id="scheduleButton" defaultButton="true" layoutX="321.0" layoutY="329.0" onAction="#onScheduleClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Schedule" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="460.0" layoutY="329.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <Label layoutX="61.0" layoutY="154.0" text="Sex" />
+            <Text fx:id="emptyWarningLabel" fill="#d74545" layoutX="248.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields can't be blank" visible="false" />
+            <JFXComboBox fx:id="statusPrompt" layoutX="243.0" layoutY="109.0" prefHeight="26.0" prefWidth="297.0" />
+            <JFXComboBox fx:id="sexPrompt" layoutX="243.0" layoutY="148.0" prefHeight="26.0" prefWidth="297.0" />
+            <Label layoutX="61.0" layoutY="41.0" text="First Name:" />
+            <Label layoutX="59.0" layoutY="232.0" text="Contact Number:" />
+            <Label layoutX="59.0" layoutY="270.0" text="License Number:" />
+            <TextField fx:id="firstNamePrompt" layoutX="243.0" layoutY="36.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter First Name" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="contactNumberPrompt" layoutX="243.0" layoutY="227.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Contact Number" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="licenseNumberPrompt" layoutX="243.0" layoutY="265.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter License Number" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

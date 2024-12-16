@@ -17,6 +17,7 @@ import main.objects.Account;
 import javafx.stage.Stage;
 import main.objects.Agent;
 import main.util.FXMLLoaderUtil;
+import main.util.SceneUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
@@ -76,10 +77,7 @@ public class AgentViewController {
     @FXML
     void onBackClick(ActionEvent event) throws IOException {
 
-        Stage stage = ((Stage)((Node)event.getSource()).getScene().getWindow());
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/dashboard.fxml")));
-        stage.setScene(scene);
-        stage.show();
+        SceneUtil sceneUtil = new SceneUtil("/fxml/dashboard.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
     }
 
     public void setAgentData(Agent agent) {

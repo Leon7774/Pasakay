@@ -144,19 +144,18 @@ public class SQLHandlerUtil {
 
     }
 
-    //TODO FINISH ADD CAR METHOD
-    /*
-    public static Car addCar(int car_year, int car_type_Id, boolean car_currentlyRented, String car_model, String make, String car_color, Double daily_rate) throws SQLException {
-        String query = "INSERT INTO cars(car_year, car_type_id, car_currentlyRented, car_model, make, car_color, user_id, daily_rate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    public static Car addCar(int agent_id, int car_year, int car_type_Id, boolean car_currentlyRented, String car_model, String make, String car_color, double daily_rate) throws SQLException {
+        String query = "INSERT INTO car(agent_id, year, car_type_id, car_currentlyRented, model, make, color, daily_rate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, car_year);
-        statement.setInt(2, car_type_Id);
-        statement.setBoolean(3, car_currentlyRented);
-        statement.setString(4, car_model);
-        statement.setString(5, make);
-        statement.setString(6, car_color);
-        statement.setInt(7, Account.getUserID()); // Assuming the car is associated with the logged-in user
+        statement.setInt(1, agent_id);
+        statement.setInt(2, car_year);
+        statement.setInt(3, car_type_Id);
+        statement.setBoolean(4, car_currentlyRented);
+        statement.setString(5, car_model);
+        statement.setString(6, make);
+        statement.setString(7, car_color);
+        statement.setDouble(8, daily_rate);
 
         statement.executeUpdate();
 
@@ -164,15 +163,16 @@ public class SQLHandlerUtil {
         ResultSet generatedKeys = statement.getGeneratedKeys();
         if (generatedKeys.next()) {
             int car_id = generatedKeys.getInt(1); // Get the generated car_id
-            // Create and return a new Car object
-            return new Car(car_year, car_type_Id, car_currentlyRented, car_model, make, car_color,  car_id, );
+
+            // Create a new Car object
+            Car newCar = new Car(car_year, car_type_Id, car_currentlyRented, car_model, make, car_color, daily_rate);
+            newCar.setCar_id(car_id); // Set the generated car_id
+
+            return newCar;
         } else {
             throw new SQLException("Creating car failed, no ID obtained.");
         }
     }
-
-     */
-
 
 
     // TODO

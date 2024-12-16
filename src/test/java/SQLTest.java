@@ -8,11 +8,7 @@ public class SQLTest {
     public static Connection dbConnection = connection.getConnection();
 
     public static void main(String[] args) throws SQLException {
-        if(deleteAgent(8)){
-            System.out.println("Agent deleted");
-        }else{
-            System.out.println("Agent not found");
-        }
+
     }
 
     public static boolean createAgent(String first_name, String last_name, int userID) {
@@ -48,9 +44,5 @@ public class SQLTest {
         }catch (SQLException e){
             return false;
         }
-    }
-
-    public static boolean editAgent(int agent_id, String first_name, String last_name, int userID) {
-
     }
 }

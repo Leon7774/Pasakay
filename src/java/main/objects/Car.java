@@ -29,6 +29,7 @@ public class Car {
     public boolean getCar_currentlyRented() {return car_currentlyRented;}
     public String getCar_model() {return car_model;}
     public String getCar_color() {return car_color;}
+    public String getCar_make() {return make;}
     public List<Rentals> getRentals() {return rentals;}
 
     // Setters

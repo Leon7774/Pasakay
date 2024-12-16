@@ -124,7 +124,6 @@ public class SQLHandlerUtil {
             return agent;
     }
 
-
     //TODO
     // AGENT QUERIES ---
 

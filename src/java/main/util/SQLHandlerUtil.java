@@ -72,7 +72,7 @@ public class SQLHandlerUtil {
 
     public static boolean updateAgent(int agent_Id, String first_name, String last_name, int age, String address, int contactNumber) {
         try {
-            String query = "UPDATE agents SET first_name = ?, last_name = ?, age = ?, address = ?, contact_number = ? WHERE agentID = " + agent_Id;
+            String query = "UPDATE agents SET first_name = ?, last_name = ?, age = ?, address = ?, contact_number = ? WHERE agent_id = " + agent_Id;
             PreparedStatement statement = connection1.prepareStatement(query);
             statement.setString(1, first_name);
             statement.setString(2, last_name);
@@ -82,6 +82,28 @@ public class SQLHandlerUtil {
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
+            System.out.println("Agent Update Error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean deleteAgent(int agent_Id) {
+
+        try {
+
+            String query = "DELETE FROM agents WHERE agent_id = " + agent_Id;
+            PreparedStatement statement = connection1.prepareStatement(query);
+            int result = statement.executeUpdate();
+
+            if(result > 0) return true;
+            else
+                System.out.println(result);
+                return false;
+        }
+
+        catch (Exception e) {
+
+            System.out.println("Agent Delete Error: " + e.getMessage());
             return false;
         }
     }

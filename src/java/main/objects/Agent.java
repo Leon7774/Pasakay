@@ -126,6 +126,4 @@ public class Agent {
     public void addOccupiedCar() {
         this.occupiedCars++;
     }
-
-    
 }

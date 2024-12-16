@@ -45,7 +45,7 @@ public class RegisterPropertyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (dashboardController == null) {
-            System.out.println("It is inded null retard");
+            System.out.println("It is indeed null retard");
         }
     }
 
@@ -77,6 +77,8 @@ public class RegisterPropertyController implements Initializable {
             //TODO make account successfully handled
             Stage stage = (Stage) emptyWarningLabel.getScene().getWindow();
             stage.close();
+
+            SQLHandlerUtil.findUser(Account.getUserName());
 
             dashboardController.getVbox().getChildren().clear();
             dashboardController.initializeTable();

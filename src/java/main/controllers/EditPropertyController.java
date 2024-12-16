@@ -39,6 +39,7 @@ public class EditPropertyController implements Initializable {
 
     private PropertyItemController propertyItemController;
     private DashboardController dashboardController;
+    private int agentID;
 
     public void onCancelClick(ActionEvent event) {
         propertyItemController.setEditButton(false);
@@ -60,23 +61,27 @@ public class EditPropertyController implements Initializable {
         agentAddressPrompt.setText(propertyItemController.getActiveAgent().getAddress());
         agentAgePrompt.setText(String.valueOf(propertyItemController.getActiveAgent().getAge()));
         agentContactPrompt.setText(String.valueOf(propertyItemController.getActiveAgent().getContactNumber()));
+
+        agentID = propertyItemController.getActiveAgent().getAgentID();
     }
 
-
-    /*
     @FXML
     public void applyButtonClicked(ActionEvent event) throws IOException, SQLException {
-        property = Account.findPropertyByID(Integer.parseInt(propertyItemController.propertyID.getText().split(" ")[1]));
-        property.editProperty(
-                propertyNamePrompt.getText(),
-                propertyAddressPrompt.getText(),
-                propertyDescriptionPrompt.getText(),
-                Double.parseDouble(monthlyTaxField.getText()),
-                Integer.parseInt(propertyAvailableUnitsPrompt.getText()),
-                Double.parseDouble(propertyMonthlyPerUnitPrompt.getText())
-        );
 
-        SQLHandlerUtil.saveProperty(property);
+        int agentAge = Integer.parseInt(agentAgePrompt.getText());
+        int agentContact = Integer.parseInt(agentContactPrompt.getText());
+        String agentAddress = agentAddressPrompt.getText();
+        String agentFirstName = agentFirstNamePrompt.getText();
+        String agentLastName = agentLastNamePrompt.getText();
+
+        if(SQLHandlerUtil.updateAgent(agentID, agentFirstName, agentLastName, agentAge, agentAddress, agentContact)) {
+
+            propertyItemController.getActiveAgent().setFirstname(agentFirstName);
+            propertyItemController.getActiveAgent().setLastname(agentLastName);
+            propertyItemController.getActiveAgent().setAge(agentAge);
+            propertyItemController.getActiveAgent().setContactNumber(agentContact);
+            propertyItemController.getActiveAgent().setAddress(agentAddress);
+        }
 
         dashboardController.getVbox().getChildren().clear();
         dashboardController.initializeTable();
@@ -85,7 +90,6 @@ public class EditPropertyController implements Initializable {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-     */
 
     public void setDashboardController(DashboardController controller) {
         this.dashboardController = controller;

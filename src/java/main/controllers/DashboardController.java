@@ -115,9 +115,7 @@ public class DashboardController implements Initializable {
     }
 
     public void refreshTable() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
-        BorderPane propertyTabPane = loader.load(); // Load the content first
-        dashboardContent.getChildren().setAll(propertyTabPane);
+        vboxContent.getChildren().clear();
         initializeTable();
     }
 
@@ -132,7 +130,5 @@ public class DashboardController implements Initializable {
         RegisterPropertyController controller = (RegisterPropertyController) addAgent.getController();
         controller.setDashboardController(this);
     }
-
-
 }
 

@@ -62,7 +62,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="466.0" layoutY="253.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="466.0" layoutY="253.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>

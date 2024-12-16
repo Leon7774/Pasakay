@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Agent;
+import main.objects.Car;
 import main.util.FXMLLoaderUtil;
 import main.util.StageUtil;
 
@@ -73,11 +74,21 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void onPropertiesTabClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
-        BorderPane propertyTabPane = loader.load(); // Load the content first
-        dashboardContent.getChildren().setAll(propertyTabPane);
-        initializeTable();
+    public void showAgentDetails(Agent agent) {
+        try {
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AgentView.fxml"));
+            BorderPane agentDetailsPane = loader.load();
+
+            // Set agent data in the AgentDetailsController
+            AgentViewController controller = loader.getController();
+            controller.setAgentData(agent);
+
+            // Replace the current content with the agent details
+            dashboardContent.getChildren().setAll(agentDetailsPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -118,5 +129,7 @@ public class DashboardController implements Initializable {
         RegisterPropertyController controller = (RegisterPropertyController) addAgent.getController();
         controller.setDashboardController(this);
     }
+
+
 }
 

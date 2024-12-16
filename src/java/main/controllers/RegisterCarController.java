@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import main.objects.Car;
+import main.util.SQLHandlerUtil;
 
 public class RegisterCarController {
 
@@ -23,18 +24,25 @@ public class RegisterCarController {
     private Text emptyWarningLabel;
 
     @FXML
-    private JFXComboBox<?> manufacturerPrompt;
+    private JFXComboBox<String> manufacturerPrompt;
 
     @FXML
     private TextField modelPrompt;
 
     @FXML
-    private JFXComboBox<?> typePrompt;
+    private JFXComboBox<String> typePrompt;
 
     @FXML
-    private JFXComboBox<?> yearPrompt;
+    private JFXComboBox<Integer> yearPrompt;
 
     private AgentViewController controller;
+
+    @FXML
+    private void initialize() {
+        for (int year = 2000; year <= 2024; year++) {
+            yearPrompt.getItems().add(year);
+        }
+    }
 
     @FXML
     void onCancelClick(ActionEvent event) {
@@ -44,7 +52,7 @@ public class RegisterCarController {
     @FXML
     void onRegisterClick(ActionEvent event) {
         if (checkInput()) {
-            //Car car = new Car()
+            SQLHandlerUtil.addCar(controller.getActiveAgent().getAgentID(), (int) yearPrompt.getValue(), )
         }
     }
 

@@ -61,13 +61,10 @@ public class AgentViewController {
 
 
     @FXML
-    void carAdd(ActionEvent event) throws IOException {
-        /*
+    void carAdd(ActionEvent event) throws IOException{
         StageUtil addCar = new StageUtil("/fxml/registerCar.fxml");
         RegisterCarController controller = addCar.getLoader().getController();
-        controller
-
-         */
+        controller.setParentController(this);
     }
 
     @FXML
@@ -118,6 +115,9 @@ public class AgentViewController {
         }
     }
 
+    public Agent getActiveAgent() {
+        return activeAgent;
+    }
 
 
 }

@@ -84,6 +84,9 @@ public class DashboardController implements Initializable {
             AgentViewController controller = loader.getController();
             controller.setAgentData(agent);
 
+            // Passes the dashboard controller to the agent view controller
+            controller.setParentController(this);
+
             // Replace the current content with the agent details
             dashboardContent.getChildren().setAll(agentDetailsPane);
         } catch (IOException e) {

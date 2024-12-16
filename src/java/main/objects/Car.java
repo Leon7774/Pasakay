@@ -41,7 +41,7 @@ public class Car {
 
     @Override
     public int hashCode() {
-
+    
         return Objects.hash(car_id, car_year, car_type_id);
     }
 

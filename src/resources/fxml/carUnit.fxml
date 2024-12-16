@@ -16,31 +16,26 @@
          <children>
             <ImageView fitHeight="69.0" fitWidth="69.0" layoutX="14.0" layoutY="36.0">
                <image>
-                  <Image url="@../images/agent.png" />
+                  <Image url="@../images/icon.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="190.0" prefWidth="628.0">
          <children>
-            <Label fx:id="agentID" layoutX="14.0" layoutY="49.0" prefHeight="18.0" prefWidth="150.0" text="ID: 3124">
+            <Label fx:id="carID" layoutX="14.0" layoutY="60.0" prefHeight="18.0" prefWidth="150.0" text="ID: 3124">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="agentAddress" alignment="TOP_LEFT" layoutX="14.0" layoutY="72.0" prefHeight="54.0" prefWidth="302.0" text="421 Beverly Hills, California" wrapText="true" />
-            <Label fx:id="agentCars" layoutX="362.0" layoutY="20.0" prefHeight="23.0" prefWidth="230.0" text="Number of Assigned Cars:">
-               <font>
-                  <Font name="Century Gothic" size="13.0" />
-               </font>
-            </Label>
+            <Label fx:id="agentAddress" alignment="TOP_LEFT" layoutX="14.0" layoutY="81.0" prefHeight="19.0" prefWidth="59.0" text="Color:" wrapText="true" />
             <Label fx:id="netIncome" alignment="CENTER_RIGHT" layoutX="212.0" layoutY="133.0" prefHeight="23.0" prefWidth="265.0" text="Expected Income: $4,592,123.00" textAlignment="RIGHT">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="agentAge" layoutX="14.0" layoutY="87.0" prefHeight="23.0" prefWidth="273.0" text="Age: 52" />
-            <Label fx:id="agentName" alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="7.0" prefHeight="43.0" prefWidth="317.0" text="Agent Name" wrapText="true">
+            <Label fx:id="agentAge" layoutX="14.0" layoutY="96.0" prefHeight="23.0" prefWidth="273.0" text="Number of Seats:" />
+            <Label fx:id="carName" alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="16.0" prefHeight="43.0" prefWidth="317.0" text="Toyota Vios 2018" wrapText="true">
                <font>
                   <Font size="28.0" />
                </font>
@@ -49,17 +44,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton fx:id="deleteButton" buttonType="RAISED" layoutX="538.0" layoutY="132.0" onAction="#onDeleteClick" style="-fx-background-color: #BBBBBB;" text="Delete">
+            <JFXButton fx:id="deleteButton" buttonType="RAISED" layoutX="538.0" layoutY="132.0" style="-fx-background-color: #BBBBBB;" text="Delete">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <Label fx:id="agentRentedCars" layoutX="362.0" layoutY="39.0" prefHeight="23.0" prefWidth="230.0" text="Cars Currently in Rent:">
-               <font>
-                  <Font name="Century Gothic" size="13.0" />
-               </font>
-            </Label>
             <Line endX="263.20001220703125" layoutX="304.0" layoutY="176.0" startX="-303.20001220703125" stroke="#00000065" />
-            <JFXButton fx:id="viewAgent" buttonType="RAISED" layoutX="18.0" layoutY="132.0" onAction="#onViewAgent" style="-fx-background-color: #01A2E9;" text="View Agent Dashboard" textFill="WHITE">
+            <JFXButton fx:id="viewAgent" buttonType="RAISED" layoutX="18.0" layoutY="132.0" onAction="#onViewAgent" style="-fx-background-color: #01A2E9;" text="View Rental Schedule" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

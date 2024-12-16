@@ -12,6 +12,7 @@ public class Account{
     private static String userName;
     private static List<Agent> agentList;
     private static double balance;
+    private static List<CarType> carTypes;
 
 
     public static void setAccount(int userID2, String firstName2, String lastName2, String userName2, double balance) {

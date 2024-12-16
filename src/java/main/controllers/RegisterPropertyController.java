@@ -71,7 +71,7 @@ public class RegisterPropertyController implements Initializable {
                             agentLastNamePrompt.getText(),
                             Integer.parseInt(agentAgePrompt.getText()),
                             agentAddressPrompt.getText(),
-                            Integer.parseInt(agentContactPrompt.getText()))
+                            Integer.parseInt(agentContactPrompt.getText().replace(" ", "")))
             );
 
             //TODO make account successfully handled

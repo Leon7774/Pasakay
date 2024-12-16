@@ -7,10 +7,10 @@ public class Car {
 
     private int car_id, car_year, car_type_id;
     private boolean car_currentlyRented;
-    private String car_model, car_color;
+    private String car_model, car_color, make;
     private List<Rentals> rentals;
 
-    public Car(int car_id, int car_year, int car_type_id, boolean car_currentlyRented, String car_model, String car_color, List<Rentals> rentals) {
+    public Car(int car_id, int car_year, int car_type_id, boolean car_currentlyRented, String car_model, String make, String car_color, List<Rentals> rentals) {
 
         this.car_id = car_id;
         this.car_year = car_year;
@@ -19,6 +19,7 @@ public class Car {
         this.car_model = car_model;
         this.car_color = car_color;
         this.rentals = rentals;
+        this.make = make;
     }
 
     // Getters
@@ -41,7 +42,6 @@ public class Car {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(car_id, car_year, car_type_id);
     }
 

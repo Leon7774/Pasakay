@@ -41,3 +41,8 @@
 .scroll-pane > .viewport > .scroll-bar:horizontal > .decrement-button {
     -fx-background-color: transparent;
 }
+
+.color-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+}
+

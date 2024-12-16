@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import main.objects.Account;
 import javafx.stage.Stage;
 import main.objects.Agent;
+import main.objects.Car;
 import main.util.FXMLLoaderUtil;
 import main.util.SceneUtil;
 import main.util.StageUtil;
@@ -100,16 +101,16 @@ public class AgentViewController {
         // Disables horizontal scrolling
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        for (Agent agent : Account.getAgentList()) {
+        for (Car car : activeAgent.getCars()) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertyunit.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carUnit.fxml"));
                 // Makes a horizontal box for every agent
                 HBox hbox = loader.load();
                 // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                PropertyItemController pipController = loader.getController();
-                pipController.setData(agent);
+                CarUnitController carUnitController = loader.getController();
+                carUnitController.setData(car);
                 // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                //pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                carUnitController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
                 vboxContent.getChildren().add(hbox);
             } catch (IOException e) {
                 throw new RuntimeException(e);

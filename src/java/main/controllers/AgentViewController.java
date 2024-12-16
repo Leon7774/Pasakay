@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.objects.Agent;
+import main.util.FXMLLoaderUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
@@ -67,9 +69,10 @@ public class AgentViewController {
     @FXML
     void onBackClick(ActionEvent event) throws IOException {
 
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-
-        StageUtil stage = new StageUtil("/fxml/dashboard.fxml");
+        Stage stage = ((Stage)((Node)event.getSource()).getScene().getWindow());
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/dashboard.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void setAgentData(Agent agent) {

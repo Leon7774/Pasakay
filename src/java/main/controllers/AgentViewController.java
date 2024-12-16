@@ -10,8 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.objects.Account;
 import javafx.stage.Stage;
 import main.objects.Agent;
 import main.util.FXMLLoaderUtil;
@@ -57,8 +59,13 @@ public class AgentViewController {
 
 
     @FXML
-    void carAdd(ActionEvent event) {
+    void carAdd(ActionEvent event) throws IOException {
+        /*
+        StageUtil addCar = new StageUtil("/fxml/registerCar.fxml");
+        RegisterCarController controller = addCar.getLoader().getController();
+        controller
 
+         */
     }
 
     @FXML
@@ -89,4 +96,29 @@ public class AgentViewController {
     public void setParentController(DashboardController parentController) {
         this.parentController = parentController;
     }
+
+
+    public void initializeTable() {
+        // Disables horizontal scrolling
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        for (Agent agent : Account.getAgentList()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertyunit.fxml"));
+                // Makes a horizontal box for every agent
+                HBox hbox = loader.load();
+                // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                PropertyItemController pipController = loader.getController();
+                pipController.setData(agent);
+                // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                //pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                vboxContent.getChildren().add(hbox);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+
 }

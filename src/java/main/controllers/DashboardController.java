@@ -57,16 +57,21 @@ public class DashboardController implements Initializable {
         }
     }
 
+    // Initializes the list of agents in the dashboard
     public void initializeTable() {
+        // Disables horizontal scrolling
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         for (Agent agent : Account.getAgentList()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertyunit.fxml"));
+                // Makes a horizontal box for every agent
                 HBox hbox = loader.load();
+                // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
                 PropertyItemController pipController = loader.getController();
                 pipController.setData(agent);
-                pipController.setParentController(this); // Set parent controller
+                // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
                 vboxContent.getChildren().add(hbox);
             } catch (IOException e) {
                 throw new RuntimeException(e);

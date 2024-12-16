@@ -79,6 +79,21 @@ public class DashboardController implements Initializable {
         }
     }
 
+    public void initializeCarTable() throws IOException {
+
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        for (Agent agent : Account.getAgentList()) {
+
+            for(Car car : agent.getCars()) {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carView.fxml"));
+                HBox hbox = loader.load();
+
+            }
+        }
+    }
+
     public void showAgentDetails(Agent agent) {
         try {
             // Load the new FXML file
@@ -101,6 +116,12 @@ public class DashboardController implements Initializable {
 
     @FXML
     void onAgentTabClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onRentalsClicked (ActionEvent event) {
+
 
     }
 

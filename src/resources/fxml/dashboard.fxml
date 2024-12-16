@@ -92,6 +92,11 @@
                   <DropShadow offsetX="2.0" offsetY="1.0" />
                </effect>
             </Label>
+            <JFXButton fx:id="rentalsButton" buttonType="RAISED" defaultButton="true" layoutX="1.0" layoutY="286.0" onAction="#onRentalsClicked" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Rentals" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="15.0" />
+               </font>
+            </JFXButton>
          </children>
          <effect>
             <DropShadow height="0.0" radius="4.75" />
@@ -103,7 +108,7 @@
          <top>
             <AnchorPane fx:id="dashboardContent" prefHeight="666.0" prefWidth="775.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text fontSmoothingType="LCD" layoutX="40.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Agents" wrappingWidth="393.74842834472656">
+                  <Text fx:id="dashboardTitle" fontSmoothingType="LCD" layoutX="40.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Agents" wrappingWidth="393.74842834472656">
                      <font>
                         <Font name="Century Gothic Bold" size="38.0" />
                      </font>

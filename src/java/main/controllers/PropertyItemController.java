@@ -75,22 +75,14 @@ public class PropertyItemController {
 
     public void setEditButton(boolean b) {
         editOpen = b;
-    }
-
-    /*
-    public void onViewAgent() throws IOException {
-        stage = new StageUtil("/fxml/registertenant.fxml");
-        RegisterTenantController controller = (RegisterTenantController) stage.getController();
-    }
-
-     */
+    };
 
     @FXML
     void onViewAgent(ActionEvent event) {
-
+        if (dashboardController != null && activeAgent != null) {
+            dashboardController.showAgentDetails(activeAgent);
+        }
     }
-
-
 
     // FXML Getters
     public Label getAgentAddress() {

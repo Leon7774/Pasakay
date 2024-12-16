@@ -100,7 +100,6 @@ public class SQLHandlerUtil {
 
             Agent agent = new Agent(first_name, last_name, age, address, contactNumber);
             return agent;
-
     }
 
 

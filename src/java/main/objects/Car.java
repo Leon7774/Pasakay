@@ -21,7 +21,7 @@ public class Car {
         this.rentals = rentals;
     }
 
-    //  Getters
+    // Getters
     public int getCar_id() {return car_id;}
     public int getCar_year() {return car_year;}
     public int getCar_type_id() {return car_type_id;}

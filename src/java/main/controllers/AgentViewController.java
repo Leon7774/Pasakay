@@ -3,12 +3,16 @@ package main.controllers;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.objects.Agent;
+
+import java.io.IOException;
 
 public class AgentViewController {
 
@@ -40,15 +44,48 @@ public class AgentViewController {
     private VBox vboxContent;
 
     @FXML
-    void propertyAdd(ActionEvent event) {
+    private JFXButton backButton;
+
+    private Agent activeAgent;
+
+    public DashboardController parentController;
+
+
+    @FXML
+    void carAdd(ActionEvent event) {
 
     }
 
+    @FXML
+    public void initialize() {
+        System.out.println("Hello World");
+    }
+
+
+    //TODO
+    //Back Button
+    @FXML
+    void onBackClick(ActionEvent event) throws IOException {
+        /*
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/propertytab.fxml"));
+        BorderPane pane = fxmlLoader.load();
+        dashboardContent.getChildren().setAll(pane);
+
+         */
+    }
+
     public void setAgentData(Agent agent) {
-        // Set agent details
-        agentName.setText("Name: " + agent.getFirstname() + " " + agent.getLastname());
-        agentID.setText("ID: " + agent.getAgentID());
-        agentAddress.setText("Address: " + agent.getAddress());
-        agentAge.setText("Age: " + agent.getAge());
+        this.activeAgent = agent;
+        this.agentName.setText(activeAgent.getFirstname()+" "+activeAgent.getLastname());
+        this.agentID.setText(String.valueOf(activeAgent.getAgentID()));
+        this.agentAddress.setText(activeAgent.getAddress());
+        this.agentAge.setText(String.valueOf(activeAgent.getAge()));
+        this.agentContact.setText(String.valueOf(activeAgent.getContactNumber()));
+
+        System.out.println("bruh");
+    }
+
+    public void setParentController(DashboardController parentController) {
+        this.parentController = parentController;
     }
 }

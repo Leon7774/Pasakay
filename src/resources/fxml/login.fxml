@@ -33,7 +33,7 @@
                   </DropShadow>
                </effect>
             </ImageView>
-            <Label layoutX="27.0" layoutY="170.0" text="FreeHold" textFill="WHITE">
+            <Label layoutX="21.0" layoutY="170.0" text="PasaHero" textFill="WHITE">
                <font>
                   <Font name="Futura Bold" size="24.0" />
                </font>

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterCarController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterCarController">
    <top>
       <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
          <children>
@@ -43,24 +43,24 @@
       </DropShadow>
    </effect>
    <left>
-      <AnchorPane prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="340.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="modelPrompt" layoutX="243.0" layoutY="71.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Model Name" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>
-            <Label layoutX="61.0" layoutY="77.0" text="Enter Model Name" />
-            <Label layoutX="61.0" layoutY="115.0" text="Enter Model Year:" />
-            <TextField fx:id="colorPrompt" layoutX="243.0" layoutY="189.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Color" styleClass="semitransparent" stylesheets="@../css/styles.css">
+            <Label layoutX="61.0" layoutY="77.0" text="Model Name" />
+            <Label layoutX="61.0" layoutY="115.0" text="Model Year:" />
+            <TextField fx:id="colorPrompt" layoutX="243.0" layoutY="187.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Color" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>
-            <Label layoutX="61.0" layoutY="194.0" text="Color:" />
-            <JFXButton fx:id="applyButton" defaultButton="true" layoutX="321.0" layoutY="266.0" onAction="#onRegisterClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Register" textFill="WHITE">
+            <Label layoutX="61.0" layoutY="192.0" text="Color:" />
+            <JFXButton fx:id="applyButton" defaultButton="true" layoutX="321.0" layoutY="269.0" onAction="#onRegisterClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Register" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="460.0" layoutY="266.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="460.0" layoutY="269.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
@@ -68,8 +68,15 @@
             <Text fx:id="emptyWarningLabel" fill="#d74545" layoutX="248.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields can't be blank" visible="false" />
             <JFXComboBox fx:id="yearPrompt" layoutX="243.0" layoutY="109.0" prefHeight="26.0" prefWidth="297.0" promptText="Year" />
             <JFXComboBox fx:id="typePrompt" layoutX="243.0" layoutY="148.0" prefHeight="26.0" prefWidth="297.0" promptText="Type" />
-            <Label layoutX="61.0" layoutY="41.0" text="Enter Manufacturer:" />
+            <Label layoutX="61.0" layoutY="41.0" text="Manufacturer:" />
             <JFXComboBox fx:id="manufacturerPrompt" layoutX="244.0" layoutY="33.0" prefHeight="26.0" prefWidth="297.0" promptText="Manufacturer" />
+            <TextField fx:id="dailyRate" layoutX="243.0" layoutY="222.0" prefHeight="26.0" prefWidth="105.0" promptText="Enter Daily Rate" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <Label layoutX="61.0" layoutY="227.0" text="Daily Rate:" />
+            <Label layoutX="234.0" layoutY="227.0" text="\$" />
          </children>
       </AnchorPane>
    </left>

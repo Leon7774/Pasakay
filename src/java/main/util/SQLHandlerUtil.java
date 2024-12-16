@@ -1,14 +1,16 @@
 package main.util;
 
-import main.objects.Account;
-import main.objects.Agent;
+import main.objects.*;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLHandlerUtil {
     public static DatabaseConnection dbconnection = new DatabaseConnection();
     public static Connection connection1 = dbconnection.getConnection();
 
+    public static List<CarType> types = new ArrayList<CarType>();
 
     public static void WriteUser(String firstname, String lastname, String username, String password) throws SQLException {
 
@@ -109,22 +111,71 @@ public class SQLHandlerUtil {
     }
 
     public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
-            String query = "INSERT INTO agents(first_name, last_name, age, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO agents(first_name, last_name, age, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
 
-            PreparedStatement statement = connection1.prepareStatement(query);
-            statement.setString(1, first_name);
-            statement.setString(2, last_name);
-            statement.setInt(3, age);
-            statement.setString(4, address);
-            statement.setInt(5, contactNumber);
-            statement.setInt(6, Account.getUserID());
-            statement.executeUpdate();
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setString(1, first_name);
+        statement.setString(2, last_name);
+        statement.setInt(3, age);
+        statement.setString(4, address);
+        statement.setInt(5, contactNumber);
+        statement.setInt(6, Account.getUserID());
+        statement.executeUpdate();
 
-            Agent agent = new Agent(first_name, last_name, age, address, contactNumber);
-            return agent;
+        Agent agent = new Agent(first_name, last_name, age, address, contactNumber);
+        return agent;
     }
 
-    //TODO
+    // Loads the Car Types into the static Car Type List
+    public static void loadCarType() throws SQLException {
+        String query = "SELECT * FROM car_type ORDER BY car_type_id ASC";
+        Statement statement = connection1.createStatement();
+        ResultSet rs = statement.executeQuery(query);
+
+        while (rs.next()) {
+            int carTypeID = rs.getInt("car_type_id");
+            String carTypeName = rs.getString("car_type_name");
+            int passengerCount = rs.getInt("passenger_count");
+            String terrain = rs.getString("terrain");
+
+            CarType carType = new CarType(carTypeID, carTypeName, passengerCount, terrain);
+        }
+
+
+    }
+
+    //TODO FINISH ADD CAR METHOD
+    /*
+    public static Car addCar(int car_year, int car_type_Id, boolean car_currentlyRented, String car_model, String make, String car_color, Double daily_rate) throws SQLException {
+        String query = "INSERT INTO cars(car_year, car_type_id, car_currentlyRented, car_model, make, car_color, user_id, daily_rate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, car_year);
+        statement.setInt(2, car_type_Id);
+        statement.setBoolean(3, car_currentlyRented);
+        statement.setString(4, car_model);
+        statement.setString(5, make);
+        statement.setString(6, car_color);
+        statement.setInt(7, Account.getUserID()); // Assuming the car is associated with the logged-in user
+
+        statement.executeUpdate();
+
+        // Retrieve the generated keys (car_id) if needed
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            int car_id = generatedKeys.getInt(1); // Get the generated car_id
+            // Create and return a new Car object
+            return new Car(car_year, car_type_Id, car_currentlyRented, car_model, make, car_color,  car_id, );
+        } else {
+            throw new SQLException("Creating car failed, no ID obtained.");
+        }
+    }
+
+     */
+
+
+
+    // TODO
     // AGENT QUERIES ---
 
     // Get total income of an agent

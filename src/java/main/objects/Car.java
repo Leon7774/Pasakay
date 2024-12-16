@@ -1,5 +1,6 @@
 package main.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,19 +8,17 @@ public class Car {
 
     private int car_id, car_year, car_type_id;
     private boolean car_currentlyRented;
+    private double dailyRate;
     private String car_model, car_color, make;
-    private List<Rentals> rentals;
 
-    public Car(int car_id, int car_year, int car_type_id, boolean car_currentlyRented, String car_model, String make, String car_color, List<Rentals> rentals) {
-
-        this.car_id = car_id;
+    public Car(int car_year, int car_type_id, boolean car_currentlyRented, String car_model, String make, String car_color, double dailyRate) {
         this.car_year = car_year;
         this.car_type_id = car_type_id;
         this.car_currentlyRented = car_currentlyRented;
         this.car_model = car_model;
         this.car_color = car_color;
-        this.rentals = rentals;
         this.make = make;
+        this.dailyRate = dailyRate;
     }
 
     // Getters
@@ -30,7 +29,6 @@ public class Car {
     public String getCar_model() {return car_model;}
     public String getCar_color() {return car_color;}
     public String getCar_make() {return make;}
-    public List<Rentals> getRentals() {return rentals;}
 
     // Setters
     public void setCar_id(int car_id) {this.car_id = car_id;}
@@ -39,7 +37,6 @@ public class Car {
     public void setCar_currentlyRented(boolean car_currentlyRented) {this.car_currentlyRented = car_currentlyRented;}
     public void setCar_model(String car_model) {this.car_model = car_model;}
     public void setCar_color(String car_color) {this.car_color = car_color;}
-    public void setRentals(List<Rentals> rentals) {this.rentals = rentals;}
 
     @Override
     public int hashCode() {

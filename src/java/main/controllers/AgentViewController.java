@@ -18,15 +18,17 @@ import javafx.stage.Stage;
 import main.objects.Agent;
 import main.objects.Car;
 import main.util.FXMLLoaderUtil;
+import main.util.SQLHandlerUtil;
 import main.util.SceneUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AgentViewController {
 
     @FXML
-    private JFXButton addPropertyButton1;
+    private JFXButton addCarButton;
 
     @FXML
     private Text agentAddress;
@@ -74,17 +76,19 @@ public class AgentViewController {
 
     @FXML
     void onBackClick(ActionEvent event) throws IOException {
-
         SceneUtil sceneUtil = new SceneUtil("/fxml/dashboard.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
     }
 
-    public void setAgentData(Agent agent) {
+    public void setAgentData(Agent agent) throws SQLException {
         this.activeAgent = agent;
         this.agentName.setText(activeAgent.getFirstname()+" "+activeAgent.getLastname());
         this.agentID.setText(String.valueOf(activeAgent.getAgentID()));
         this.agentAddress.setText(activeAgent.getAddress());
         this.agentAge.setText(String.valueOf(activeAgent.getAge()));
         this.agentContact.setText(String.valueOf(activeAgent.getContactNumber()));
+
+        activeAgent.setCars(SQLHandlerUtil.getAgentCars(activeAgent.getAgentID()));
+        initializeTable();
 
         System.out.println("bruh");
     }
@@ -94,9 +98,11 @@ public class AgentViewController {
     }
 
 
-    public void initializeTable() {
+    public void initializeTable() throws SQLException {
         // Disables horizontal scrolling
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+
 
         for (Car car : activeAgent.getCars()) {
             try {

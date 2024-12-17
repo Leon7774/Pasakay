@@ -12,7 +12,7 @@ public class Account{
     private static String userName;
     private static List<Agent> agentList;
     private static double balance;
-
+    private static ArrayList<CarType> carTypeList = new ArrayList<CarType>();
 
     public static void setAccount(int userID2, String firstName2, String lastName2, String userName2, double balance) {
         userID = userID2;
@@ -66,6 +66,10 @@ public class Account{
 
     public static List<Agent> getAgentList() {
         return agentList;
+    }
+
+    public static ArrayList<CarType> getCarTypeList() {
+        return carTypeList;
     }
 
     public static Agent findAgentById(int id) {

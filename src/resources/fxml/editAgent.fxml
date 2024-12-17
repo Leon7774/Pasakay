@@ -43,6 +43,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>
             <Label layoutX="37.0" layoutY="77.0" text="Last Name:" />
+            <TextField fx:id="agentAgePrompt" layoutX="219.0" layoutY="110.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="AgentDetail">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
             <TextField fx:id="agentAddressPrompt" layoutX="219.0" layoutY="150.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="AgentDetail">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -61,11 +66,6 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <TextField fx:id="agentAgePrompt" layoutX="219.0" layoutY="110.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="AgentDetail">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </TextField>
             <Label layoutX="37.0" layoutY="115.0" text="Age:" />
             <Text fx:id="emptyWarningLabel" fill="#d74545" layoutX="245.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields can't be blank" visible="false" />
          </children>

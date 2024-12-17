@@ -12,7 +12,7 @@ public class SQLTest {
     public static Connection dbConnection = connection.getConnection();
 
     public static void main(String[] args) throws SQLException {
-        SQLHandlerUtil.addCar(13, 2022, 1, false, "Camry", "Toyota", "Blue", 50.00);
+
     }
 
     public static void createAgent(String first_name, String last_name, int userID) throws SQLException {

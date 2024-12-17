@@ -22,6 +22,7 @@ import main.util.StageUtil;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -94,7 +95,7 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void showAgentDetails(Agent agent) {
+    public void showAgentDetails(Agent agent) throws SQLException {
         try {
             // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AgentView.fxml"));

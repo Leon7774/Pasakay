@@ -107,6 +107,7 @@ public class LoginController implements Initializable {
                     //Sets active account based on found account
                     SQLHandlerUtil.findUser(loginUsernameTextField.getText());
                     Account.printActiveAccount();
+                    SQLHandlerUtil.loadCarType();
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
                     StageUtil ui = new StageUtil("/fxml/dashboard.fxml");

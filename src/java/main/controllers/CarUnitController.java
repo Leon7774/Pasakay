@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import main.objects.Account;
 import main.objects.Car;
 
 public class CarUnitController {
@@ -51,6 +52,8 @@ public class CarUnitController {
         this.carColor.setText("Color: " + car.getCar_color());
         this.carID.setText("ID: " + car.getCar_id());
         this.carName.setText(car.getCar_make() + " " + car.getCar_model() + " " + car.getCar_year());
+        this.carType.setText("Type: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getType());
+        this.carSeats.setText("Passengers: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getPassengerCount());
     }
 
     void setParentController(AgentViewController controller) {

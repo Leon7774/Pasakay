@@ -110,6 +110,8 @@ public class SQLHandlerUtil {
         }
     }
 
+
+
     public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
         String query = "INSERT INTO agents(first_name, last_name, age, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
 
@@ -134,14 +136,39 @@ public class SQLHandlerUtil {
 
         while (rs.next()) {
             int carTypeID = rs.getInt("car_type_id");
-            String carTypeName = rs.getString("car_type_name");
-            int passengerCount = rs.getInt("passenger_count");
+            String carTypeName = rs.getString("type_name");
+            int passengerCount = rs.getInt("passenger_capacity");
             String terrain = rs.getString("terrain");
 
             CarType carType = new CarType(carTypeID, carTypeName, passengerCount, terrain);
+            Account.getCarTypeList().add(carType);
         }
+    }
 
+    // Grabs all the cars of an agent
+    public static List<Car> getAgentCars(int agent_id) throws SQLException {
+        List<Car> carList = new ArrayList<>();
+        String query = "SELECT * FROM car WHERE agent_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, agent_id);
 
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            int car_id = rs.getInt("car_id");
+            int year = rs.getInt("year");
+            int car_type_id = rs.getInt("car_type_id");
+            boolean car_currentlyRented = rs.getBoolean("car_currentlyRented");
+            String model = rs.getString("model");
+            String make = rs.getString("make");
+            String color = rs.getString("color");
+            double daily_rate = rs.getDouble("daily_rate");
+
+            Car car = new Car(year, car_type_id, car_currentlyRented, model, make, color, daily_rate);
+            car.setCar_id(car_id);
+            carList.add(car);
+        }
+        return carList;
     }
 
     public static Car addCar(int agent_id, int car_year, int car_type_Id, boolean car_currentlyRented, String car_model, String make, String car_color, double daily_rate) throws SQLException {
@@ -173,6 +200,8 @@ public class SQLHandlerUtil {
             throw new SQLException("Creating car failed, no ID obtained.");
         }
     }
+
+
 
 
     // TODO

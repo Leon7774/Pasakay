@@ -57,11 +57,11 @@ public class PropertyItemController {
         this.dashboardController = dashboardController;
     }
 
-    public void setData(Agent agent) {
+    public void setData(Agent agent) throws SQLException {
         activeAgent = agent;
+        activeAgent.setCars(SQLHandlerUtil.getAgentCars(activeAgent.getAgentID()));
         agentName.setText(agent.getFirstname() + " " + agent.getLastname());
-        agentCars.setText("Number of Assigned Cars: " + agent.getCars());
-        agentRentedCars.setText("Cars Currently in Rent: " + agent);
+        agentCars.setText("Number of Assigned Cars: " + agent.getCars().size());
 
         // TODO !!!
         // Make income method

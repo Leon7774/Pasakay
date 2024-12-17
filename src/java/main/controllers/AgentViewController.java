@@ -125,5 +125,9 @@ public class AgentViewController {
         return activeAgent;
     }
 
+    public VBox getVboxContent() {
+        return vboxContent;
+    }
+
 
 }

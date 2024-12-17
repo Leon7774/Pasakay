@@ -83,8 +83,7 @@ public class RegisterCarController {
             Stage stage = (Stage) emptyWarningLabel.getScene().getWindow();
             stage.close();
 
-            SQLHandlerUtil.findUser(Account.getUserName());
-
+            controller.getVboxContent().getChildren().clear();
             controller.initializeTable();
         }
     }

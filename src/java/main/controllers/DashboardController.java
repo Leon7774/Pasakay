@@ -74,7 +74,7 @@ public class DashboardController implements Initializable {
                 // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                 pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
                 vboxContent.getChildren().add(hbox);
-            } catch (IOException e) {
+            } catch (IOException | SQLException e) {
                 throw new RuntimeException(e);
             }
         }

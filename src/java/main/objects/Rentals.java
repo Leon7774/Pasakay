@@ -5,15 +5,20 @@ import java.util.Objects;
 
 public class Rentals {
 
-    private int id, renterID;
+    private int id, agentID, renterID, carID;
     private LocalDate rentStart, rentEnd;
+    private double totalCost;
 
-    public Rentals(int id, int renterID, LocalDate rentStart, LocalDate rentEnd) {
+
+    public Rentals(int id, int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost) {
 
         this.id = id;
+        this.agentID = agentID;
         this.renterID = renterID;
+        this.carID = carID;
         this.rentStart = rentStart;
         this.rentEnd = rentEnd;
+        this.totalCost = totalCost;
     }
 
     //Getters

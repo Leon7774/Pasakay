@@ -6,7 +6,19 @@ public class Renter {
     String lastName;
     String status;
     String sex;
-    int age;
+    int age, contact_number, license_number;
+
+    public Renter(int renter_id, String firstName, String lastName, String status, String sex, int age, int contact_number, int license_number) {
+
+        this.renterID = renter_id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.status = status;
+        this.age = age;
+        this.sex = sex;
+        this.contact_number = contact_number;
+        this.license_number = license_number;
+    }
 
     public int getRenterID() {
         return renterID;

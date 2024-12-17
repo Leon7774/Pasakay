@@ -75,6 +75,11 @@ public class RegisterCarController {
             String model = modelPrompt.getText();
             String type = typePrompt.getValue();
 
+            if (color.length() > 15 || model.length() > 15 || make.length() > 15) {
+                emptyWarningLabel.setVisible(true);
+                emptyWarningLabel.setText("Color, Model, and Make must be less than 15 characters");
+                return;
+            }
 
             Car car = SQLHandlerUtil.addCar(controller.getActiveAgent().getAgentID(), year, getCarTypeID(type), false, model, make, color, 0);
             controller.getActiveAgent().getCars().add(car);
@@ -98,16 +103,24 @@ public class RegisterCarController {
     }
 
     private boolean checkInput() {
-        if (colorPrompt.getText().equals("")
-            || modelPrompt.getText().equals("")
-            || manufacturerPrompt.equals(null)
-            || typePrompt.equals(null)
-            || yearPrompt.equals(null)){
-            emptyWarningLabel.setVisible(true);
-            return false;
+        boolean valid = true;
+        if (colorPrompt.getText().isBlank()) {
+            valid = false;
         }
-
-        return true;
+        if (modelPrompt.getText().isBlank()) {
+            valid = false;
+        }
+        if (manufacturerPrompt.getValue() == null) {
+            valid = false;
+        }
+        if (typePrompt.getValue() == null) {
+            valid = false;
+        }
+        if (yearPrompt.getValue() == null) {
+            valid = false;
+        }
+        emptyWarningLabel.setVisible(!valid);
+        return valid;
     }
 
     public void setParentController(AgentViewController controller) {

@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -14,12 +15,47 @@ import java.util.ResourceBundle;
 
 public class RentalController implements Initializable {
 
-    @FXML private TextField agePrompt, firstNamePrompt, lastNamePrompt, licenseNumberPrompt;
-    @FXML private JFXButton cancelButton, scheduleButton;
-    @FXML private TextField contactNumberPrompt;
-    @FXML private Text emptyWarningLabel;
-    @FXML private JFXComboBox<String> sexPrompt, statusPrompt;
-    @FXML private DatePicker startDatePicker, endDatePicker;
+    @FXML
+    private TextField agePrompt;
+
+    @FXML
+    private JFXButton cancelButton;
+
+    @FXML
+    private Label carName;
+
+    @FXML
+    private TextField contactNumberPrompt;
+
+    @FXML
+    private Label emptyFieldWarning;
+
+    @FXML
+    private Text emptyWarningLabel;
+
+    @FXML
+    private DatePicker endDatePicker;
+
+    @FXML
+    private TextField firstNamePrompt;
+
+    @FXML
+    private TextField lastNamePrompt;
+
+    @FXML
+    private TextField licenseNumberPrompt;
+
+    @FXML
+    private JFXButton scheduleButton;
+
+    @FXML
+    private JFXComboBox<String> sexPrompt;
+
+    @FXML
+    private DatePicker startDatePicker;
+
+    @FXML
+    private JFXComboBox<String> statusPrompt;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

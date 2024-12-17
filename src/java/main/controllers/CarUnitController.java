@@ -3,9 +3,14 @@ package main.controllers;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Car;
+import main.util.StageUtil;
+
+import java.io.IOException;
 
 public class CarUnitController {
 
@@ -44,8 +49,11 @@ public class CarUnitController {
     }
 
     @FXML
-    void onScheduleRental(ActionEvent event) {
+    void onScheduleRental(ActionEvent event) throws IOException {
 
+        StageUtil addAgent = new StageUtil("/fxml/makeRental.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        RentalController rentalController = new RentalController();
+        rentalController.setAgentViewController(parentController);
     }
 
     void setData(Car car) {

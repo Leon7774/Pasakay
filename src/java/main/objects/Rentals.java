@@ -5,14 +5,13 @@ import java.util.Objects;
 
 public class Rentals {
 
-    private int id, agentID, renterID, carID;
+    private int rental_id, agentID, renterID, carID;
     private LocalDate rentStart, rentEnd;
     private double totalCost;
 
 
-    public Rentals(int id, int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost) {
+    public Rentals(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost) {
 
-        this.id = id;
         this.agentID = agentID;
         this.renterID = renterID;
         this.carID = carID;
@@ -22,13 +21,13 @@ public class Rentals {
     }
 
     //Getters
-    public int getId() {return this.id;}
+    public int getId() {return this.rental_id;}
     public int getRenterID() {return this.renterID;}
     public LocalDate getRentStart() {return this.rentStart;}
     public LocalDate getRentEnd() {return this.rentEnd;}
 
     //Setters
-    public void setId(int id) {this.id = id;}
+    public void setId(int id) {this.rental_id = id;}
     public void setRenterID(int renterID) {this.renterID = renterID;}
     public void setRentStart(LocalDate rentStart) {this.rentStart = rentStart;}
     public void setRentEnd(LocalDate rentEnd) {this.rentEnd = rentEnd;}
@@ -36,7 +35,7 @@ public class Rentals {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, renterID, rentStart, rentEnd);
+        return Objects.hash(rental_id, renterID, rentStart, rentEnd);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class Rentals {
 
         Rentals rental = (Rentals) obj;
 
-        return  Objects.equals(id, rental.getId()) &&
+        return  Objects.equals(rental_id, rental.getId()) &&
                 Objects.equals(renterID, rental.getRenterID()) &&
                 Objects.equals(rentStart, rental.getRentStart()) &&
                 Objects.equals(rentEnd, rental.getRentEnd());

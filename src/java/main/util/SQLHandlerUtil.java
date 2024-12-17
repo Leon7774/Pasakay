@@ -3,6 +3,7 @@ package main.util;
 import main.objects.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -201,7 +202,64 @@ public class SQLHandlerUtil {
         }
     }
 
+    public static Rentals addRental(int agent_id, int renter_id, int car_id, LocalDate rent_start, LocalDate rent_end, double totalCost) throws SQLException {
 
+        String query = "INSERT INTO rentals(agent_id, renter_id, car_id, rent_start_date, rent_end_date, totalCost) VALUES(, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, agent_id);
+        statement.setInt(2, renter_id);
+        statement.setInt(3, car_id);
+        statement.setDate(4, Date.valueOf(rent_start));
+        statement.setDate(5, Date.valueOf(rent_end));
+        statement.setDouble(6, totalCost);
+        statement.executeUpdate();
+
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+
+            int rental_id = generatedKeys.getInt(1);
+
+            Rentals newRental = new Rentals(agent_id, renter_id, car_id, rent_start, rent_end, totalCost);
+            newRental.setId(rental_id);
+
+            return newRental;
+        }
+
+        else {
+
+            throw new SQLException("Creating a rental failed, no ID obtained.");
+        }
+    }
+
+    public static Renter addRenter(String firstName, String lastName, String status, String sex, int age, int contact_number, int license_number) throws SQLException {
+
+        String query = "INSERT INTO renter(first_name, last_name, age, status, sex, contact_number, license_number) VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, firstName);
+        statement.setString(2, lastName);
+        statement.setInt(3, age);
+        statement.setString(4, status);
+        statement.setString(5, sex);
+        statement.setInt(6, contact_number);
+        statement.setInt(7, license_number);
+        statement.executeUpdate();
+
+        ResultSet generatedKeys = statement.getGeneratedKeys();
+
+        if(generatedKeys.next()) {
+
+            int renter_id = generatedKeys.getInt(1);
+
+            Renter newRenter = new Renter(renter_id, firstName, lastName, status, sex, age, contact_number, license_number);
+            return newRenter;
+        }
+
+        else {
+
+            throw new SQLException("Creating a renter failed, no ID obtained.");
+        }
+    }
 
 
     // TODO

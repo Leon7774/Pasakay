@@ -153,7 +153,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     public void agentAdd() throws IOException {
-        StageUtil addAgent = new StageUtil("/fxml/registerAgent.fxml");
+        StageUtil addAgent = new StageUtil("/fxml/registerAgent.fxml", (Stage)(dashboardContent.getScene().getWindow()));
         RegisterPropertyController controller = (RegisterPropertyController) addAgent.getController();
         controller.setDashboardController(this);
     }

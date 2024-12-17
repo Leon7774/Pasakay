@@ -128,6 +128,4 @@ public class AgentViewController {
     public VBox getVboxContent() {
         return vboxContent;
     }
-
-
 }

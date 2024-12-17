@@ -109,7 +109,7 @@ public class PropertyItemController {
     };
 
     @FXML
-    void onViewAgent(ActionEvent event) {
+    void onViewAgent(ActionEvent event) throws SQLException {
         if (dashboardController != null && activeAgent != null) {
             dashboardController.showAgentDetails(activeAgent);
         }

@@ -2,14 +2,30 @@ package main.objects;
 
 public class CarType {
     private int id;
-    private static String type;
-    private static int passengerCount;
-    private static String terrain;
+    private String type;
+    private int passengerCount;
+    private String terrain;
 
     public CarType(int carTypeID, String type, int passengerCount, String terrain) {
         this.id = carTypeID;
-        CarType.type = type;
-        CarType.passengerCount = passengerCount;
-        CarType.terrain = terrain;
+        this.type = type;
+        this.passengerCount = passengerCount;
+        this.terrain = terrain;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getPassengerCount() {
+        return passengerCount;
+    }
+
+    public String getTerrain() {
+        return terrain;
     }
 }

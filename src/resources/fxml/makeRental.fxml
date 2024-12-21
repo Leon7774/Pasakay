@@ -46,16 +46,8 @@
    <left>
       <AnchorPane prefHeight="509.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="lastNamePrompt" layoutX="230.0" layoutY="102.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Last Name" styleClass="semitransparent" stylesheets="@../css/styles.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></TextField>
             <Label layoutX="48.0" layoutY="107.0" text="Last Name:" />
             <Label layoutX="48.0" layoutY="145.0" text="Status:" />
-            <TextField fx:id="agePrompt" layoutX="230.0" layoutY="219.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Age" styleClass="semitransparent" stylesheets="@../css/styles.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></TextField>
             <Label layoutX="48.0" layoutY="224.0" text="Age:" />
             <JFXButton fx:id="scheduleButton" buttonType="RAISED" defaultButton="true" layoutX="308.0" layoutY="448.0" onAction="#onScheduleClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Schedule" textFill="WHITE">
                <cursor>
@@ -67,16 +59,21 @@
                </cursor></JFXButton>
             <Label layoutX="48.0" layoutY="184.0" text="Sex" />
             <Text fx:id="emptyWarningLabel" fill="#d74545" layoutX="235.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields can't be blank" visible="false" />
-            <JFXComboBox fx:id="statusPrompt" layoutX="230.0" layoutY="139.0" prefHeight="26.0" prefWidth="297.0" />
-            <JFXComboBox fx:id="sexPrompt" layoutX="230.0" layoutY="178.0" prefHeight="26.0" prefWidth="297.0" />
-            <Label layoutX="48.0" layoutY="71.0" text="First Name:" />
-            <Label layoutX="46.0" layoutY="262.0" text="Contact Number:" />
-            <Label layoutX="46.0" layoutY="300.0" text="License Number:" />
             <TextField fx:id="firstNamePrompt" layoutX="230.0" layoutY="66.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter First Name" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
+            <TextField fx:id="lastNamePrompt" layoutX="230.0" layoutY="102.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Last Name" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
+            <JFXComboBox fx:id="statusPrompt" layoutX="230.0" layoutY="139.0" prefHeight="26.0" prefWidth="297.0" />
+            <JFXComboBox fx:id="sexPrompt" layoutX="230.0" layoutY="178.0" prefHeight="26.0" prefWidth="297.0" />
+            <TextField fx:id="agePrompt" layoutX="230.0" layoutY="219.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Age" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TextField>
             <TextField fx:id="contactNumberPrompt" layoutX="230.0" layoutY="257.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Contact Number" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -88,9 +85,12 @@
                </cursor>
             </TextField>
             <DatePicker fx:id="startDatePicker" layoutX="229.0" layoutY="337.0" prefHeight="26.0" prefWidth="299.0" />
+            <DatePicker fx:id="endDatePicker" layoutX="229.0" layoutY="379.0" prefHeight="26.0" prefWidth="299.0" />
+            <Label layoutX="48.0" layoutY="71.0" text="First Name:" />
+            <Label layoutX="46.0" layoutY="262.0" text="Contact Number:" />
+            <Label layoutX="46.0" layoutY="300.0" text="License Number:" />
             <Label layoutX="46.0" layoutY="342.0" text="Rent Start Date:" />
             <Label layoutX="46.0" layoutY="384.0" text="Rent End Date:" />
-            <DatePicker fx:id="endDatePicker" layoutX="229.0" layoutY="379.0" prefHeight="26.0" prefWidth="299.0" />
             <Label fx:id="carName" layoutX="46.0" layoutY="13.0" prefHeight="51.0" prefWidth="271.0" text="Toyota Vios 2018" textFill="#323232">
                <font>
                   <Font size="30.0" />

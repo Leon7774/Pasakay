@@ -42,6 +42,7 @@ public class CarUnitController {
     private JFXButton scheduleRental;
 
     private AgentViewController parentController;
+    private Car car;
 
     @FXML
     void onEditClick(ActionEvent event) {
@@ -52,11 +53,13 @@ public class CarUnitController {
     void onScheduleRental(ActionEvent event) throws IOException {
 
         StageUtil addAgent = new StageUtil("/fxml/makeRental.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-        RentalController rentalController = new RentalController();
+        RentalController rentalController = (RentalController) addAgent.getController();
         rentalController.setAgentViewController(parentController);
+        rentalController.setCar(this.car);
     }
 
     void setData(Car car) {
+        this.car = car;
         this.carColor.setText("Color: " + car.getCar_color());
         this.carID.setText("ID: " + car.getCar_id());
         this.carName.setText(car.getCar_make() + " " + car.getCar_model() + " " + car.getCar_year());
@@ -67,5 +70,4 @@ public class CarUnitController {
     void setParentController(AgentViewController controller) {
         this.parentController = controller;
     }
-
 }

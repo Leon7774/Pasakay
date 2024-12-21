@@ -29,6 +29,7 @@ public class Car {
     public String getCar_model() {return car_model;}
     public String getCar_color() {return car_color;}
     public String getCar_make() {return make;}
+    public double getDailyRate() {return dailyRate;}
 
     // Setters
     public void setCar_id(int car_id) {this.car_id = car_id;}
@@ -37,6 +38,7 @@ public class Car {
     public void setCar_currentlyRented(boolean car_currentlyRented) {this.car_currentlyRented = car_currentlyRented;}
     public void setCar_model(String car_model) {this.car_model = car_model;}
     public void setCar_color(String car_color) {this.car_color = car_color;}
+    public void setDailyRate(double dailyRate) {this.dailyRate = dailyRate;}
 
     @Override
     public int hashCode() {

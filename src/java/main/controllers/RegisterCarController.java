@@ -62,7 +62,7 @@ public class RegisterCarController {
 
     @FXML
     void onCancelClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) typePrompt.getScene().getWindow(); 
+        Stage stage = (Stage) typePrompt.getScene().getWindow();
         stage.close();
     }
 

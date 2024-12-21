@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AgentViewController">
+<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AgentViewController">
    <center>
       <AnchorPane fx:id="dashboardContent" prefHeight="666.0" prefWidth="775.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -24,11 +24,11 @@
                   <Font name="Futura Bold" size="32.0" />
                </font>
             </Text>
-            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="40.0" layoutY="224.0" prefHeight="442.0" prefWidth="737.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/styles.css">
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="40.0" layoutY="224.0" prefHeight="442.0" prefWidth="737.0" style="backgr: #ffffff;" stylesheets="@../css/styles.css">
                <content>
-                  <VBox fx:id="vboxContent" prefHeight="461.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
+                  <VBox fx:id="vboxContent" prefHeight="424.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
                      <padding>
-                        <Insets top="30.0" />
+                        <Insets top="5.0" />
                      </padding>
                   </VBox>
                </content>
@@ -43,12 +43,12 @@
                </styleClass>
             </ScrollPane>
             <Line endX="642.6000366210938" endY="1.0000152587890625" layoutX="121.0" layoutY="223.0" startX="-100.0" />
-            <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="724.0" layoutY="30.0">
+            <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="733.0" layoutY="30.0">
                <image>
                   <Image url="@../images/search.png" />
                </image>
             </ImageView>
-            <TextField alignment="CENTER_RIGHT" layoutX="554.0" layoutY="27.0" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
+            <TextField alignment="CENTER_RIGHT" layoutX="563.0" layoutY="27.0" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
             <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="23.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/agent.png" />
@@ -118,6 +118,14 @@
                   <Font size="12.0" />
                </font>
             </Text>
+            <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="764.0" layoutY="5.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/close-highlight.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

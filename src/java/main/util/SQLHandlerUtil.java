@@ -68,6 +68,28 @@ public class SQLHandlerUtil {
                 Account.addAgent(agent);
             }
 
+            String propTableQuery2 = "Select rentals.rental_id, rentals.agent_id, rentals.renter_id, rentals.car_id, " +
+                             "rentals.rental_start_date, rental_end_date, total_cost " +
+                             "FROM rentals JOIN agents " +
+                             "ON rentals.agent_id = agents.agent_id JOIN user " +
+                             "ON agents.user_id = user.user_id " +
+                             "WHERE user.user_id = " + Account.getUserID();
+
+            ResultSet rs3 = statement.executeQuery(propTableQuery2);
+
+            while(rs3.next()) {
+
+                int rental_id = rs3.getInt("rental_id");
+                int agent_id = rs3.getInt("agent_id");
+                int renter_id = rs3.getInt("renter_id");
+                int car_id = rs3.getInt("car_id");
+                String rental_start_date = rs3.getString("rental_start_date");
+                String rental_end_date = rs3.getString("rental_end_date");
+                double total_cost = rs3.getDouble("total_cost");
+
+                Account.addRentals(new Rentals(agent_id, renter_id, car_id, LocalDate.parse(rental_start_date), LocalDate.parse(rental_end_date), total_cost));
+            }
+
         } else {
             System.out.println("User not found");
         }
@@ -110,8 +132,6 @@ public class SQLHandlerUtil {
             return false;
         }
     }
-
-
 
     public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
         String query = "INSERT INTO agents(first_name, last_name, age, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
@@ -261,6 +281,45 @@ public class SQLHandlerUtil {
         }
     }
 
+    public static Car getOneCar(int car_id) throws SQLException {
+
+        String query = "SELECT * FROM car WHERE car_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, car_id);
+
+        ResultSet rs = statement.executeQuery();
+
+        rs.next();
+
+        int year = rs.getInt("year");
+        int car_type_id = rs.getInt("car_type_id");
+        boolean car_currentlyRented = rs.getBoolean("car_currentlyRented");
+        String model = rs.getString("model");
+        String make = rs.getString("make");
+        String color = rs.getString("color");
+        double daily_rate = rs.getDouble("daily_rate");
+
+        Car car = new Car(year, car_type_id, car_currentlyRented, model, make, color, daily_rate);
+        car.setCar_id(car_id);
+        return car;
+    }
+
+    public static CarType getCarType (int car_type_id) throws SQLException {
+
+        String query = "SELECT * FROM car_type WHERE car_type_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, car_type_id);
+        ResultSet rs = statement.executeQuery();
+
+        rs.next();
+
+        int id = rs.getInt("car_type_id");
+        String type_name = rs.getString("type_name");
+        int capacity = rs.getInt("passenger_capacity");
+        String terrain = rs.getString("terrain");
+
+        return new CarType(id, type_name, capacity, terrain);
+    }
 
     // TODO
     // AGENT QUERIES ---

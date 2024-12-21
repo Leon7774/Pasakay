@@ -21,6 +21,7 @@ import main.objects.Account;
 import main.objects.Agent;
 import main.objects.Car;
 import main.util.FXMLLoaderUtil;
+import main.util.SceneUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class DashboardController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
     @FXML
-    private JFXButton addPropertyButton;
+    private JFXButton addPropertyButton, rentalsButton;
     @FXML
     private Label welcomeLabel;
     @FXML
@@ -141,9 +142,9 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    void onRentalsClicked (ActionEvent event) {
+    void onRentalsClicked (ActionEvent event) throws IOException {
 
-
+        new SceneUtil("/fxml/rentalsDashboard.fxml", (Stage)rentalsButton.getScene().getWindow());
     }
 
     public void onLogoutTabClick(ActionEvent event) {

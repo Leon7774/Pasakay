@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DashboardController">
    <left>
       <AnchorPane prefHeight="666.0" prefWidth="207.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +38,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <JFXButton fx:id="agentsTab" buttonType="RAISED" defaultButton="true" layoutX="1.0" layoutY="240.0" onAction="#onAgentTabClick" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Agents" textFill="WHITE">
+            <JFXButton fx:id="agentsTab" buttonType="RAISED" defaultButton="true" layoutX="1.0" layoutY="240.0" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Agents" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="15.0" />
                </font></JFXButton>

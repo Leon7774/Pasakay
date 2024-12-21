@@ -93,8 +93,6 @@ public class PropertyItemController {
         alert.setContentText("Are you sure you want to delete this agent?");
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
-        System.out.println(getAgentID());
-
         if(result == ButtonType.OK) {
 
             System.out.println(SQLHandlerUtil.deleteAgent(activeAgent.getAgentID()));

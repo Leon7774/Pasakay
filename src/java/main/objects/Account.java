@@ -13,6 +13,7 @@ public class Account{
     private static List<Agent> agentList;
     private static double balance;
     private static ArrayList<CarType> carTypeList = new ArrayList<CarType>();
+    private static List<Rentals> rentalsList = new ArrayList<>();
 
     public static void setAccount(int userID2, String firstName2, String lastName2, String userName2, double balance) {
         userID = userID2;
@@ -21,6 +22,7 @@ public class Account{
         userName = userName2;
 
         agentList = new ArrayList<>();
+        rentalsList = new ArrayList<>();
         balance = 0;
     }
 
@@ -64,6 +66,11 @@ public class Account{
         agentList.add(agent);
     }
 
+    public static void addRentals(Rentals rental) {
+
+        rentalsList.add(rental);
+    }
+
     public static List<Agent> getAgentList() {
         return agentList;
     }
@@ -71,6 +78,7 @@ public class Account{
     public static ArrayList<CarType> getCarTypeList() {
         return carTypeList;
     }
+    public static List<Rentals> getRentalsList () {return rentalsList;}
 
     public static Agent findAgentById(int id) {
         for (Agent a : agentList) {

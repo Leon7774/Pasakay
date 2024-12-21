@@ -11,7 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.objects.Account;
 import main.objects.Car;
+import main.objects.Rentals;
 import main.objects.Renter;
 import main.util.SQLHandlerUtil;
 
@@ -101,7 +103,9 @@ public class RentalController implements Initializable {
         int totalDays = (int) ChronoUnit.DAYS.between(startDate, endDate);
 
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, age, contactNumber, licenseNumber);
-        SQLHandlerUtil.addRental(agentViewController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDate, endDate, totalDays * car.getDailyRate());
+        Account.addRentals(SQLHandlerUtil.addRental(agentViewController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDate, endDate, totalDays * car.getDailyRate()));
+
+        car.setCar_currentlyRented(true);
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }

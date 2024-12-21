@@ -17,7 +17,7 @@
    <top>
       <AnchorPane prefHeight="114.0" prefWidth="521.0" style="-fx-background-color: #1D1D1D;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="111.0" layoutY="32.0" prefHeight="51.0" prefWidth="271.0" text="Register Agent" textFill="WHITE">
+            <Label layoutX="111.0" layoutY="32.0" prefHeight="52.0" prefWidth="306.0" text="Register Agent" textFill="WHITE">
                <font>
                   <Font name="Century Gothic Bold" size="41.0" />
                </font>

@@ -58,6 +58,12 @@ public class CarUnitController {
         rentalController.setCar(this.car);
     }
 
+    @FXML
+    void onDeleteClick(ActionEvent event) {
+
+
+    }
+
     void setData(Car car) {
         this.car = car;
         this.carColor.setText("Color: " + car.getCar_color());

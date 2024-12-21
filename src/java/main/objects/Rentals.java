@@ -9,7 +9,6 @@ public class Rentals {
     private LocalDate rentStart, rentEnd;
     private double totalCost;
 
-
     public Rentals(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost) {
 
         this.agentID = agentID;
@@ -25,12 +24,18 @@ public class Rentals {
     public int getRenterID() {return this.renterID;}
     public LocalDate getRentStart() {return this.rentStart;}
     public LocalDate getRentEnd() {return this.rentEnd;}
+    public int getAgentId() {return this.agentID;}
+    public int getCarId() {return this.carID;}
+    public double getTotalCost() {return this.totalCost;}
 
     //Setters
     public void setId(int id) {this.rental_id = id;}
     public void setRenterID(int renterID) {this.renterID = renterID;}
     public void setRentStart(LocalDate rentStart) {this.rentStart = rentStart;}
     public void setRentEnd(LocalDate rentEnd) {this.rentEnd = rentEnd;}
+    public void setAgentID(int agentID) {this.agentID = agentID;}
+    public void setCarID(int carID) {this.carID = carID;}
+    public void setTotalCost(double totalCost) {this.totalCost = totalCost;}
 
     @Override
     public int hashCode() {

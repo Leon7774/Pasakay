@@ -204,7 +204,7 @@ public class SQLHandlerUtil {
 
     public static Rentals addRental(int agent_id, int renter_id, int car_id, LocalDate rent_start, LocalDate rent_end, double totalCost) throws SQLException {
 
-        String query = "INSERT INTO rentals(agent_id, renter_id, car_id, rent_start_date, rent_end_date, totalCost) VALUES(, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO rentals(agent_id, renter_id, car_id, rental_start_date, rental_end_date, total_cost) VALUES(?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setInt(1, agent_id);
         statement.setInt(2, renter_id);
@@ -240,7 +240,7 @@ public class SQLHandlerUtil {
         statement.setString(2, lastName);
         statement.setInt(3, age);
         statement.setString(4, status);
-        statement.setString(5, sex);
+        statement.setString(5, sex.trim());
         statement.setInt(6, contact_number);
         statement.setInt(7, license_number);
         statement.executeUpdate();

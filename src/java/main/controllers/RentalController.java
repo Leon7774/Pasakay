@@ -5,10 +5,12 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import main.objects.Renter;
 import main.util.SQLHandlerUtil;
 
@@ -77,7 +79,7 @@ public class RentalController implements Initializable {
     @FXML
     void onCancelClick(ActionEvent event) {
 
-
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML
@@ -93,8 +95,10 @@ public class RentalController implements Initializable {
         String endDate = endDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String startDate = startDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
+//        double totalCost = startDate.substring(startDate.length()-1)
+
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, sex, status, age, contactNumber, licenseNumber);
-//        SQLHandlerUtil.addRental(agentViewController.getActiveAgent().getAgentID(), renter.getRenterID(), startDate, endDate, )
+        //SQLHandlerUtil.addRental(agentViewController.getActiveAgent().getAgentID(), renter.getRenterID(), startDate, endDate, )
     }
 
     public void setAgentViewController(AgentViewController agentViewController) {this.agentViewController = agentViewController;}

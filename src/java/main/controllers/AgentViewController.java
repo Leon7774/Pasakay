@@ -64,7 +64,7 @@ public class AgentViewController {
 
     @FXML
     void carAdd(ActionEvent event) throws IOException{
-        StageUtil addCar = new StageUtil("/fxml/registerCar.fxml");
+        StageUtil addCar = new StageUtil("/fxml/registerCar.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
         RegisterCarController controller = addCar.getLoader().getController();
         controller.setParentController(this);
     }

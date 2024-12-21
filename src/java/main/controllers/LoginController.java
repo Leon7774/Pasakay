@@ -59,11 +59,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void closeButtonOnActionEvent(ActionEvent event) {
-        System.out.println("Ye2s");
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -89,6 +84,10 @@ public class LoginController implements Initializable {
         closeButton.setImage(new Image("/images/close.png"));
     }
 
+    public void closeButtonOnActionEvent(ActionEvent event) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
 
 
     // Login Checker

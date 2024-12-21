@@ -58,11 +58,13 @@ public class RegisterCarController {
             typePrompt.getItems().add(carType.getPassengerCount() + "-seater " + carType.getTerrain() + " " +carType.getType());
         }
 
+        emptyWarningLabel.setVisible(false);
+
     }
 
     @FXML
     void onCancelClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) typePrompt.getScene().getWindow(); 
+        Stage stage = (Stage) typePrompt.getScene().getWindow();
         stage.close();
     }
 

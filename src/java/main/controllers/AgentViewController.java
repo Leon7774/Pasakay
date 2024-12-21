@@ -8,6 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -57,6 +60,10 @@ public class AgentViewController {
     @FXML
     private JFXButton backButton;
 
+    @FXML
+    private ImageView closeButton;
+
+
     private Agent activeAgent;
 
     public DashboardController parentController;
@@ -72,6 +79,7 @@ public class AgentViewController {
     @FXML
     public void initialize() {
         System.out.println("Hello World");
+        scrollPane.setStyle("-fx-background: white;");
     }
 
     @FXML
@@ -97,12 +105,27 @@ public class AgentViewController {
         this.parentController = parentController;
     }
 
+    @FXML
+    void dilightClose(MouseEvent event) {
+        closeButton.setImage(new Image("/images/close-highlight.png"));
+    }
+
+
+    @FXML
+    void highlightClose(MouseEvent event) {
+        closeButton.setImage(new Image("/images/close.png"));
+    }
+
+
+    public void closeButtonOnActionEvent(MouseEvent event) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
 
     public void initializeTable() throws SQLException {
         // Disables horizontal scrolling
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
-
 
         for (Car car : activeAgent.getCars()) {
             try {
@@ -120,6 +143,7 @@ public class AgentViewController {
             }
         }
     }
+
 
     public Agent getActiveAgent() {
         return activeAgent;

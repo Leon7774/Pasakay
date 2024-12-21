@@ -9,6 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -41,6 +44,8 @@ public class DashboardController implements Initializable {
     private JFXButton addPropertyButton;
     @FXML
     private Label welcomeLabel;
+    @FXML
+    private ImageView closeButton;
     private static boolean opened = false;
 
     @Override
@@ -49,6 +54,7 @@ public class DashboardController implements Initializable {
         setWelcomeLabel();
         initializeTable();
         welcomeLabel.setText("Welcome, " + Account.getFirstName());
+        scrollPane.setStyle("-fx-background: white;");
     }
 
     public void setWelcomeLabel() {
@@ -79,7 +85,21 @@ public class DashboardController implements Initializable {
             }
         }
     }
+    @FXML
+    void dilightClose(MouseEvent event) {
+        closeButton.setImage(new Image("/images/close-highlight.png"));
+    }
 
+
+    @FXML
+    void highlightClose(MouseEvent event) {
+        closeButton.setImage(new Image("/images/close.png"));
+    }
+
+    public void closeButtonOnActionEvent(MouseEvent event) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
     public void initializeCarTable() throws IOException {
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);

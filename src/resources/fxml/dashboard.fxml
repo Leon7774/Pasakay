@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DashboardController">
    <left>
       <AnchorPane prefHeight="666.0" prefWidth="207.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
          <children>
@@ -115,7 +115,7 @@
                   </Text>
                   <ScrollPane fx:id="scrollPane" layoutX="40.0" layoutY="132.0" prefHeight="534.0" prefWidth="737.0" stylesheets="@../css/styles.css">
                      <content>
-                        <VBox fx:id="vboxContent" prefHeight="533.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
+                        <VBox fx:id="vboxContent" prefHeight="517.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
                            <padding>
                               <Insets top="30.0" />
                            </padding>
@@ -150,6 +150,14 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="764.0" layoutY="5.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/close-highlight.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </AnchorPane>
          </top>

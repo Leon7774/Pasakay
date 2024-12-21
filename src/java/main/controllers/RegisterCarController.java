@@ -58,6 +58,8 @@ public class RegisterCarController {
             typePrompt.getItems().add(carType.getPassengerCount() + "-seater " + carType.getTerrain() + " " +carType.getType());
         }
 
+        emptyWarningLabel.setVisible(false);
+
     }
 
     @FXML

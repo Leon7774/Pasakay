@@ -42,6 +42,8 @@ public class ReassignCarController {
         if(SQLHandlerUtil.assignCar(currentCar.getCar_id(), Integer.parseInt(newAgentPrompt.getText().trim()))) {
 
             ((Stage)reassignButton.getScene().getWindow()).close();
+            currentAgent.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(currentAgent.getActiveAgent().getAgentID()));
+            currentAgent.initializeTable();
         }
     }
 

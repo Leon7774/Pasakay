@@ -124,6 +124,9 @@ public class AgentViewController {
 
 
     public void initializeTable() throws SQLException {
+
+        vboxContent.getChildren().clear();
+
         // Disables horizontal scrolling
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 

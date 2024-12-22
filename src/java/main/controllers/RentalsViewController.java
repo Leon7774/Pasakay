@@ -47,23 +47,7 @@ public class RentalsViewController implements Initializable {
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        for(Rentals rental : Account.getRentalsList()) {
-
-            try {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carView.fxml"));
-                HBox hbox = loader.load();
-                CarViewController carViewController = loader.getController();
-                Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                carViewController.setData(car, rental);
-                carViewController.setParentController(this);
-                vboxContent.getChildren().add(hbox);
-            }
-
-            catch (IOException | SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        initializeTable();
     }
 
     @FXML
@@ -92,5 +76,28 @@ public class RentalsViewController implements Initializable {
     @FXML
     void onLogoutTabClick(ActionEvent event) {
 
+    }
+
+    void initializeTable() {
+
+        vboxContent.getChildren().clear();
+
+        for(Rentals rental : Account.getRentalsList()) {
+
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carView.fxml"));
+                HBox hbox = loader.load();
+                CarViewController carViewController = loader.getController();
+                Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
+                carViewController.setData(car, rental);
+                carViewController.setParentController(this);
+                vboxContent.getChildren().add(hbox);
+            }
+
+            catch (IOException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

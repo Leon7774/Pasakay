@@ -23,6 +23,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
+import static main.util.SQLHandlerUtil.findUser;
+
 public class RentalController implements Initializable {
 
     @FXML
@@ -105,7 +107,7 @@ public class RentalController implements Initializable {
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, age, contactNumber, licenseNumber);
         Account.addRentals(SQLHandlerUtil.addRental(agentViewController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDate, endDate, totalDays * car.getDailyRate()));
 
-        car.setCar_currentlyRented(true);
+        agentViewController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(agentViewController.getActiveAgent().getAgentID()));
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }

@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterCarController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.EditCarController">
    <top>
       <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="73.0" layoutY="9.0" prefHeight="51.0" prefWidth="271.0" text="Register Car" textFill="WHITE">
+            <Label layoutX="73.0" layoutY="9.0" prefHeight="51.0" prefWidth="271.0" text="Edit Car Information" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>
@@ -56,7 +56,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>
             <Label layoutX="61.0" layoutY="192.0" text="Color:" />
-            <JFXButton fx:id="applyButton" defaultButton="true" layoutX="323.0" layoutY="300.0" onAction="#onRegisterClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Register" textFill="WHITE">
+            <JFXButton fx:id="applyButton" defaultButton="true" layoutX="323.0" layoutY="300.0" onAction="#onApplyClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Apply" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>

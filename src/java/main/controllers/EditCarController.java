@@ -4,20 +4,18 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.objects.Car;
-import main.util.SQLHandlerUtil;
-import main.objects.CarType;
 import main.objects.Account;
-import main.util.SceneUtil;
+import main.objects.Car;
+import main.objects.CarType;
+import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class RegisterCarController {
+public class EditCarController {
 
     @FXML
     private JFXButton applyButton;
@@ -27,6 +25,9 @@ public class RegisterCarController {
 
     @FXML
     private TextField colorPrompt;
+
+    @FXML
+    private TextField dailyRatePrompt;
 
     @FXML
     private Text emptyWarningLabel;
@@ -41,12 +42,9 @@ public class RegisterCarController {
     private JFXComboBox<String> typePrompt;
 
     @FXML
-    private TextField dailyRatePrompt;
-
-    @FXML
     private JFXComboBox<Integer> yearPrompt;
 
-    private AgentViewController controller;
+    private CarUnitController parentController;
 
     private String[] brands = new String[] {"Hyundai", "Toyota", "BMW", "Ford", "Nissan", "Kia", "Subaru", "Mitsubishi"};
 
@@ -62,7 +60,6 @@ public class RegisterCarController {
         }
 
         emptyWarningLabel.setVisible(false);
-
     }
 
     @FXML
@@ -72,7 +69,8 @@ public class RegisterCarController {
     }
 
     @FXML
-    void onRegisterClick(ActionEvent event) throws SQLException {
+    void onApplyClick(ActionEvent event) throws SQLException {
+
         if (checkInput()) {
             int year = (int) yearPrompt.getValue();
             String color = colorPrompt.getText();
@@ -87,25 +85,15 @@ public class RegisterCarController {
                 return;
             }
 
-            Car car = SQLHandlerUtil.addCar(controller.getActiveAgent().getAgentID(), year, getCarTypeID(type), false, model, make, color, dailyRate);
-            controller.getActiveAgent().getCars().add(car);
+            SQLHandlerUtil.updateCar(year, getCarTypeID(type), model, make, color, dailyRate, parentController.getCar().getCar_id());
+            parentController.getParentController().getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(parentController.getParentController().getActiveAgent().getAgentID()));
 
             // Refresh the table
             Stage stage = (Stage) emptyWarningLabel.getScene().getWindow();
             stage.close();
 
-            controller.getVboxContent().getChildren().clear();
-            controller.initializeTable();
+            parentController.getParentController().initializeTable();
         }
-    }
-
-    private int getCarTypeID(String type) {
-        for (CarType carType : Account.getCarTypeList()) {
-            if (type.contains(carType.getType())) {
-                return carType.getId();
-            }
-        }
-        return -1;
     }
 
     private boolean checkInput() {
@@ -129,8 +117,39 @@ public class RegisterCarController {
         return valid;
     }
 
-    public void setParentController(AgentViewController controller) {
-        this.controller = controller;
+    private int getCarTypeID(String type) {
+        for (CarType carType : Account.getCarTypeList()) {
+            if (type.contains(carType.getType())) {
+                return carType.getId();
+            }
+        }
+        return -1;
     }
 
+    private String getCarTypeName(int type_id) {
+
+        for (CarType carType : Account.getCarTypeList()) {
+            if (carType.getId() == type_id) {
+                return carType.getType();
+            }
+        }
+        return null;
+    }
+
+    public void setParentController(CarUnitController parentController) {
+        this.parentController = parentController;
+        populateFields();
+    }
+
+    void populateFields() {
+
+        System.out.println(getCarTypeName(parentController.getCar().getCar_type_id()));
+
+        colorPrompt.setText(parentController.getCar().getCar_color());
+        dailyRatePrompt.setText(String.valueOf(parentController.getCar().getDailyRate()));
+        manufacturerPrompt.getSelectionModel().select(parentController.getCar().getCar_make());
+        modelPrompt.setText(parentController.getCar().getCar_model());
+        typePrompt.getSelectionModel().select(getCarTypeName(parentController.getCar().getCar_type_id()).equals("Sedan") ? 0 : 1);
+        yearPrompt.getSelectionModel().select((Integer) parentController.getCar().getCar_year());
+    }
 }

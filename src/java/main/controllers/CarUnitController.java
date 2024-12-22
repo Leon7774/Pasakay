@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.objects.Account;
@@ -12,6 +14,7 @@ import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class CarUnitController {
 
@@ -48,24 +51,50 @@ public class CarUnitController {
     private AgentViewController parentController;
     private Car car;
 
-    @FXML
-    void onEditClick(ActionEvent event) {
+        @FXML
+        void onEditClick(ActionEvent event) throws IOException {
 
-    }
+            StageUtil editCar = new StageUtil("/fxml/editCarInfo.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+            EditCarController editCarController = editCar.getLoader().getController();
+            editCarController.setParentController(this);
+        }
 
     @FXML
     void onScheduleRental(ActionEvent event) throws IOException {
 
-        StageUtil addAgent = new StageUtil("/fxml/makeRental.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-        RentalController rentalController = (RentalController) addAgent.getController();
+        StageUtil addRental = new StageUtil("/fxml/makeRental.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        RentalController rentalController = (RentalController) addRental.getController();
         rentalController.setAgentViewController(parentController);
         rentalController.setCar(this.car);
     }
 
     @FXML
-    void onDeleteClick(ActionEvent event) {
+    void onDeleteClick(ActionEvent event) throws SQLException {
 
+        if(car.getCar_currentlyRented()) {
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Delete Error");
+            alert.setHeaderText("Car Deletion Error");
+            alert.setContentText("Car cannot be deleted since it is currently Rented.");
+            alert.showAndWait();
+        }
+
+        else {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("Car Deletion");
+            alert.setContentText("Are you sure you want to delete this car?");
+            ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+            if(result == ButtonType.OK) {
+
+                System.out.println(SQLHandlerUtil.deleteCar(car.getCar_id()));
+                parentController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(parentController.getActiveAgent().getAgentID()));
+                parentController.initializeTable();
+            }
+        }
     }
 
     @FXML
@@ -88,4 +117,6 @@ public class CarUnitController {
     void setParentController(AgentViewController controller) {
         this.parentController = controller;
     }
+    AgentViewController getParentController() {return this.parentController;}
+    Car getCar() {return this.car;}
 }

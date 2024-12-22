@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Car;
+import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
@@ -36,6 +37,9 @@ public class CarUnitController {
     private JFXButton editButton;
 
     @FXML
+    private JFXButton reassignButton;
+
+    @FXML
     private Label netIncome;
 
     @FXML
@@ -62,6 +66,14 @@ public class CarUnitController {
     void onDeleteClick(ActionEvent event) {
 
 
+    }
+
+    @FXML
+    void onReassignClick(ActionEvent event) throws IOException {
+
+        StageUtil modalStage = new StageUtil("/fxml/reassignCar.fxml", (Stage)deleteButton.getScene().getWindow());
+        ReassignCarController reassignController = (ReassignCarController) modalStage.getController();
+        reassignController.setControllers(car, parentController);
     }
 
     void setData(Car car) {

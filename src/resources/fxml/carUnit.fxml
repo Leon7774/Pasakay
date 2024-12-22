@@ -40,7 +40,7 @@
                   <Font size="28.0" />
                </font>
             </Label>
-            <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="491.0" layoutY="146.0" onAction="#onEditClick" style="-fx-background-color: #BBBBBB;" text="Edit">
+            <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="414.0" layoutY="146.0" onAction="#onEditClick" style="-fx-background-color: #BBBBBB;" text="Edit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
@@ -65,6 +65,11 @@
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
+            <JFXButton fx:id="reassignButton" buttonType="RAISED" layoutX="464.0" layoutY="146.0" onAction="#onReassignClick" style="-fx-background-color: #BBBBBB;" text="Reassign">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

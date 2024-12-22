@@ -321,6 +321,42 @@ public class SQLHandlerUtil {
         return new CarType(id, type_name, capacity, terrain);
     }
 
+    public static boolean unAssignCar(int car_id) throws SQLException {
+
+        String query = "UPDATE car SET agent_id = NULL WHERE car_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, car_id);
+        statement.executeUpdate();
+
+        query = "UPDATE rentals SET agent_id = NULL WHERE car_id = ?";
+        statement = connection1.prepareStatement(query);
+        statement.setInt(1, car_id);
+        statement.executeUpdate();
+
+        findUser(Account.getUserName());
+
+        return true;
+    }
+
+    public static boolean assignCar(int car_id, int agent_id) throws SQLException {
+
+        String query = "UPDATE car SET agent_id = ? WHERE car_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, agent_id);
+        statement.setInt(2, car_id);
+        statement.executeUpdate();
+
+        query = "UPDATE rentals SET agent_id = ? WHERE car_id = ?";
+        statement = connection1.prepareStatement(query);
+        statement.setInt(1, agent_id);
+        statement.setInt(2, car_id);
+        statement.executeUpdate();
+
+        findUser(Account.getUserName());
+
+        return true;
+    }
+
     // TODO
     // AGENT QUERIES ---
 

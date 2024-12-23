@@ -32,17 +32,7 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     @FXML
-    private JFXListView<Label> listview;
-    private Stage stage;
-
-    @FXML
     private AnchorPane dashboardContent;
-    @FXML
-    private VBox vboxContent;
-    @FXML
-    private ScrollPane scrollPane;
-    @FXML
-    private JFXButton addPropertyButton, rentalsButton;
     @FXML
     private Label welcomeLabel;
     @FXML
@@ -53,9 +43,12 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO FIX LABEL
         setWelcomeLabel();
-        initializeTable();
         welcomeLabel.setText("Welcome, " + Account.getFirstName());
-        scrollPane.setStyle("-fx-background: white;");
+        try {
+            onAgentTabClick(new ActionEvent());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setWelcomeLabel() {
@@ -65,27 +58,6 @@ public class DashboardController implements Initializable {
         }
     }
 
-    // Initializes the list of agents in the dashboard
-    public void initializeTable() {
-        // Disables horizontal scrolling
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
-        for (Agent agent : Account.getAgentList()) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/propertyunit.fxml"));
-                // Makes a horizontal box for every agent
-                HBox hbox = loader.load();
-                // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                PropertyItemController pipController = loader.getController();
-                pipController.setData(agent);
-                // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
-                vboxContent.getChildren().add(hbox);
-            } catch (IOException | SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
     @FXML
     void dilightClose(MouseEvent event) {
         closeButton.setImage(new Image("/images/close-highlight.png"));
@@ -97,56 +69,33 @@ public class DashboardController implements Initializable {
         closeButton.setImage(new Image("/images/close.png"));
     }
 
-    public void closeButtonOnActionEvent(MouseEvent event) {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-    }
-    public void initializeCarTable() throws IOException {
-
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
-        for (Agent agent : Account.getAgentList()) {
-
-            for(Car car : agent.getCars()) {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carView.fxml"));
-                HBox hbox = loader.load();
-
-            }
-        }
-    }
-
-    public void showAgentDetails(Agent agent) throws SQLException {
-        try {
-            // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AgentView.fxml"));
-            BorderPane agentDetailsPane = loader.load();
-
-            // Set agent data in the AgentDetailsController
-            AgentViewController controller = loader.getController();
-            controller.setAgentData(agent);
-
-            // Passes the dashboard controller to the agent view controller
-            controller.setParentController(this);
-
-            // Replace the current content with the agent details
-            dashboardContent.getChildren().setAll(agentDetailsPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
-    void onAgentTabClick(ActionEvent event) {
+    void onAgentTabClick(ActionEvent event) throws IOException {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/agentsDashboard.fxml"));
+        BorderPane rentalsPane = loader.load();
+
+        dashboardContent.getChildren().clear();
+        dashboardContent.getChildren().setAll(rentalsPane);
     }
 
     @FXML
     void onRentalsClicked (ActionEvent event) throws IOException {
 
-        new SceneUtil("/fxml/rentalsDashboard.fxml", (Stage)rentalsButton.getScene().getWindow());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/rentalsDashboard.fxml"));
+        BorderPane rentalsPane = loader.load();
+
+        dashboardContent.getChildren().clear();
+        dashboardContent.getChildren().setAll(rentalsPane);
     }
 
+    @FXML
+    public void closeButtonOnActionEvent(MouseEvent event) {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
     public void onLogoutTabClick(ActionEvent event) {
         // Close the current stage
         Stage currentStage = (Stage) dashboardContent.getScene().getWindow();
@@ -160,23 +109,6 @@ public class DashboardController implements Initializable {
                 e.printStackTrace();
             }
         });
-    }
-
-    public void refreshTable() throws IOException {
-        vboxContent.getChildren().clear();
-        initializeTable();
-    }
-
-    public VBox getVbox() {
-        return vboxContent;
-    }
-
-
-    @FXML
-    public void agentAdd() throws IOException {
-        StageUtil addAgent = new StageUtil("/fxml/registerAgent.fxml", (Stage)(dashboardContent.getScene().getWindow()));
-        RegisterPropertyController controller = (RegisterPropertyController) addAgent.getController();
-        controller.setDashboardController(this);
     }
 }
 

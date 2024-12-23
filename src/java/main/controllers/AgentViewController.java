@@ -66,7 +66,7 @@ public class AgentViewController {
 
     private Agent activeAgent;
 
-    public DashboardController parentController;
+    public AgentsDashboardController parentController;
 
 
     @FXML
@@ -101,7 +101,7 @@ public class AgentViewController {
         System.out.println("bruh");
     }
 
-    public void setParentController(DashboardController parentController) {
+    public void setParentController(AgentsDashboardController parentController) {
         this.parentController = parentController;
     }
 

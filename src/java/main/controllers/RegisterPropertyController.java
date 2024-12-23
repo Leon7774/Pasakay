@@ -40,17 +40,17 @@ public class RegisterPropertyController implements Initializable {
 
     @FXML
     private Text emptyWarningLabel;
-    public DashboardController dashboardController;
+    public AgentsDashboardController registerController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dashboardController == null) {
+        if (registerController == null) {
             System.out.println("It is indeed null retard");
         }
     }
 
-    public void setDashboardController(DashboardController controller) {
-        this.dashboardController = controller;
+    public void setDashboardController(AgentsDashboardController controller) {
+        this.registerController = controller;
     }
 
 
@@ -80,8 +80,8 @@ public class RegisterPropertyController implements Initializable {
 
             SQLHandlerUtil.findUser(Account.getUserName());
 
-            dashboardController.getVbox().getChildren().clear();
-            dashboardController.initializeTable();
+            registerController.getVbox().getChildren().clear();
+            registerController.initializeTable();
         }
     }
 

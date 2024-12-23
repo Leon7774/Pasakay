@@ -50,10 +50,10 @@ public class PropertyItemController {
     private boolean editOpen = false;
     private StageUtil stage;
     private Agent activeAgent;
-    public DashboardController dashboardController;
+    public AgentsDashboardController dashboardController;
 
 
-    public void setParentController(DashboardController dashboardController) {
+    public void setParentController(AgentsDashboardController dashboardController) {
         this.dashboardController = dashboardController;
     }
 

@@ -21,7 +21,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class DashboardController implements Initializable {
+public class DashboardMain implements Initializable {
 
     @FXML private AnchorPane dashboardContent;
     @FXML private Label welcomeLabel;
@@ -108,8 +108,11 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    void onDateChange(ActionEvent event) {
+    void onDateChange(ActionEvent event) throws IOException {
+        dashboardContent.getChildren().clear();
         System.out.println(dateInput.getValue());
+        this.currentDate = dateInput.getValue();
+        onAgentTabClick(new ActionEvent());
     }
 }
 

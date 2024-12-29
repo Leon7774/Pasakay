@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-public class RegisterController {
+public class RegisterUserController {
 
     @FXML
     public TextField firstNameTextField;

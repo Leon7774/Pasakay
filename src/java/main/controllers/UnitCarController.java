@@ -16,7 +16,7 @@ import main.util.StageUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class CarUnitController {
+public class UnitCarController {
 
     @FXML
     private Label carColor;
@@ -48,7 +48,7 @@ public class CarUnitController {
     @FXML
     private JFXButton scheduleRental;
 
-    private AgentViewController parentController;
+    private ViewAgentsController parentController;
     private Car car;
 
         @FXML
@@ -114,9 +114,9 @@ public class CarUnitController {
         this.carSeats.setText("Passengers: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getPassengerCount());
     }
 
-    void setParentController(AgentViewController controller) {
+    void setParentController(ViewAgentsController controller) {
         this.parentController = controller;
     }
-    AgentViewController getParentController() {return this.parentController;}
+    ViewAgentsController getParentController() {return this.parentController;}
     Car getCar() {return this.car;}
 }

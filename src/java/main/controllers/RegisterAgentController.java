@@ -39,7 +39,7 @@ public class RegisterAgentController implements Initializable {
 
     @FXML
     private Text emptyWarningLabel;
-    public AgentsDashboardController registerController;
+    public DashboardAgentController registerController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,7 +48,7 @@ public class RegisterAgentController implements Initializable {
         }
     }
 
-    public void setDashboardController(AgentsDashboardController controller) {
+    public void setDashboardController(DashboardAgentController controller) {
         this.registerController = controller;
     }
 

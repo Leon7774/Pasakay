@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.PropertyItemController">
+<HBox alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.UnitAgentController">
    <children>
       <AnchorPane prefHeight="190.0" prefWidth="86.0">
          <children>

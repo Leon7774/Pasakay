@@ -23,7 +23,7 @@ import main.util.StageUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class AgentViewController {
+public class ViewAgentsController {
 
     @FXML
     private JFXButton addCarButton;
@@ -61,7 +61,7 @@ public class AgentViewController {
 
     private Agent activeAgent;
 
-    public AgentsDashboardController parentController;
+    public DashboardAgentController parentController;
 
 
     @FXML
@@ -96,7 +96,7 @@ public class AgentViewController {
         System.out.println("bruh");
     }
 
-    public void setParentController(AgentsDashboardController parentController) {
+    public void setParentController(DashboardAgentController parentController) {
         this.parentController = parentController;
     }
 
@@ -131,10 +131,10 @@ public class AgentViewController {
                 // Makes a horizontal box for every agent
                 HBox hbox = loader.load();
                 // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                CarUnitController carUnitController = loader.getController();
-                carUnitController.setData(car);
+                UnitCarController unitCarController = loader.getController();
+                unitCarController.setData(car);
                 // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                carUnitController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                unitCarController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
                 vboxContent.getChildren().add(hbox);
             } catch (IOException e) {
                 throw new RuntimeException(e);

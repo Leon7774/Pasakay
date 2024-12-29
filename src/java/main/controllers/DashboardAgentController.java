@@ -21,7 +21,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AgentsDashboardController implements Initializable {
+public class DashboardAgentController implements Initializable {
 
     @FXML
     private AnchorPane dashboardContent;
@@ -51,7 +51,7 @@ public class AgentsDashboardController implements Initializable {
                 // Makes a horizontal box for every agent
                 HBox hbox = loader.load();
                 // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                PropertyItemController pipController = loader.getController();
+                UnitAgentController pipController = loader.getController();
                 pipController.setData(agent);
                 // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                 pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
@@ -84,7 +84,7 @@ public class AgentsDashboardController implements Initializable {
             BorderPane agentDetailsPane = loader.load();
 
             // Set agent data in the AgentDetailsController
-            AgentViewController controller = loader.getController();
+            ViewAgentsController controller = loader.getController();
             controller.setAgentData(agent);
 
             // Passes the dashboard controller to the agent view controller

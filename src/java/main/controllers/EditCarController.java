@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.objects.Account;
-import main.objects.Car;
 import main.objects.CarType;
 import main.util.SQLHandlerUtil;
 
@@ -44,7 +43,7 @@ public class EditCarController {
     @FXML
     private JFXComboBox<Integer> yearPrompt;
 
-    private CarUnitController parentController;
+    private UnitCarController parentController;
 
     private String[] brands = new String[] {"Hyundai", "Toyota", "BMW", "Ford", "Nissan", "Kia", "Subaru", "Mitsubishi"};
 
@@ -136,7 +135,7 @@ public class EditCarController {
         return null;
     }
 
-    public void setParentController(CarUnitController parentController) {
+    public void setParentController(UnitCarController parentController) {
         this.parentController = parentController;
         populateFields();
     }

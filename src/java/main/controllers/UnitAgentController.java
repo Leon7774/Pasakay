@@ -14,9 +14,8 @@ import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Optional;
 
-public class PropertyItemController {
+public class UnitAgentController {
     @FXML
     private Label agentAddress;
 
@@ -50,10 +49,10 @@ public class PropertyItemController {
     private boolean editOpen = false;
     private StageUtil stage;
     private Agent activeAgent;
-    public AgentsDashboardController dashboardController;
+    public DashboardAgentController dashboardController;
 
 
-    public void setParentController(AgentsDashboardController dashboardController) {
+    public void setParentController(DashboardAgentController dashboardController) {
         this.dashboardController = dashboardController;
     }
 

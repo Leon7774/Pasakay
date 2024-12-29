@@ -3,15 +3,12 @@ package main.controllers;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.objects.Car;
 import main.util.SQLHandlerUtil;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class ReassignCarController {
 
@@ -28,7 +25,7 @@ public class ReassignCarController {
     private JFXButton reassignButton;
 
     private Car currentCar;
-    private AgentViewController currentAgent;
+    private ViewAgentsController currentAgent;
 
     @FXML
     void onCancelClick(ActionEvent event) {
@@ -47,10 +44,10 @@ public class ReassignCarController {
         }
     }
 
-    void setControllers(Car car, AgentViewController agentViewController) {
+    void setControllers(Car car, ViewAgentsController viewAgentsController) {
 
         this.currentCar = car;
-        this.currentAgent = agentViewController;
+        this.currentAgent = viewAgentsController;
         oldAgentPrompt.setText(String.valueOf(currentAgent.getActiveAgent().getAgentID()));
     }
 

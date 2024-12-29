@@ -58,7 +58,7 @@ public class RegisterController {
                     SQLHandlerUtil.WriteUser(autoCapitalize(firstNameTextField.getText()), autoCapitalize(lastNameTextField.getText()), usernameTextField.getText(), passwordTextField1.getText());
                     Stage stage = (Stage) registerTextField.getScene().getWindow();
                     stage.close();
-                    new StageUtil("/fxml/registerconfirmed.fxml");
+                    new StageUtil("/fxml/registerConfirmed.fxml");
 
                     passwordLabel.setVisible(false);
                 }

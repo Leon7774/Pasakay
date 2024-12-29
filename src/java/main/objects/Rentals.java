@@ -10,7 +10,6 @@ public class Rentals {
     private double totalCost;
 
     public Rentals(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost) {
-
         this.agentID = agentID;
         this.renterID = renterID;
         this.carID = carID;

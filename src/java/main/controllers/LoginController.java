@@ -109,7 +109,7 @@ public class LoginController implements Initializable {
                     SQLHandlerUtil.loadCarType();
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
-                    StageUtil ui = new StageUtil("/fxml/dashboard.fxml");
+                    StageUtil ui = new StageUtil("/fxml/dashboardMain.fxml");
                     loginLabel.setText("Login Sucessful");
                     loginLabel.setVisible(true);
                 }else{
@@ -130,7 +130,7 @@ public class LoginController implements Initializable {
         stage.close();
         System.out.println("register clicked");
 
-        SceneUtil baseUI = new SceneUtil("/fxml/register.fxml", stage);
+        SceneUtil baseUI = new SceneUtil("/fxml/registerUser.fxml", stage);
 
         // Optionally, if you need to change the scene later:
         // baseUI.setScene("/fxml/otherScene.fxml");

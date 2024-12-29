@@ -1,43 +1,37 @@
 package main.controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.objects.Account;
-import main.objects.Agent;
-import main.objects.Car;
-import main.util.FXMLLoaderUtil;
-import main.util.SceneUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class DashboardController implements Initializable {
+public class DashboardMain implements Initializable {
 
-    @FXML
-    private AnchorPane dashboardContent;
-    @FXML
-    private Label welcomeLabel;
-    @FXML
-    private ImageView closeButton;
+    @FXML private AnchorPane dashboardContent;
+    @FXML private Label welcomeLabel;
+    @FXML private ImageView closeButton;
+    @FXML private DatePicker dateInput;
+
+    private static LocalDate currentDate = LocalDate.now();
+
     private static boolean opened = false;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,6 +43,8 @@ public class DashboardController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        dateInput.setPromptText(currentDate.toString());
     }
 
     public void setWelcomeLabel() {
@@ -72,7 +68,7 @@ public class DashboardController implements Initializable {
     @FXML
     void onAgentTabClick(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/agentsDashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboardAgent.fxml"));
         BorderPane rentalsPane = loader.load();
 
         dashboardContent.getChildren().clear();
@@ -82,7 +78,7 @@ public class DashboardController implements Initializable {
     @FXML
     void onRentalsClicked (ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/rentalsDashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboardRentals.fxml"));
         BorderPane rentalsPane = loader.load();
 
         dashboardContent.getChildren().clear();
@@ -121,6 +117,14 @@ public class DashboardController implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+    @FXML
+    void onDateChange(ActionEvent event) throws IOException {
+        dashboardContent.getChildren().clear();
+        System.out.println(dateInput.getValue());
+        this.currentDate = dateInput.getValue();
+        onAgentTabClick(new ActionEvent());
     }
 }
 

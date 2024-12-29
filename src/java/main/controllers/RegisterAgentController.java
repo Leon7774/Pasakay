@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -15,7 +14,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class RegisterPropertyController implements Initializable {
+public class RegisterAgentController implements Initializable {
 
     @FXML
     private TextField agentAddressPrompt;
@@ -40,7 +39,7 @@ public class RegisterPropertyController implements Initializable {
 
     @FXML
     private Text emptyWarningLabel;
-    public AgentsDashboardController registerController;
+    public DashboardAgentController registerController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +48,7 @@ public class RegisterPropertyController implements Initializable {
         }
     }
 
-    public void setDashboardController(AgentsDashboardController controller) {
+    public void setDashboardController(DashboardAgentController controller) {
         this.registerController = controller;
     }
 

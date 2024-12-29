@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import main.objects.Account;
 import main.objects.Car;
 import main.objects.Rentals;
 import main.util.SQLHandlerUtil;
@@ -19,7 +18,7 @@ public class CarViewController {
                         rentEndLabel, rentStartLabel;
     @FXML private JFXButton deleteButton, editButton;
 
-    private RentalsViewController rentalsViewController;
+    private ViewRentalsController viewRentalsController;
     private Rentals currentRental;
 
     @FXML
@@ -36,7 +35,7 @@ public class CarViewController {
         if(result == ButtonType.OK) {
 
             System.out.println(SQLHandlerUtil.deleteRental(currentRental.getId(), currentRental.getRenterID()));
-            rentalsViewController.initializeTable();
+            viewRentalsController.initializeTable();
         }
     }
 
@@ -57,8 +56,8 @@ public class CarViewController {
         currentRental = rental;
     }
 
-    void setParentController(RentalsViewController rentalsViewController) {
-        this.rentalsViewController = rentalsViewController;
+    void setParentController(ViewRentalsController viewRentalsController) {
+        this.viewRentalsController = viewRentalsController;
     }
 
 }

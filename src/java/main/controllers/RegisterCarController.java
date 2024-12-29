@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -12,7 +11,6 @@ import main.objects.Car;
 import main.util.SQLHandlerUtil;
 import main.objects.CarType;
 import main.objects.Account;
-import main.util.SceneUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -46,7 +44,7 @@ public class RegisterCarController {
     @FXML
     private JFXComboBox<Integer> yearPrompt;
 
-    private AgentViewController controller;
+    private ViewAgentsController controller;
 
     private String[] brands = new String[] {"Hyundai", "Toyota", "BMW", "Ford", "Nissan", "Kia", "Subaru", "Mitsubishi"};
 
@@ -129,7 +127,7 @@ public class RegisterCarController {
         return valid;
     }
 
-    public void setParentController(AgentViewController controller) {
+    public void setParentController(ViewAgentsController controller) {
         this.controller = controller;
     }
 

@@ -13,7 +13,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Car;
-import main.objects.Rentals;
 import main.objects.Renter;
 import main.util.SQLHandlerUtil;
 
@@ -22,8 +21,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
-
-import static main.util.SQLHandlerUtil.findUser;
 
 public class RentalController implements Initializable {
 
@@ -69,7 +66,7 @@ public class RentalController implements Initializable {
     @FXML
     private JFXComboBox<String> statusPrompt;
 
-    private AgentViewController agentViewController;
+    private ViewAgentsController viewAgentsController;
     private Car car;
 
 
@@ -105,13 +102,13 @@ public class RentalController implements Initializable {
         int totalDays = (int) ChronoUnit.DAYS.between(startDate, endDate);
 
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, age, contactNumber, licenseNumber);
-        Account.addRentals(SQLHandlerUtil.addRental(agentViewController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDate, endDate, totalDays * car.getDailyRate()));
+        Account.addRentals(SQLHandlerUtil.addRental(viewAgentsController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDate, endDate, totalDays * car.getDailyRate()));
 
-        agentViewController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(agentViewController.getActiveAgent().getAgentID()));
+        viewAgentsController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewAgentsController.getActiveAgent().getAgentID()));
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
-    public void setAgentViewController(AgentViewController agentViewController) {this.agentViewController = agentViewController;}
+    public void setAgentViewController(ViewAgentsController viewAgentsController) {this.viewAgentsController = viewAgentsController;}
     public void setCar(Car car) {this.car = car;}
 }

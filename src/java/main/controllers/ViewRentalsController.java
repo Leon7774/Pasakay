@@ -20,13 +20,13 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class RentalsViewController implements Initializable {
+public class ViewRentalsController implements Initializable {
 
     @FXML private ImageView closeButton;
     @FXML private ScrollPane scrollPane;
     @FXML private VBox vboxContent;
 
-    private AgentViewController agentViewController;
+    private ViewAgentsController viewAgentsController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

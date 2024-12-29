@@ -5,22 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import main.objects.Account;
 import javafx.stage.Stage;
 import main.objects.Agent;
 import main.objects.Car;
-import main.util.FXMLLoaderUtil;
 import main.util.SQLHandlerUtil;
 import main.util.SceneUtil;
 import main.util.StageUtil;
@@ -28,7 +23,7 @@ import main.util.StageUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class AgentViewController {
+public class ViewAgentsController {
 
     @FXML
     private JFXButton addCarButton;
@@ -66,7 +61,7 @@ public class AgentViewController {
 
     private Agent activeAgent;
 
-    public AgentsDashboardController parentController;
+    public DashboardAgentController parentController;
 
 
     @FXML
@@ -84,7 +79,7 @@ public class AgentViewController {
 
     @FXML
     void onBackClick(ActionEvent event) throws IOException {
-        SceneUtil sceneUtil = new SceneUtil("/fxml/dashboard.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        SceneUtil sceneUtil = new SceneUtil("/fxml/dashboardMain.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
     }
 
     public void setAgentData(Agent agent) throws SQLException {
@@ -101,7 +96,7 @@ public class AgentViewController {
         System.out.println("bruh");
     }
 
-    public void setParentController(AgentsDashboardController parentController) {
+    public void setParentController(DashboardAgentController parentController) {
         this.parentController = parentController;
     }
 
@@ -132,14 +127,14 @@ public class AgentViewController {
 
         for (Car car : activeAgent.getCars()) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carUnit.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitCar.fxml"));
                 // Makes a horizontal box for every agent
                 HBox hbox = loader.load();
                 // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                CarUnitController carUnitController = loader.getController();
-                carUnitController.setData(car);
+                UnitCarController unitCarController = loader.getController();
+                unitCarController.setData(car);
                 // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                carUnitController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                unitCarController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
                 vboxContent.getChildren().add(hbox);
             } catch (IOException e) {
                 throw new RuntimeException(e);

@@ -46,12 +46,12 @@ public class SQLHandlerUtil {
             System.out.println(Account.getFirstName());
 
             // SQL Query to grab the agents of the user
-            String propTableQuery = "SELECT * FROM agents JOIN user " +
-                    "ON agents.user_id = user.user_id " +
-                    "WHERE user.user_id = " + Account.getUserID();
+            String propTableQuery = "{CALL getAgentList(?)}";
+            CallableStatement callableStatement = connection1.prepareCall(propTableQuery);
+            callableStatement.setString(1, String.valueOf(Account.getUserID()));
 
             // RS2 contains the table of agents for the active user. Use rs2.next to grab each row. Remember that rs2.next can only move forward in a table
-            ResultSet rs2 = statement.executeQuery(propTableQuery);
+            ResultSet rs2 = callableStatement.executeQuery();
 
             //TODO Finish this shit
 
@@ -68,14 +68,11 @@ public class SQLHandlerUtil {
                 Account.addAgent(agent);
             }
 
-            String propTableQuery2 = "Select rentals.rental_id, rentals.agent_id, rentals.renter_id, rentals.car_id, " +
-                             "rentals.rental_start_date, rental_end_date, total_cost " +
-                             "FROM rentals JOIN agents " +
-                             "ON rentals.agent_id = agents.agent_id JOIN user " +
-                             "ON agents.user_id = user.user_id " +
-                             "WHERE user.user_id = " + Account.getUserID();
+            String propTableQuery3 = "{CALL getRentalsList(?)}";
+            CallableStatement callableStatement3 = connection1.prepareCall(propTableQuery3);
+            callableStatement3.setString(1, String.valueOf(Account.getUserID()));
 
-            ResultSet rs3 = statement.executeQuery(propTableQuery2);
+            ResultSet rs3 = callableStatement3.executeQuery();
 
             while(rs3.next()) {
 
@@ -407,6 +404,31 @@ public class SQLHandlerUtil {
         findUser(Account.getUserName());
 
         return true;
+    }
+
+    public static List<Renter> getRenters() throws SQLException {
+
+        List<Renter> renterList = new ArrayList<>();
+        String query = "SELECT * renter.*, rental.car_id";
+        PreparedStatement statement = connection1.prepareStatement(query);
+
+        ResultSet rs = statement.executeQuery();
+
+        while(rs.next()) {
+
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            int age = rs.getInt("age");
+            String status = rs.getString("status");
+            int renter_id = rs.getInt("rental_id");
+            int contact_number = rs.getInt("contact_number");
+            int license_number = rs.getInt("license_number");
+            String sex = rs.getString("sex");
+
+            renterList.add(new Renter(renter_id, firstName, lastName, status, sex, age, contact_number, license_number));
+        }
+
+        return renterList;
     }
 
     // TODO

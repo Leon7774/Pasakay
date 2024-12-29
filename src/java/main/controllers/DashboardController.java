@@ -90,6 +90,18 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
+    void onRentersClicked (ActionEvent event) throws IOException {
+
+
+    }
+
+    @FXML
+    void onInactiveCarsClick (ActionEvent event) throws IOException {
+
+
+    }
+
+    @FXML
     public void closeButtonOnActionEvent(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();

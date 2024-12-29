@@ -35,7 +35,6 @@ public class AgentsDashboardController implements Initializable {
     private ScrollPane scrollPane;
     @FXML
     private ImageView closeButton;
-    private static boolean opened = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,6 +64,7 @@ public class AgentsDashboardController implements Initializable {
             }
         }
     }
+
     @FXML
     void dilightClose(MouseEvent event) {
         closeButton.setImage(new Image("/images/close-highlight.png"));
@@ -109,7 +109,6 @@ public class AgentsDashboardController implements Initializable {
     public VBox getVbox() {
         return vboxContent;
     }
-
 
     @FXML
     public void agentAdd() throws IOException {

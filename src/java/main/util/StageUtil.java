@@ -3,6 +3,7 @@ package main.util;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -23,6 +24,7 @@ public class StageUtil extends Stage{
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("FreeHold");
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("/images/icon.png"));
 
 
         root.setOnMousePressed(event -> {
@@ -48,6 +50,7 @@ public class StageUtil extends Stage{
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("FreeHold");
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("/images/icon.png"));
 
 
         root.setOnMousePressed(event -> {

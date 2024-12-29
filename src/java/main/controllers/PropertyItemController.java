@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Agent;
+import main.objects.Car;
 import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 import java.io.IOException;
@@ -87,19 +88,37 @@ public class PropertyItemController {
     @FXML
     public void onDeleteClick(ActionEvent event) throws SQLException, IOException {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Confirmation");
-        alert.setHeaderText("Agent Deletion");
-        alert.setContentText("Are you sure you want to delete this agent?");
-        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+        boolean carsInRent = false;
 
-        if(result == ButtonType.OK) {
+        for(Car car : activeAgent.getCars()) {
 
-            System.out.println(SQLHandlerUtil.deleteAgent(activeAgent.getAgentID()));
-            SQLHandlerUtil.findUser(Account.getUserName());
+            if (car.getCar_currentlyRented()) {
+
+                carsInRent = true;
+            }
         }
 
-        dashboardController.refreshTable();
+        if (carsInRent) {
+
+            new Alert(Alert.AlertType.ERROR, "Cars in this agent is currently rented",  ButtonType.OK).show();
+        }
+
+        else {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("Agent Deletion");
+            alert.setContentText("Are you sure you want to delete this agent?");
+            ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+            if(result == ButtonType.OK) {
+
+                System.out.println(SQLHandlerUtil.deleteAgent(activeAgent.getAgentID()));
+                SQLHandlerUtil.findUser(Account.getUserName());
+            }
+
+            dashboardController.refreshTable();
+        }
     }
 
     public void setEditButton(boolean b) {

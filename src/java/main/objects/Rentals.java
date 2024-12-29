@@ -8,14 +8,17 @@ public class Rentals {
     private int rental_id, agentID, renterID, carID;
     private LocalDate rentStart, rentEnd;
     private double totalCost;
+    private boolean fully_paid, deposited;
 
-    public Rentals(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost) {
+    public Rentals(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost, boolean fully_paid, boolean deposited) {
         this.agentID = agentID;
         this.renterID = renterID;
         this.carID = carID;
         this.rentStart = rentStart;
         this.rentEnd = rentEnd;
         this.totalCost = totalCost;
+        this.fully_paid = fully_paid;
+        this.deposited = deposited;
     }
 
     //Getters
@@ -26,6 +29,8 @@ public class Rentals {
     public int getAgentId() {return this.agentID;}
     public int getCarId() {return this.carID;}
     public double getTotalCost() {return this.totalCost;}
+    public boolean isFullyPaid() {return this.fully_paid;}
+    public boolean isDeposited() {return this.deposited;}
 
     //Setters
     public void setId(int id) {this.rental_id = id;}
@@ -35,6 +40,8 @@ public class Rentals {
     public void setAgentID(int agentID) {this.agentID = agentID;}
     public void setCarID(int carID) {this.carID = carID;}
     public void setTotalCost(double totalCost) {this.totalCost = totalCost;}
+    public void setDeposited(boolean deposited) {this.deposited = deposited;}
+    public void setFully_paid(boolean fully_paid) {this.fully_paid = fully_paid;}
 
     @Override
     public int hashCode() {

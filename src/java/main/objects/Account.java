@@ -88,4 +88,14 @@ public class Account{
         }
         return null;
     }
+
+    public static Agent findAgentByID(int agentID) {
+        for (Agent agent : agentList) {
+            if(agent.getAgentID() == agentID) {
+                return agent;
+            }
+        }
+
+        return null;
+    }
 }

@@ -3,10 +3,12 @@ package main.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,15 +27,20 @@ public class ViewRentalsController implements Initializable {
     @FXML private ImageView closeButton;
     @FXML private ScrollPane scrollPane;
     @FXML private VBox vboxContent;
+    @FXML private Label notifCounter;
+    @FXML private AnchorPane notifIcon;
 
     private ViewAgentsController viewAgentsController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // Makes sure the scrollpane is invisible, by default the background is gray
         scrollPane.setStyle("-fx-background: white;");
-
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        notifIcon.setVisible(false);
+
 
         initializeTable();
     }
@@ -63,12 +70,12 @@ public class ViewRentalsController implements Initializable {
 
             try {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/carView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
                 HBox hbox = loader.load();
-                CarViewController carViewController = loader.getController();
+                UnitRentalController unitRentalController = loader.getController();
                 Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                carViewController.setData(car, rental);
-                carViewController.setParentController(this);
+                unitRentalController.setData(car, rental);
+                unitRentalController.setParentController(this);
                 vboxContent.getChildren().add(hbox);
             }
 

@@ -32,7 +32,6 @@ public class DashboardMain implements Initializable {
 
     private static boolean opened = false;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO FIX LABEL
@@ -125,6 +124,14 @@ public class DashboardMain implements Initializable {
         System.out.println(dateInput.getValue());
         this.currentDate = dateInput.getValue();
         onAgentTabClick(new ActionEvent());
+    }
+
+    public static void setCurrentDate(LocalDate date) {
+        currentDate = date;
+    }
+
+    public static LocalDate getCurrentDate() {
+        return currentDate;
     }
 }
 

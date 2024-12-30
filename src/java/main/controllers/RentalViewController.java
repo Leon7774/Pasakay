@@ -25,7 +25,7 @@ public class RentalViewController implements Initializable {
 
     @FXML private JFXToggleButton depositedToggle, fullyPaidToggle;
 
-    private RentalsDashboardController rentalDashboardController;
+    private ViewRentalsController rentalDashboardController;
     private Rentals currentRental;
     private boolean deposited = false, fullyPaid = false;
 
@@ -129,7 +129,7 @@ public class RentalViewController implements Initializable {
         }
     }
 
-    void setParentController(RentalsDashboardController rentalsViewController) {
+    void setParentController(ViewRentalsController rentalsViewController) {
         this.rentalDashboardController = rentalsViewController;
     }
 

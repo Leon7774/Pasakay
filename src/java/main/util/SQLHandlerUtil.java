@@ -334,6 +334,29 @@ public class SQLHandlerUtil {
         }
     }
 
+    public static Car getOneCar(int car_id) throws SQLException {
+
+        String query = "SELECT * FROM car WHERE car_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, car_id);
+
+        ResultSet rs = statement.executeQuery();
+
+        rs.next();
+
+        int year = rs.getInt("year");
+        int car_type_id = rs.getInt("car_type_id");
+        boolean car_currentlyRented = rs.getBoolean("car_currentlyRented");
+        String model = rs.getString("model");
+        String make = rs.getString("make");
+        String color = rs.getString("color");
+        double daily_rate = rs.getDouble("daily_rate");
+
+        Car car = new Car(year, car_type_id, car_currentlyRented, model, make, color, daily_rate);
+        car.setCar_id(car_id);
+        return car;
+    }
+
     public static boolean unAssignCar(int car_id) throws SQLException {
 
         String query = "UPDATE car SET agent_id = NULL WHERE car_id = ?";

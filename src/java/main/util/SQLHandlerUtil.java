@@ -289,12 +289,12 @@ public class SQLHandlerUtil {
 
     public static boolean deleteRental(int rental_id, int renter_id) throws SQLException {
 
-        String query = "DELETE FROM renter WHERE renter_id = ?";
+        String query = "DELETE FROM rentals WHERE rental_id = ?";
         PreparedStatement statement = connection1.prepareStatement(query);
         statement.setInt(1, rental_id);
         statement.executeUpdate();
 
-        query = "DELETE FROM rentals WHERE rental_id = ?";
+        query = "DELETE FROM renter WHERE renter_id = ?";
         statement = connection1.prepareStatement(query);
         statement.setInt(1, rental_id);
         statement.executeUpdate();

@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -58,6 +60,21 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <AnchorPane fx:id="notifIcon" layoutX="693.0" layoutY="75.0" prefHeight="39.0" prefWidth="43.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="10.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/bell.png" />
+                           </image>
+                        </ImageView>
+                        <Circle fill="#ff1818" layoutX="43.0" layoutY="9.0" radius="13.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" />
+                        <Label fx:id="notifCounter" alignment="CENTER" layoutX="29.0" layoutY="1.0" prefHeight="17.0" prefWidth="26.0" text="1" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </top>

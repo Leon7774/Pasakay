@@ -48,6 +48,9 @@ public class UnitCarController {
     @FXML
     private JFXButton scheduleRental;
 
+    @FXML
+    private Label dailyRent;
+
     private ViewAgentsController parentController;
     private Car car;
 
@@ -61,11 +64,10 @@ public class UnitCarController {
 
     @FXML
     void onScheduleRental(ActionEvent event) throws IOException {
-
         StageUtil addRental = new StageUtil("/fxml/makeRental.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-        RentalController rentalController = (RentalController) addRental.getController();
-        rentalController.setAgentViewController(parentController);
-        rentalController.setCar(this.car);
+        RegisterRentalController registerRentalController = (RegisterRentalController) addRental.getController();
+        registerRentalController.setAgentViewController(parentController);
+        registerRentalController.setCar(this.car);
     }
 
     @FXML
@@ -112,6 +114,7 @@ public class UnitCarController {
         this.carName.setText(car.getCar_make() + " " + car.getCar_model() + " " + car.getCar_year());
         this.carType.setText("Type: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getType());
         this.carSeats.setText("Passengers: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getPassengerCount());
+        this.dailyRent.setText("Daily Rate: $" + car.getDailyRate());
     }
 
     void setParentController(ViewAgentsController controller) {

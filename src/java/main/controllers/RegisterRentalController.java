@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Car;
 import main.objects.Renter;
+import main.util.DateUtil;
 import main.util.SQLHandlerUtil;
 
 import java.net.URL;
@@ -22,7 +23,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
-public class RentalController implements Initializable {
+public class RegisterRentalController implements Initializable {
 
     @FXML
     private TextField agePrompt;
@@ -72,6 +73,8 @@ public class RentalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
+        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate().plus(1, ChronoUnit.DAYS)));
 
         String [] sexs = {"Male", "Female", "Other"};
         String [] status = {"Single", "Married", "Widowed", "Complicated"};
@@ -82,7 +85,6 @@ public class RentalController implements Initializable {
 
     @FXML
     void onCancelClick(ActionEvent event) {
-
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 

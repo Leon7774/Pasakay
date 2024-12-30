@@ -73,6 +73,7 @@ public class RegisterRentalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        emptyFieldWarning.setVisible(false);
         startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
         endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate().plus(1, ChronoUnit.DAYS)));
 
@@ -95,22 +96,24 @@ public class RegisterRentalController implements Initializable {
         String lastName = lastNamePrompt.getText();
         String status = statusPrompt.getValue();
         String sex = sexPrompt.getValue();
-        int age = Integer.parseInt(agePrompt.getText());
-        int contactNumber = Integer.parseInt(contactNumberPrompt.getText().trim());
-        int licenseNumber = Integer.parseInt(licenseNumberPrompt.getText().trim());
-        LocalDate endDate = endDatePicker.getValue();
-        LocalDate startDate = startDatePicker.getValue();
+        String age = agePrompt.getText();
+        String contactNumber = contactNumberPrompt.getText().trim();
+        String licenseNumber = licenseNumberPrompt.getText().trim();
 
-        int totalDays = (int) ChronoUnit.DAYS.between(startDate, endDate);
+        if(firstName.isEmpty() || lastName.isEmpty() || status == null || sex == null || age.isEmpty() || contactNumber.isEmpty() || licenseNumber.isEmpty()) {
+            emptyFieldWarning.setVisible(true);
+            return;
+        }
 
-        Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, age, contactNumber, licenseNumber);
-        Account.addRentals(SQLHandlerUtil.addRental(viewAgentsController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDate, endDate, totalDays * car.getDailyRate()));
+        int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue());
+
+        Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, Integer.parseInt(age), Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
+        Account.addRentals(SQLHandlerUtil.addRental(viewAgentsController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));
 
         viewAgentsController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewAgentsController.getActiveAgent().getAgentID()));
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
-
     public void setAgentViewController(ViewAgentsController viewAgentsController) {this.viewAgentsController = viewAgentsController;}
     public void setCar(Car car) {this.car = car;}
 }

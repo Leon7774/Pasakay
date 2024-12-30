@@ -48,11 +48,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>
             <Label layoutX="61.0" layoutY="46.0" text="Old Agent ID: " />
-            <JFXButton fx:id="reassignButton" defaultButton="true" layoutX="321.0" layoutY="138.0" onAction="#onReassignClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Reassign" textFill="WHITE">
+            <JFXButton fx:id="reassignButton" defaultButton="true" layoutX="321.0" layoutY="152.0" onAction="#onReassignClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Reassign" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="460.0" layoutY="138.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="460.0" layoutY="152.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
@@ -62,6 +62,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
+            <Label layoutX="258.0" layoutY="123.0" text="ID doesn't exist" textFill="#da2a2a" visible="false" />
          </children>
       </AnchorPane>
    </left>

@@ -36,12 +36,17 @@ public class ReassignCarController {
     @FXML
     void onReassignClick(ActionEvent event) throws SQLException {
 
-        if(SQLHandlerUtil.assignCar(currentCar.getCar_id(), Integer.parseInt(newAgentPrompt.getText().trim()))) {
+        try {
+            if (SQLHandlerUtil.assignCar(currentCar.getCar_id(), Integer.parseInt(newAgentPrompt.getText().trim()))) {
 
-            ((Stage)reassignButton.getScene().getWindow()).close();
-            currentAgent.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(currentAgent.getActiveAgent().getAgentID()));
-            currentAgent.initializeTable();
+                ((Stage) reassignButton.getScene().getWindow()).close();
+                currentAgent.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(currentAgent.getActiveAgent().getAgentID()));
+                currentAgent.initializeTable();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 
     void setControllers(Car car, ViewAgentsController viewAgentsController) {

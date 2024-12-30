@@ -357,6 +357,23 @@ public class SQLHandlerUtil {
         return car;
     }
 
+    public static CarType getCarType (int car_type_id) throws SQLException {
+
+        String query = "SELECT * FROM car_type WHERE car_type_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, car_type_id);
+        ResultSet rs = statement.executeQuery();
+
+        rs.next();
+
+        int id = rs.getInt("car_type_id");
+        String type_name = rs.getString("type_name");
+        int capacity = rs.getInt("passenger_capacity");
+        String terrain = rs.getString("terrain");
+
+        return new CarType(id, type_name, capacity, terrain);
+    }
+
     public static boolean unAssignCar(int car_id) throws SQLException {
 
         String query = "UPDATE car SET agent_id = NULL WHERE car_id = ?";

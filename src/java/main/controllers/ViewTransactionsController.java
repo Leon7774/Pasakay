@@ -12,14 +12,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.objects.Account;
-import main.objects.Car;
 import main.objects.RentalTransaction;
 import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class TransactionsDashboardController {
+public class ViewTransactionsController {
 
     @FXML
     private ImageView closeButton;
@@ -52,18 +51,17 @@ public class TransactionsDashboardController {
     void initializeTable() throws SQLException {
 
         try {
-                for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
+            for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transactionView.fxml"));
-                    HBox hbox = loader.load();
-                    TransactionViewController transactionController = loader.getController();
-                    transactionController.setData(transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                    vboxContent.getChildren().add(hbox);
-                }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transactionView.fxml"));
+                HBox hbox = loader.load();
+                TransactionViewController transactionController = loader.getController();
+                transactionController.setData(transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                vboxContent.getChildren().add(hbox);
             }
-
-            catch (IOException | SQLException e) {
-                throw new RuntimeException(e);
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

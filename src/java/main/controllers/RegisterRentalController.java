@@ -19,7 +19,6 @@ import main.util.SQLHandlerUtil;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
@@ -67,7 +66,7 @@ public class RegisterRentalController implements Initializable {
     @FXML
     private JFXComboBox<String> statusPrompt;
 
-    private ViewAgentsController viewAgentsController;
+    private ViewCarController viewCarController;
     private Car car;
 
 
@@ -108,12 +107,12 @@ public class RegisterRentalController implements Initializable {
         int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue());
 
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, Integer.parseInt(age), Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
-        Account.addRentals(SQLHandlerUtil.addRental(viewAgentsController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));
+        Account.addRentals(SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));
 
-        viewAgentsController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewAgentsController.getActiveAgent().getAgentID()));
+        viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
-    public void setAgentViewController(ViewAgentsController viewAgentsController) {this.viewAgentsController = viewAgentsController;}
+    public void setAgentViewController(ViewCarController viewCarController) {this.viewCarController = viewCarController;}
     public void setCar(Car car) {this.car = car;}
 }

@@ -37,7 +37,7 @@ public class EditPropertyController implements Initializable {
     private JFXButton cancelButton;
 
     private UnitAgentController unitAgentController;
-    private DashboardAgentController dashboardController;
+    private ViewAgentController dashboardController;
     private int agentID;
 
     public void onCancelClick(ActionEvent event) {
@@ -90,7 +90,7 @@ public class EditPropertyController implements Initializable {
         stage.close();
     }
 
-    public void setDashboardController(DashboardAgentController controller) {
+    public void setDashboardController(ViewAgentController controller) {
         this.dashboardController = controller;
     }
 

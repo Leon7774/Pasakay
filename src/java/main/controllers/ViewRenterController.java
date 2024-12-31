@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class RenterViewController {
+public class ViewRenterController {
 
     @FXML private Label rentalIDLabel, carIDLabel, renterIDLabel, renterNameLabel, renterSexLabel, renterAgeLabel,
                   renterContactNumberLabel, renterLicenseNumberLabel, renterStatusLabel;

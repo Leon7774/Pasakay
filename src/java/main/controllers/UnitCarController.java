@@ -10,11 +10,13 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Car;
+import main.objects.Rental;
 import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.temporal.ChronoUnit;
 
 public class UnitCarController {
 
@@ -51,16 +53,18 @@ public class UnitCarController {
     @FXML
     private Label dailyRent;
 
-    private ViewAgentsController parentController;
+    @FXML
+    private Label rentalDays;
+
+    private ViewCarController parentController;
     private Car car;
 
-        @FXML
-        void onEditClick(ActionEvent event) throws IOException {
-
-            StageUtil editCar = new StageUtil("/fxml/editCarInfo.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-            EditCarController editCarController = editCar.getLoader().getController();
-            editCarController.setParentController(this);
-        }
+    @FXML
+    void onEditClick(ActionEvent event) throws IOException {
+        StageUtil editCar = new StageUtil("/fxml/editCarInfo.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        EditCarController editCarController = editCar.getLoader().getController();
+        editCarController.setParentController(this);
+    }
 
     @FXML
     void onScheduleRental(ActionEvent event) throws IOException {
@@ -115,11 +119,26 @@ public class UnitCarController {
         this.carType.setText("Type: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getType());
         this.carSeats.setText("Passengers: " + Account.getCarTypeList().get(car.getCar_type_id() - 1).getPassengerCount());
         this.dailyRent.setText("Daily Rate: $" + car.getDailyRate());
+        this.rentalDays.setText("Total Scheduled Rental Days: " + getRentalDays());
+        this.netIncome.setText("Expected Income: $" + car.getDailyRate() * getRentalDays());
     }
 
-    void setParentController(ViewAgentsController controller) {
+    public int getRentalDays() {
+        int totalRentalDays = 0;
+        for(Rental rental : Account.getRentalsList()) {
+            if(rental.getCarId() == car.getCar_id()) {
+                totalRentalDays += ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd());
+            }
+        }
+
+        return totalRentalDays;
+    }
+
+    void setParentController(ViewCarController controller) {
         this.parentController = controller;
     }
-    ViewAgentsController getParentController() {return this.parentController;}
+
+    ViewCarController getParentController() {return this.parentController;}
+
     Car getCar() {return this.car;}
 }

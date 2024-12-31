@@ -50,10 +50,10 @@ public class UnitAgentController {
     private boolean editOpen = false;
     private StageUtil stage;
     private Agent activeAgent;
-    public DashboardAgentController dashboardController;
+    public ViewAgentController dashboardController;
 
 
-    public void setParentController(DashboardAgentController dashboardController) {
+    public void setParentController(ViewAgentController dashboardController) {
         this.dashboardController = dashboardController;
     }
 

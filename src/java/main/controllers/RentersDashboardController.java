@@ -1,23 +1,14 @@
 package main.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.objects.Account;
-import main.objects.Car;
-import main.objects.Rentals;
-import main.util.SQLHandlerUtil;
-
-import java.io.IOException;
-import java.sql.SQLException;
 
 public class RentersDashboardController {
 

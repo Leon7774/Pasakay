@@ -6,15 +6,12 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import main.objects.Account;
 import main.objects.Car;
-import main.objects.Rentals;
+import main.objects.Rental;
 import main.util.SQLHandlerUtil;
 
-import javax.tools.Tool;
 import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 
@@ -29,7 +26,7 @@ public class UnitRentalController {
     @FXML private JFXButton pendingButton;
 
     private ViewRentalsController viewRentalsController;
-    private Rentals currentRental;
+    private Rental currentRental;
     private boolean isPending = false;
 
     @FXML
@@ -55,7 +52,7 @@ public class UnitRentalController {
         }
     }
 
-    void setData(Car car, Rentals rental) throws SQLException {
+    void setData(Car car, Rental rental) throws SQLException {
 
         System.out.println(car.getCar_currentlyRented());
 

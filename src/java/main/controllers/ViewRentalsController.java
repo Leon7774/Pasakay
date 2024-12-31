@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Car;
-import main.objects.Rentals;
+import main.objects.Rental;
 import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class ViewRentalsController implements Initializable {
     @FXML private Label notifCounter;
     @FXML private AnchorPane notifIcon;
 
-    private ViewAgentsController viewAgentsController;
+    private ViewCarController viewCarController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,7 +66,7 @@ public class ViewRentalsController implements Initializable {
 
         vboxContent.getChildren().clear();
 
-        for(Rentals rental : Account.getRentalsList()) {
+        for(Rental rental : Account.getRentalsList()) {
 
             try {
 

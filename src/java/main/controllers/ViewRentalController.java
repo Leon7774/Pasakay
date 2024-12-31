@@ -1,15 +1,13 @@
 package main.controllers;
 
 import com.jfoenix.controls.JFXToggleButton;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import main.objects.Rentals;
+import main.objects.Rental;
 import main.util.SQLHandlerUtil;
 
 import java.net.URL;
@@ -17,7 +15,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class RentalViewController implements Initializable {
+public class ViewRentalController implements Initializable {
 
     @FXML private Label agentIDLabel, renterIDLabel, netIncomeLabel,
                         rentEndLabel, rentStartLabel, rentalIDLabel,
@@ -26,7 +24,7 @@ public class RentalViewController implements Initializable {
     @FXML private JFXToggleButton depositedToggle, fullyPaidToggle;
 
     private ViewRentalsController rentalDashboardController;
-    private Rentals currentRental;
+    private Rental currentRental;
     private boolean deposited = false, fullyPaid = false;
 
     @Override
@@ -105,7 +103,7 @@ public class RentalViewController implements Initializable {
         }
     }
 
-    void setData(Rentals rental) throws SQLException {
+    void setData(Rental rental) throws SQLException {
 
         this.agentIDLabel.setText("Agent ID: " + String.valueOf(rental.getAgentId()));
         this.renterIDLabel.setText("Renter ID: " + String.valueOf(rental.getRenterID()));

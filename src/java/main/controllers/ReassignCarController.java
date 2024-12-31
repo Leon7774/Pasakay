@@ -25,7 +25,7 @@ public class ReassignCarController {
     private JFXButton reassignButton;
 
     private Car currentCar;
-    private ViewAgentsController currentAgent;
+    private ViewCarController currentAgent;
 
     @FXML
     void onCancelClick(ActionEvent event) {
@@ -49,10 +49,10 @@ public class ReassignCarController {
 
     }
 
-    void setControllers(Car car, ViewAgentsController viewAgentsController) {
+    void setControllers(Car car, ViewCarController viewCarController) {
 
         this.currentCar = car;
-        this.currentAgent = viewAgentsController;
+        this.currentAgent = viewCarController;
         oldAgentPrompt.setText(String.valueOf(currentAgent.getActiveAgent().getAgentID()));
     }
 

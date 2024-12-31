@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.objects.Account;
+import main.objects.Rental;
 import main.util.StageUtil;
 
 import java.io.IOException;
@@ -44,6 +45,10 @@ public class DashboardMain implements Initializable {
         }
 
         dateInput.setPromptText(currentDate.toString());
+
+        for (Rental rental : Account.getRentalsList()) {
+            System.out.println(rental);
+        }
     }
 
     public void setWelcomeLabel() {
@@ -67,7 +72,7 @@ public class DashboardMain implements Initializable {
     @FXML
     void onAgentTabClick(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboardAgent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/viewAgents.fxml"));
         BorderPane rentalsPane = loader.load();
 
         dashboardContent.getChildren().clear();
@@ -77,7 +82,7 @@ public class DashboardMain implements Initializable {
     @FXML
     void onRentalsClicked (ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboardRentals.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/viewRentals.fxml"));
         BorderPane rentalsPane = loader.load();
 
         dashboardContent.getChildren().clear();

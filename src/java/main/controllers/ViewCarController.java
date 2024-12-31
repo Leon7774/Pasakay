@@ -23,7 +23,7 @@ import main.util.StageUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ViewAgentsController {
+public class ViewCarController {
 
     @FXML
     private JFXButton addCarButton;
@@ -61,7 +61,7 @@ public class ViewAgentsController {
 
     private Agent activeAgent;
 
-    public DashboardAgentController parentController;
+    public ViewAgentController parentController;
 
 
     @FXML
@@ -96,7 +96,7 @@ public class ViewAgentsController {
         System.out.println("bruh");
     }
 
-    public void setParentController(DashboardAgentController parentController) {
+    public void setParentController(ViewAgentController parentController) {
         this.parentController = parentController;
     }
 

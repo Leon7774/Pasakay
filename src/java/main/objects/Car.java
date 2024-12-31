@@ -1,5 +1,8 @@
 package main.objects;
 
+import main.controllers.DashboardMain;
+
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +13,8 @@ public class Car {
     private boolean car_currentlyRented;
     private double dailyRate;
     private String car_model, car_color, make;
+    private double totalIncome;
+    private int totalRentDays;
 
     public Car(int car_year, int car_type_id, boolean car_currentlyRented, String car_model, String make, String car_color, double dailyRate) {
         this.car_year = car_year;
@@ -58,5 +63,19 @@ public class Car {
                 Objects.equals(car_type_id, car.getCar_type_id()) &&
                 Objects.equals(car_model, car.getCar_model()) &&
                 Objects.equals(car_color, car.getCar_color());
+    }
+
+    public boolean checkIfRented() {
+        boolean rented = false;
+        for(Rental rental : Account.getRentalsList()) {
+            if(rental.getCarId() == car_id) {
+                if (rental.getRentStart().isBefore(DashboardMain.getCurrentDate()) && rental.getRentEnd().isAfter(DashboardMain.getCurrentDate())) {
+                    rented = true;
+                    System.out.println("Rented");
+                    break;
+                }
+            }
+        }
+        return rented;
     }
 }

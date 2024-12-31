@@ -3,14 +3,14 @@ package main.objects;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Rentals {
+public class Rental {
 
     private int rental_id, agentID, renterID, carID;
     private LocalDate rentStart, rentEnd;
     private double totalCost;
     private boolean fully_paid, deposited;
 
-    public Rentals(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost, boolean fully_paid, boolean deposited) {
+    public Rental(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost, boolean fully_paid, boolean deposited) {
         this.agentID = agentID;
         this.renterID = renterID;
         this.carID = carID;
@@ -55,11 +55,26 @@ public class Rentals {
         if(this == obj) return true;
         if(obj == null || getClass() != obj.getClass()) return false;
 
-        Rentals rental = (Rentals) obj;
+        Rental rental = (Rental) obj;
 
         return  Objects.equals(rental_id, rental.getId()) &&
                 Objects.equals(renterID, rental.getRenterID()) &&
                 Objects.equals(rentStart, rental.getRentStart()) &&
                 Objects.equals(rentEnd, rental.getRentEnd());
+    }
+
+    @Override
+    public String toString() {
+        return "Rentals{" +
+                "rental_id=" + rental_id +
+                ", renterID=" + renterID +
+                ", rentStart=" + rentStart +
+                ", rentEnd=" + rentEnd +
+                ", agentID=" + agentID +
+                ", carID=" + carID +
+                ", totalCost=" + totalCost +
+                ", deposited=" + deposited +
+                ", fully_paid=" + fully_paid +
+                '}';
     }
 }

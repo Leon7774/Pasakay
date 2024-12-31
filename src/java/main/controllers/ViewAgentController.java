@@ -21,7 +21,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class DashboardAgentController implements Initializable {
+public class ViewAgentController implements Initializable {
 
     @FXML
     private AnchorPane dashboardContent;
@@ -80,11 +80,11 @@ public class DashboardAgentController implements Initializable {
     public void showAgentDetails(Agent agent) throws SQLException {
         try {
             // Load the new FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/agentView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/viewCars.fxml"));
             BorderPane agentDetailsPane = loader.load();
 
             // Set agent data in the AgentDetailsController
-            ViewAgentsController controller = loader.getController();
+            ViewCarController controller = loader.getController();
             controller.setAgentData(agent);
 
             // Passes the dashboard controller to the agent view controller

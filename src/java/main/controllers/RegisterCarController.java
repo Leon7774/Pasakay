@@ -44,7 +44,7 @@ public class RegisterCarController {
     @FXML
     private JFXComboBox<Integer> yearPrompt;
 
-    private ViewAgentsController controller;
+    private ViewCarController controller;
 
     private String[] brands = new String[] {"Hyundai", "Toyota", "BMW", "Ford", "Nissan", "Kia", "Subaru", "Mitsubishi"};
 
@@ -127,7 +127,7 @@ public class RegisterCarController {
         return valid;
     }
 
-    public void setParentController(ViewAgentsController controller) {
+    public void setParentController(ViewCarController controller) {
         this.controller = controller;
     }
 

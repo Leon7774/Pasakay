@@ -86,7 +86,7 @@ public class SQLHandlerUtil {
                 boolean deposited = rs3.getBoolean("deposited");
                 boolean fully_paid = rs3.getBoolean("fully_paid");
 
-                Rentals rental = new Rentals(agent_id, renter_id, car_id, LocalDate.parse(rental_start_date), LocalDate.parse(rental_end_date), total_cost, deposited, fully_paid);
+                Rental rental = new Rental(agent_id, renter_id, car_id, LocalDate.parse(rental_start_date), LocalDate.parse(rental_end_date), total_cost, deposited, fully_paid);
                 rental.setId(rental_id);
                 Account.addRentals(rental);
             }
@@ -94,6 +94,29 @@ public class SQLHandlerUtil {
         } else {
             System.out.println("User not found");
         }
+    }
+
+    public static List<RentalTransaction> getRentalTransactions(int user_id) throws SQLException {
+
+        String propTableQuery = "{CALL getTransactionsList(?)}";
+        CallableStatement callableStatement = connection1.prepareCall(propTableQuery);
+        callableStatement.setInt(1, user_id);
+
+        ResultSet resultSet = callableStatement.executeQuery();
+
+        List<RentalTransaction> rentalTransactionList = new ArrayList<>();
+
+        while(resultSet.next()) {
+
+            int rental_id = resultSet.getInt("rental_id");
+            String transaction_name = resultSet.getString("transaction_name");
+            double amount = resultSet.getDouble("amount");
+            String date = resultSet.getString("date");
+
+            rentalTransactionList.add(new RentalTransaction(rental_id, transaction_name, amount, date));
+        }
+
+        return rentalTransactionList;
     }
 
     public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
@@ -251,7 +274,7 @@ public class SQLHandlerUtil {
         return true;
     }
 
-    public static Rentals addRental(int agent_id, int renter_id, int car_id, LocalDate rent_start, LocalDate rent_end, double totalCost) throws SQLException {
+    public static Rental addRental(int agent_id, int renter_id, int car_id, LocalDate rent_start, LocalDate rent_end, double totalCost) throws SQLException {
 
         String query = "INSERT INTO rentals(agent_id, renter_id, car_id, rental_start_date, rental_end_date, total_cost, deposited, fully_paid) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -270,7 +293,7 @@ public class SQLHandlerUtil {
 
             int rental_id = generatedKeys.getInt(1);
 
-            Rentals newRental = new Rentals(agent_id, renter_id, car_id, rent_start, rent_end, totalCost, false, false);
+            Rental newRental = new Rental(agent_id, renter_id, car_id, rent_start, rent_end, totalCost, false, false);
             newRental.setId(rental_id);
 
             query = "UPDATE car SET car_currentlyRented = ? WHERE car_id = ?";

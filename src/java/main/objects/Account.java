@@ -1,7 +1,5 @@
 package main.objects;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class Account{
     private static List<Agent> agentList;
     private static double balance;
     private static ArrayList<CarType> carTypeList = new ArrayList<CarType>();
-    private static List<Rentals> rentalsList = new ArrayList<>();
+    private static List<Rental> rentalList = new ArrayList<>();
 
     public static void setAccount(int userID2, String firstName2, String lastName2, String userName2, double balance) {
         userID = userID2;
@@ -22,7 +20,7 @@ public class Account{
         userName = userName2;
 
         agentList = new ArrayList<>();
-        rentalsList = new ArrayList<>();
+        rentalList = new ArrayList<>();
         balance = 0;
     }
 
@@ -66,9 +64,9 @@ public class Account{
         agentList.add(agent);
     }
 
-    public static void addRentals(Rentals rental) {
+    public static void addRentals(Rental rental) {
 
-        rentalsList.add(rental);
+        rentalList.add(rental);
     }
 
     public static List<Agent> getAgentList() {
@@ -78,7 +76,7 @@ public class Account{
     public static ArrayList<CarType> getCarTypeList() {
         return carTypeList;
     }
-    public static List<Rentals> getRentalsList () {return rentalsList;}
+    public static List<Rental> getRentalsList () {return rentalList;}
 
     public static Agent findAgentById(int id) {
         for (Agent a : agentList) {

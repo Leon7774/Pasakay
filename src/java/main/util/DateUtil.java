@@ -3,6 +3,8 @@ package main.util;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.util.Callback;
+import main.objects.Account;
+import main.objects.Rental;
 
 import java.time.LocalDate;
 
@@ -17,6 +19,13 @@ public class DateUtil {
                 if (item.isBefore(date)) {
                     setDisable(true);
                     setStyle("-fx-background-color: #636363;"); // Optional styling
+                }
+
+                for(Rental r : Account.getRentalsList()) {
+                    if(r.getRentStart().isBefore(item.plusDays(1)) && r.getRentEnd().isAfter(item)) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #958aff;"); // Optional styling
+                    }
                 }
             }
         };

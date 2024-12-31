@@ -59,7 +59,7 @@ public class UnitRentalController {
         this.carName.setText(car.getCar_model());
         this.carIDLabel.setText("Car ID: " + String.valueOf(car.getCar_id()));
         this.carColorLabel.setText("Color: " + car.getCar_color());
-        this.noSeatsLabel.setText("Number of Seats: " + String.valueOf(SQLHandlerUtil.getCarType(car.getCar_type_id()).getPassengerCount()+ 1));
+        this.noSeatsLabel.setText("Number of Seats: " + String.valueOf(SQLHandlerUtil.getCarType(car.getCar_type_id()).getPassengerCount()));
         this.isRentedLabel.setText("Currently Rented: " + (car.getCar_currentlyRented() ? "Yes" : "No"));
         this.agentIDLabel.setText("Agent ID: " + String.valueOf(rental.getAgentId()));
 

@@ -53,7 +53,7 @@ public class ViewTransactionsController {
         try {
             for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/transactionView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
                 HBox hbox = loader.load();
                 TransactionViewController transactionController = loader.getController();
                 transactionController.setData(transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());

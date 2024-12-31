@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterRentalController">
+   <top>
+      <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="73.0" layoutY="9.0" prefHeight="51.0" prefWidth="271.0" text="Rental Schedule" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="54.0" fitWidth="52.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="color-overlay">
+               <image>
+                  <Image url="@../images/registerCar.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" hue="-0.05" saturation="1.0" />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <effect>
+      <DropShadow height="112.24" radius="46.2625" spread="0.36" width="74.81">
+         <color>
+            <Color opacity="0.693009078502655" />
+         </color>
+      </DropShadow>
+   </effect>
+   <left>
+      <AnchorPane prefHeight="442.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="scheduleButton" buttonType="RAISED" defaultButton="true" layoutX="308.0" layoutY="356.0" onAction="#onScheduleClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Schedule" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cancelButton" buttonType="RAISED" cancelButton="true" layoutX="447.0" layoutY="356.0" onAction="#onCancelClick" prefHeight="22.0" prefWidth="108.0" style="-fx-background-color: #E62B00; -fx-focus-color: #ffffff;" text="Cancel" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <Text fx:id="emptyWarningLabel" fill="#d74545" layoutX="235.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields can't be blank" visible="false" />
+            <DatePicker fx:id="startDatePicker" layoutX="229.0" layoutY="245.0" prefHeight="26.0" prefWidth="299.0" />
+            <DatePicker fx:id="endDatePicker" layoutX="229.0" layoutY="287.0" prefHeight="26.0" prefWidth="299.0" />
+            <Label layoutX="46.0" layoutY="250.0" text="Rent Start Date:" />
+            <Label layoutX="46.0" layoutY="292.0" text="Rent End Date:" />
+            <Label fx:id="carName" layoutX="46.0" layoutY="13.0" prefHeight="51.0" prefWidth="271.0" text="Toyota Vios 2018" textFill="#323232">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="emptyFieldWarning" layoutX="230.0" layoutY="326.0" text="Please fill out all the fields." textFill="#b90808" />
+            <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="83.0" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #aaaaaa;" text="Select Renter" />
+            <JFXButton buttonType="RAISED" layoutX="217.0" layoutY="83.0" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #aaaaaa;" text="Register Renter" />
+            <Label layoutX="47.0" layoutY="209.0" text="Last Name:" />
+            <TextField fx:id="firstNamePrompt" editable="false" layoutX="229.0" layoutY="168.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="lastNamePrompt" editable="false" layoutX="229.0" layoutY="200.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <Label layoutX="47.0" layoutY="173.0" text="First Name:" />
+            <TextField fx:id="firstNamePrompt1" editable="false" layoutX="229.0" layoutY="135.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <Label layoutX="47.0" layoutY="140.0" text="ID:" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

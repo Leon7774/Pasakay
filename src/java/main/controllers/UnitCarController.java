@@ -68,7 +68,7 @@ public class UnitCarController {
 
     @FXML
     void onScheduleRental(ActionEvent event) throws IOException {
-        StageUtil addRental = new StageUtil("/fxml/makeRental.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        StageUtil addRental = new StageUtil("/fxml/registerRental-New.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
         RegisterRentalController registerRentalController = (RegisterRentalController) addRental.getController();
         registerRentalController.setAgentViewController(parentController);
         registerRentalController.setCar(this.car);

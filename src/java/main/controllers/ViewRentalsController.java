@@ -41,7 +41,6 @@ public class ViewRentalsController implements Initializable {
 
         notifIcon.setVisible(false);
 
-
         initializeTable();
     }
 

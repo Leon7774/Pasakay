@@ -67,4 +67,9 @@ public class Renter {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public int getContact_number() {return contact_number;}
+    public void setContact_number(int contact_number) {this.contact_number = contact_number;}
+    public int getLicense_number() {return license_number;}
+    public void setLicense_number(int license_number) {this.license_number = license_number;}
 }

@@ -1,31 +1,79 @@
 package main.controllers;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import main.objects.Account;
+import main.objects.Renter;
+import main.util.SQLHandlerUtil;
 
-public class ViewRenterController {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-    @FXML private Label rentalIDLabel, carIDLabel, renterIDLabel, renterNameLabel, renterSexLabel, renterAgeLabel,
-                  renterContactNumberLabel, renterLicenseNumberLabel, renterStatusLabel;
-    @FXML private JFXButton editButton;
+public class ViewRenterController implements Initializable {
 
-    @FXML
-    void onEditClick(ActionEvent event) {
+    @FXML private ImageView closeButton;
+    @FXML private AnchorPane dashboardContent;
+    @FXML private Text dashboardTitle;
+    @FXML private ScrollPane scrollPane;
+    @FXML private VBox vboxContent;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        scrollPane.setStyle("-fx-background: white;");
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        try {
+            initializeTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    void setData(String name, int id, String status, String sex, int age, String contactNumber, String licenseNumber, int carID, int rentalID) {
+    @FXML
+    void closeButtonOnActionEvent(MouseEvent event) {
 
-        renterNameLabel.setText(name);
-        renterIDLabel.setText("ID: " + Integer.toString(id));
-        renterStatusLabel.setText("Status: " + status);
-        renterSexLabel.setText("Sex: " + sex);
-        renterAgeLabel.setText("Age: " + age);
-        renterContactNumberLabel.setText("Contact Number: " + contactNumber);
-        renterLicenseNumberLabel.setText("License Number: " + licenseNumber);
-        carIDLabel.setText("Rented Car ID: " + Integer.toString(carID));
-        rentalIDLabel.setText("Rental ID: " + Integer.toString(rentalID));
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void dilightClose(MouseEvent event) {closeButton.setImage(new Image("/images/close-highlight.png"));}
+
+    @FXML
+    void highlightClose(MouseEvent event) {closeButton.setImage(new Image("/images/close.png"));}
+
+    void initializeTable() throws SQLException {
+
+        vboxContent.getChildren().clear();
+
+        for(Renter renter : SQLHandlerUtil.getRenters(Account.getUserID())) {
+
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRenter.fxml"));
+                HBox hbox = loader.load();
+                UnitRenterController unitRenterController = loader.getController();
+                unitRenterController.setData(renter);
+                unitRenterController.setParentController(this);
+                vboxContent.getChildren().add(hbox);
+            }
+
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

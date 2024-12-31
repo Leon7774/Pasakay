@@ -96,29 +96,6 @@ public class SQLHandlerUtil {
         }
     }
 
-    public static List<RentalTransaction> getRentalTransactions(int user_id) throws SQLException {
-
-        String propTableQuery = "{CALL getTransactionsList(?)}";
-        CallableStatement callableStatement = connection1.prepareCall(propTableQuery);
-        callableStatement.setInt(1, user_id);
-
-        ResultSet resultSet = callableStatement.executeQuery();
-
-        List<RentalTransaction> rentalTransactionList = new ArrayList<>();
-
-        while(resultSet.next()) {
-
-            int rental_id = resultSet.getInt("rental_id");
-            String transaction_name = resultSet.getString("transaction_name");
-            double amount = resultSet.getDouble("amount");
-            String date = resultSet.getString("date");
-
-            rentalTransactionList.add(new RentalTransaction(rental_id, transaction_name, amount, date));
-        }
-
-        return rentalTransactionList;
-    }
-
     public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
         String query = "INSERT INTO agents(first_name, last_name, age, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
 
@@ -433,13 +410,15 @@ public class SQLHandlerUtil {
         return true;
     }
 
-    public static List<Renter> getRenters() throws SQLException {
+    public static List<Renter> getRenters(int user_id) throws SQLException {
+
+        String propTableQuery = "{CALL getRentersList(?)}";
+        CallableStatement callableStatement = connection1.prepareCall(propTableQuery);
+        callableStatement.setInt(1, user_id);
+
+        ResultSet rs = callableStatement.executeQuery();
 
         List<Renter> renterList = new ArrayList<>();
-        String query = "SELECT * renter.*, rental.car_id";
-        PreparedStatement statement = connection1.prepareStatement(query);
-
-        ResultSet rs = statement.executeQuery();
 
         while(rs.next()) {
 
@@ -447,7 +426,7 @@ public class SQLHandlerUtil {
             String lastName = rs.getString("last_name");
             int age = rs.getInt("age");
             String status = rs.getString("status");
-            int renter_id = rs.getInt("rental_id");
+            int renter_id = rs.getInt("renter_id");
             int contact_number = rs.getInt("contact_number");
             int license_number = rs.getInt("license_number");
             String sex = rs.getString("sex");
@@ -480,10 +459,32 @@ public class SQLHandlerUtil {
         findUser(Account.getUserName());
     }
 
+    public static List<RentalTransaction> getRentalTransactions(int user_id) throws SQLException {
+
+        String propTableQuery = "{CALL getTransactionsList(?)}";
+        CallableStatement callableStatement = connection1.prepareCall(propTableQuery);
+        callableStatement.setInt(1, user_id);
+
+        ResultSet resultSet = callableStatement.executeQuery();
+
+        List<RentalTransaction> rentalTransactionList = new ArrayList<>();
+
+        while(resultSet.next()) {
+
+            int rental_id = resultSet.getInt("rental_id");
+            String transaction_name = resultSet.getString("transaction_name");
+            double amount = resultSet.getDouble("amount");
+            String date = resultSet.getString("date");
+
+            rentalTransactionList.add(new RentalTransaction(rental_id, transaction_name, amount, date));
+        }
+
+        return rentalTransactionList;
+    }
+
     // TODO
     // AGENT QUERIES ---
 
     // Get total income of an agent
-
 }
 

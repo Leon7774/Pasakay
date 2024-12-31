@@ -148,10 +148,6 @@ public class DashboardMain implements Initializable {
         dashboardContent.getChildren().setAll(rentalsPane);
     }
 
-
-
-
-
     @FXML
     public void closeButtonOnActionEvent(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();

@@ -125,7 +125,7 @@ public class DashboardMain implements Initializable {
     @FXML
     void onInactiveCarsClick (ActionEvent event) throws IOException {
         changeButtonsColor(inactiveCarsButton);
-        //loadPane("/fxml/viewRenter.fxml");
+        loadPane("/fxml/viewInactiveCars.fxml");
     }
 
     @FXML

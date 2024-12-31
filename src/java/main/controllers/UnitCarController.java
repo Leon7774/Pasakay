@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 
-public class UnitCarController {
+public class UnitCarController implements BaseCarController{
 
     @FXML
     private Label carColor;
@@ -138,7 +138,11 @@ public class UnitCarController {
         this.parentController = controller;
     }
 
-    ViewCarController getParentController() {return this.parentController;}
+    @Override
+    public Car getCar() {return this.car;}
 
-    Car getCar() {return this.car;}
+    @Override
+    public Object getParentController() {
+        return this.parentController;
+    }
 }

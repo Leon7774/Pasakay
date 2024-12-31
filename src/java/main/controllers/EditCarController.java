@@ -43,7 +43,7 @@ public class EditCarController {
     @FXML
     private JFXComboBox<Integer> yearPrompt;
 
-    private UnitCarController parentController;
+    private BaseCarController parentController;
 
     private String[] brands = new String[] {"Hyundai", "Toyota", "BMW", "Ford", "Nissan", "Kia", "Subaru", "Mitsubishi"};
 
@@ -84,14 +84,23 @@ public class EditCarController {
                 return;
             }
 
-            SQLHandlerUtil.updateCar(year, getCarTypeID(type), model, make, color, dailyRate, parentController.getCar().getCar_id());
-            parentController.getParentController().getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(parentController.getParentController().getActiveAgent().getAgentID()));
+            if(parentController.getParentController() instanceof ViewCarController) {
+                ViewCarController viewCarController = (ViewCarController) parentController.getParentController();
+                SQLHandlerUtil.updateCar(year, getCarTypeID(type), model, make, color, dailyRate, parentController.getCar().getCar_id());
+                viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
+                viewCarController.initializeTable();
+            }
+
+            else if(parentController.getParentController() instanceof ViewInactiveCarsController) {
+
+                ViewInactiveCarsController carController = (ViewInactiveCarsController) parentController.getParentController();
+                SQLHandlerUtil.updateCar(year, getCarTypeID(type), model, make, color, dailyRate, parentController.getCar().getCar_id());
+                carController.initializeTable();
+            }
 
             // Refresh the table
             Stage stage = (Stage) emptyWarningLabel.getScene().getWindow();
             stage.close();
-
-            parentController.getParentController().initializeTable();
         }
     }
 
@@ -135,8 +144,8 @@ public class EditCarController {
         return null;
     }
 
-    public void setParentController(UnitCarController parentController) {
-        this.parentController = parentController;
+    public <T extends BaseCarController> void setParentController(T parentController) {
+        this.parentController = parentController; // Cast not needed
         populateFields();
     }
 

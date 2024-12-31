@@ -112,6 +112,7 @@ public class UnitAgentController {
 
             if(result == ButtonType.OK) {
 
+                SQLHandlerUtil.unAssignCars(activeAgent.getAgentID());
                 System.out.println(SQLHandlerUtil.deleteAgent(activeAgent.getAgentID()));
                 SQLHandlerUtil.findUser(Account.getUserName());
             }

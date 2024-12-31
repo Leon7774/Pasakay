@@ -25,7 +25,7 @@ public class ReassignCarController {
     private JFXButton reassignButton;
 
     private Car currentCar;
-    private ViewCarController currentAgent;
+    private Object parentController;
 
     @FXML
     void onCancelClick(ActionEvent event) {
@@ -40,8 +40,21 @@ public class ReassignCarController {
             if (SQLHandlerUtil.assignCar(currentCar.getCar_id(), Integer.parseInt(newAgentPrompt.getText().trim()))) {
 
                 ((Stage) reassignButton.getScene().getWindow()).close();
-                currentAgent.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(currentAgent.getActiveAgent().getAgentID()));
-                currentAgent.initializeTable();
+
+                if(parentController instanceof ViewCarController) {
+
+                    ViewCarController viewCarController = (ViewCarController) parentController;
+                    viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
+                    viewCarController.initializeTable();
+                }
+
+                else if(parentController instanceof ViewInactiveCarsController) {
+
+                    ViewInactiveCarsController viewCarController = (ViewInactiveCarsController) parentController;
+                    viewCarController.initializeTable();
+                }
+
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,11 +62,22 @@ public class ReassignCarController {
 
     }
 
-    void setControllers(Car car, ViewCarController viewCarController) {
+    void setControllers(Car car, Object parentController) {
 
         this.currentCar = car;
-        this.currentAgent = viewCarController;
-        oldAgentPrompt.setText(String.valueOf(currentAgent.getActiveAgent().getAgentID()));
+        this.parentController = parentController;
+
+        if(parentController instanceof ViewCarController) {
+
+            ViewCarController viewCarController = (ViewCarController) parentController;
+            oldAgentPrompt.setText(String.valueOf(viewCarController.getActiveAgent().getAgentID()));
+        }
+
+        else if(parentController instanceof ViewInactiveCarsController) {
+
+            oldAgentPrompt.setText("None");
+            oldAgentPrompt.setDisable(true);
+        }
     }
 
 }

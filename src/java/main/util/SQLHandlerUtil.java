@@ -374,16 +374,11 @@ public class SQLHandlerUtil {
         return new CarType(id, type_name, capacity, terrain);
     }
 
-    public static boolean unAssignCar(int car_id) throws SQLException {
+    public static boolean unAssignCars(int agentID) throws SQLException {
 
-        String query = "UPDATE car SET agent_id = NULL WHERE car_id = ?";
+        String query = "UPDATE car SET agent_id = NULL, is_active = FALSE WHERE agent_id = ?";
         PreparedStatement statement = connection1.prepareStatement(query);
-        statement.setInt(1, car_id);
-        statement.executeUpdate();
-
-        query = "UPDATE rentals SET agent_id = NULL WHERE car_id = ?";
-        statement = connection1.prepareStatement(query);
-        statement.setInt(1, car_id);
+        statement.setInt(1, agentID);
         statement.executeUpdate();
 
         findUser(Account.getUserName());
@@ -393,14 +388,8 @@ public class SQLHandlerUtil {
 
     public static boolean assignCar(int car_id, int agent_id) throws SQLException {
 
-        String query = "UPDATE car SET agent_id = ? WHERE car_id = ?";
+        String query = "UPDATE car SET agent_id = ?, is_active = TRUE WHERE car_id = ?";
         PreparedStatement statement = connection1.prepareStatement(query);
-        statement.setInt(1, agent_id);
-        statement.setInt(2, car_id);
-        statement.executeUpdate();
-
-        query = "UPDATE rentals SET agent_id = ? WHERE car_id = ?";
-        statement = connection1.prepareStatement(query);
         statement.setInt(1, agent_id);
         statement.setInt(2, car_id);
         statement.executeUpdate();
@@ -480,6 +469,36 @@ public class SQLHandlerUtil {
         }
 
         return rentalTransactionList;
+    }
+
+    public static List<Car> getInactiveCarsList(int user_id) throws SQLException {
+
+        String propTableQuery = "{CALL getInactiveCarsList(?)}";
+        CallableStatement callableStatement = connection1.prepareCall(propTableQuery);
+        callableStatement.setInt(1, user_id);
+
+        ResultSet rs = callableStatement.executeQuery();
+
+        List<Car> inactiveCarsList = new ArrayList<>();
+
+        while(rs.next()) {
+
+            int car_id = rs.getInt("car_id");
+            int year = rs.getInt("year");
+            int car_type_id = rs.getInt("car_type_id");
+            boolean car_currentlyRented = rs.getBoolean("car_currentlyRented");
+            String model = rs.getString("model");
+            String make = rs.getString("make");
+            String color = rs.getString("color");
+            double daily_rate = rs.getDouble("daily_rate");
+
+            Car car = new Car(year, car_type_id, car_currentlyRented, model, make, color, daily_rate);
+            car.setCar_id(car_id);
+
+            inactiveCarsList.add(car);
+        }
+
+        return inactiveCarsList;
     }
 
     // TODO

@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.controllers.views.ViewCarController;
-import main.controllers.views.ViewInactiveCarsController;
 import main.objects.Account;
 import main.objects.CarType;
 import main.util.SQLHandlerUtil;
@@ -91,13 +90,6 @@ public class EditCarController {
                 SQLHandlerUtil.updateCar(year, getCarTypeID(type), model, make, color, dailyRate, parentController.getCar().getCar_id());
                 viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
                 viewCarController.initializeTable();
-            }
-
-            else if(parentController.getParentController() instanceof ViewInactiveCarsController) {
-
-                ViewInactiveCarsController carController = (ViewInactiveCarsController) parentController.getParentController();
-                SQLHandlerUtil.updateCar(year, getCarTypeID(type), model, make, color, dailyRate, parentController.getCar().getCar_id());
-                carController.initializeTable();
             }
 
             // Refresh the table

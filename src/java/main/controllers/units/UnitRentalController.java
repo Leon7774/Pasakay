@@ -110,6 +110,11 @@ public class UnitRentalController {
             viewRentalsController.updateCounter();
             condition = 3;
         }
+
+
+
+
+
         currentRental = rental;
     }
 

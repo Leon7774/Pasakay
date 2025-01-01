@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -113,6 +115,50 @@ public class ViewAgentController implements Initializable {
         StageUtil addAgent = new StageUtil("/fxml/registerAgent.fxml", (Stage)(dashboardContent.getScene().getWindow()));
         RegisterAgentController controller = (RegisterAgentController) addAgent.getController();
         controller.setDashboardController(this);
+    }
+
+    @FXML
+    void search(KeyEvent event){
+        String keyword = ((TextField)event.getSource()).getText().toLowerCase();
+        vboxContent.getChildren().clear();
+
+        for (Agent agent : Account.getAgentList()) {
+            if (keyword.startsWith("id=")) {
+                try {
+                    // Grabs the agent id
+                    int id = Integer.parseInt(keyword.substring(3));
+                    if (agent.getAgentID() == id) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitAgent.fxml"));
+                            // Makes a horizontal box for every agent
+                            HBox hbox = loader.load();
+                            // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                            UnitAgentController pipController = loader.getController();
+                            pipController.setData(agent);
+                            // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                            pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                            vboxContent.getChildren().add(hbox);
+                        } catch (IOException | SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                } catch (NumberFormatException ignored) {}
+            } else if (agent.getFirstname().toLowerCase().startsWith(keyword) || agent.getLastname().toLowerCase().startsWith(keyword)) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitAgent.fxml"));
+                    // Makes a horizontal box for every agent
+                    HBox hbox = loader.load();
+                    // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                    UnitAgentController pipController = loader.getController();
+                    pipController.setData(agent);
+                    // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                    pipController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                    vboxContent.getChildren().add(hbox);
+                } catch (IOException | SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 }
 

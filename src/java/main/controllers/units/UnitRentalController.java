@@ -69,7 +69,7 @@ public class UnitRentalController {
         this.rentStartLabel.setText("Rent Start Date: " + String.valueOf(rental.getRentStart()));
         this.rentEndLabel.setText("Rent End Date: " + String.valueOf(rental.getRentEnd()));
         this.netIncomeLabel.setText("Expected Income: $" + String.valueOf(rental.getTotalCost()));
-        this.totalRentDays.setText("Total Rental Days: " + String.valueOf( ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd())));
+        this.totalRentDays.setText("Total Rental Days: " + String.valueOf( ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd()) + 1));
 
         Tooltip tooltip = new Tooltip(Account.findAgentByID(rental.getAgentId()).getFirstname() + " " + Account.findAgentByID(rental.getAgentId()).getLastname());
 

@@ -142,7 +142,7 @@ public class UnitCarController implements BaseCarController {
         int totalRentalDays = 0;
         for(Rental rental : Account.getRentalsList()) {
             if(rental.getCarId() == car.getCar_id()) {
-                totalRentalDays += ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd());
+                totalRentalDays += ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd()) + 1;
             }
         }
 

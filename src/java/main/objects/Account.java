@@ -66,7 +66,6 @@ public class Account{
     }
 
     public static void addRentals(Rental rental) {
-
         rentalList.add(rental);
     }
 

@@ -22,7 +22,7 @@ public class DateUtil {
                 }
 
                 for(Rental r : Account.getRentalsList()) {
-                    if(r.getRentStart().isBefore(item.plusDays(1)) && r.getRentEnd().isAfter(item)) {
+                    if((r.getRentStart().isBefore(item) && r.getRentEnd().isAfter(item)) || item.isEqual(r.getRentStart()) || item.isEqual(r.getRentEnd())) {
                         setDisable(true);
                         setStyle("-fx-background-color: #958aff;"); // Optional styling
                     }

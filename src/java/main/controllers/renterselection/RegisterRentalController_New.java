@@ -18,7 +18,9 @@ import main.objects.Car;
 import main.objects.Renter;
 import main.util.DateUtil;
 import main.util.SQLHandlerUtil;
+import main.util.StageUtil;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
@@ -76,7 +78,7 @@ public class RegisterRentalController_New implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         emptyFieldWarning.setVisible(false);
         startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
-        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate().plus(1, ChronoUnit.DAYS)));
+        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
 
         String [] sexs = {"Male", "Female", "Other"};
         String [] status = {"Single", "Married", "Widowed", "Complicated"};
@@ -91,7 +93,7 @@ public class RegisterRentalController_New implements Initializable {
     }
 
     @FXML
-    void onScheduleClick(ActionEvent event) throws SQLException {
+    void onScheduleClick(ActionEvent event) throws SQLException, IOException {
 
         String firstName = firstNamePrompt.getText();
         String lastName = lastNamePrompt.getText();
@@ -106,7 +108,15 @@ public class RegisterRentalController_New implements Initializable {
             return;
         }
 
-        int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue());
+        int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue()) + 1;
+
+        StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        ConfirmDepositController controller = confirmRental.getLoader().getController();
+        controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
+
+        if(!controller.isConfirmed()) {
+            return;
+        }
 
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, Integer.parseInt(age), Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
         Account.addRentals(SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));

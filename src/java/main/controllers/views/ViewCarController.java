@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -15,7 +17,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.controllers.RegisterCarController;
+import main.controllers.units.UnitAgentController;
 import main.controllers.units.UnitCarController;
+import main.objects.Account;
 import main.objects.Agent;
 import main.objects.Car;
 import main.util.SQLHandlerUtil;
@@ -143,6 +147,51 @@ public class ViewCarController {
             }
         }
     }
+
+    @FXML
+    void search(KeyEvent event){
+        String keyword = ((TextField)event.getSource()).getText().toLowerCase();
+        vboxContent.getChildren().clear();
+
+        for (Car car : activeAgent.getCars()) {
+            if (keyword.startsWith("id=")) {
+                try {
+                    // Grabs the agent id
+                    int id = Integer.parseInt(keyword.substring(3));
+                    if (car.getCar_id() == id) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitCar.fxml"));
+                            // Makes a horizontal box for every agent
+                            HBox hbox = loader.load();
+                            // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                            UnitCarController unitCarController = loader.getController();
+                            unitCarController.setData(car);
+                            // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                            unitCarController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                            vboxContent.getChildren().add(hbox);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                } catch (NumberFormatException ignored) {}
+            } else if (car.getCar_model().toLowerCase().startsWith(keyword)) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitCar.fxml"));
+                    // Makes a horizontal box for every agent
+                    HBox hbox = loader.load();
+                    // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                    UnitCarController unitCarController = loader.getController();
+                    unitCarController.setData(car);
+                    // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                    unitCarController.setParentController(this); // Without this, any user input that happened inside the hbox would not be able to affec the dashboard
+                    vboxContent.getChildren().add(hbox);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
 
 
     public Agent getActiveAgent() {

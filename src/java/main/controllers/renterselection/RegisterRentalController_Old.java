@@ -3,6 +3,7 @@ package main.controllers.renterselection;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DateCell;
@@ -19,6 +20,7 @@ import main.objects.Car;
 import main.objects.Rental;
 import main.objects.Renter;
 import main.util.DateUtil;
+import main.util.FXMLLoaderUtil;
 import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 import main.objects.Account;
@@ -72,7 +74,7 @@ public class RegisterRentalController_Old implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         emptyFieldWarning.setVisible(false);
         startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
-        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate().plus(1, ChronoUnit.DAYS)));
+        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
     }
 
     @FXML
@@ -82,7 +84,7 @@ public class RegisterRentalController_Old implements Initializable {
 
 
     @FXML
-    void onScheduleClick(ActionEvent event) throws SQLException {
+    void onScheduleClick(ActionEvent event) throws SQLException, IOException {
         if(renterFirstName.getText().isEmpty() || renterLastname.getText().isEmpty() || startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
             emptyFieldWarning.setVisible(true);
             return;
@@ -102,7 +104,19 @@ public class RegisterRentalController_Old implements Initializable {
             return;
         }
 
-        int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue());
+        int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue()) + 1;
+
+        StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        ConfirmDepositController controller = confirmRental.getLoader().getController();
+        controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
+
+        // If the confirmation UI clicked cancel, return
+        if (controller.isConfirmed()) {
+            System.out.println("cancel");
+            return;
+        }
+
+        System.out.println("ass");
 
         Account.addRentals(SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));
 

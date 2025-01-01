@@ -429,17 +429,6 @@ public class SQLHandlerUtil {
         return renterList;
     }
 
-    public static void setDeposited(int rental_id, boolean isTrue) throws SQLException {
-
-        String query = "UPDATE rentals SET deposited = ? WHERE rental_id = ?";
-        PreparedStatement statement = connection1.prepareStatement(query);
-        statement.setBoolean(1, isTrue);
-        statement.setInt(2, rental_id);
-        statement.executeUpdate();
-
-        findUser(Account.getUserName());
-    }
-
     public static void setFullyPaid(int rental_id, boolean isTrue) throws SQLException {
 
         String query = "UPDATE rentals SET fully_paid = ? WHERE rental_id = ?";

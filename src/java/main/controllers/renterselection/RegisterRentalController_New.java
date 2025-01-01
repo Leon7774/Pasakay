@@ -15,6 +15,7 @@ import main.controllers.views.DashboardMain;
 import main.controllers.views.ViewCarController;
 import main.objects.Account;
 import main.objects.Car;
+import main.objects.Rental;
 import main.objects.Renter;
 import main.util.DateUtil;
 import main.util.SQLHandlerUtil;
@@ -114,14 +115,15 @@ public class RegisterRentalController_New implements Initializable {
         ConfirmDepositController controller = confirmRental.getLoader().getController();
         controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
 
-        System.out.println("ass");
-
         if(!controller.isConfirmed()) {
             return;
         }
 
         Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, Integer.parseInt(age), Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
-        Account.addRentals(SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));
+        Rental newRental = SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate());
+
+        Account.addRentals(newRental);
+        SQLHandlerUtil.addTransaction(newRental.getId(), "Deposit", newRental.getTotalCost() * .2, DashboardMain.getCurrentDate().toString());
 
         viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
 

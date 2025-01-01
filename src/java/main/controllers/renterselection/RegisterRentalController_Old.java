@@ -106,27 +106,29 @@ public class RegisterRentalController_Old implements Initializable {
 
         int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue()) + 1;
 
-
         StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
         ConfirmDepositController controller = confirmRental.getLoader().getController();
         controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
 
         // If the confirmation UI clicked cancel, return
-        if (controller.isConfirmed()) {
+        if (!controller.isConfirmed()) {
             System.out.println("cancel");
             return;
         }
 
         System.out.println("ass");
 
-        Account.addRentals(SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate()));
+        Rental newRental = SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate());
+
+        Account.addRentals(newRental);
+        SQLHandlerUtil.addTransaction(newRental.getId(), "Deposit", newRental.getTotalCost() * .2, DashboardMain.getCurrentDate().toString());
+
+        System.out.println("asser");
 
         viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
-
     }
-
 
     @FXML
     void selectRegisterClicked(ActionEvent event) throws IOException {

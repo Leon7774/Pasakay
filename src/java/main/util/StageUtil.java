@@ -66,6 +66,32 @@ public class StageUtil extends Stage{
         stage.show();
     }
 
+    public StageUtil(String path, Stage owner, int num) throws IOException {
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(owner);
+        loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = loader.load();
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("FreeHold");
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("/images/icon.png"));
+
+
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+
+        stage.showAndWait();
+    }
+
     public FXMLLoader getLoader() {
         return loader;
     }

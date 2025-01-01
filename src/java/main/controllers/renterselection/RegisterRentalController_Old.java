@@ -105,7 +105,7 @@ public class RegisterRentalController_Old implements Initializable {
 
         int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue()) + 1;
 
-        StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow(), 1);
         ConfirmDepositController controller = confirmRental.getLoader().getController();
         controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
 

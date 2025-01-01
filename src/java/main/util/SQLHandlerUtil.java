@@ -440,6 +440,17 @@ public class SQLHandlerUtil {
         findUser(Account.getUserName());
     }
 
+    public static void setCarReturned(int rental_id, boolean isTrue) throws SQLException {
+
+        String query = "UPDATE rentals SET car_returned = ? WHERE rental_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setBoolean(1, isTrue);
+        statement.setInt(2, rental_id);
+        statement.executeUpdate();
+
+        findUser(Account.getUserName());
+    }
+
     public static List<RentalTransaction> getRentalTransactions(int user_id) throws SQLException {
 
         String propTableQuery = "{CALL getTransactionsList(?)}";

@@ -46,6 +46,7 @@ public class ViewAgentController implements Initializable {
     // Initializes the list of agents in the dashboard
     public void initializeTable() {
         // Disables horizontal scrolling
+        vboxContent.getChildren().clear();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         for (Agent agent : Account.getAgentList()) {

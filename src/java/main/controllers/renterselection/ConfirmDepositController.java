@@ -28,14 +28,14 @@ public class ConfirmDepositController {
     @FXML
     void onCancelClick(ActionEvent event) {
         isConfirmed = false;
-       // ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+       ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML
     void onConfirmClick(ActionEvent event) {
         System.out.println("ass");
         isConfirmed = true;
-       // ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+       ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
     public boolean isConfirmed() {

@@ -21,23 +21,28 @@
       </AnchorPane>
       <AnchorPane prefHeight="190.0" prefWidth="628.0">
          <children>
-            <Label fx:id="transactionLabel" layoutX="14.0" layoutY="57.0" prefHeight="23.0" prefWidth="230.0" text="Transaction Name: ">
+            <Label fx:id="transactionLabel" layoutX="14.0" layoutY="71.0" prefHeight="23.0" prefWidth="230.0" text="Transaction Name: ">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="rentalIDLabel" alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="7.0" prefHeight="43.0" prefWidth="317.0" text="Rental ID:" wrapText="true">
+            <Label fx:id="transactionIDLabel" alignment="BOTTOM_LEFT" layoutX="12.0" layoutY="7.0" prefHeight="43.0" prefWidth="317.0" text="Transaction ID:" wrapText="true">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <Label fx:id="amountLabel" layoutX="14.0" layoutY="83.0" prefHeight="23.0" prefWidth="230.0" text="Amount: ">
+            <Label fx:id="amountLabel" layoutX="14.0" layoutY="96.0" prefHeight="23.0" prefWidth="230.0" text="Amount: ">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
             <Line endX="132.20004272460938" layoutX="304.0" layoutY="176.0" startX="-303.20001220703125" stroke="#00000065" />
-            <Label fx:id="dateLabel" layoutX="14.0" layoutY="108.0" prefHeight="23.0" prefWidth="230.0" text="Date: ">
+            <Label fx:id="dateLabel" layoutX="14.0" layoutY="121.0" prefHeight="23.0" prefWidth="230.0" text="Date: ">
+               <font>
+                  <Font name="Century Gothic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="rentalIDLabel" layoutX="14.0" layoutY="47.0" prefHeight="23.0" prefWidth="230.0" text="Rental ID: ">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>

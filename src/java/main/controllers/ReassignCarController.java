@@ -71,12 +71,14 @@ public class ReassignCarController {
 
         if(parentController instanceof ViewCarController) {
 
+            System.out.println("AYEEOO");
             ViewCarController viewCarController = (ViewCarController) parentController;
             oldAgentPrompt.setText(String.valueOf(viewCarController.getActiveAgent().getAgentID()));
         }
 
         else if(parentController instanceof ViewInactiveCarsController) {
 
+            System.out.println("EYEEOO");
             oldAgentPrompt.setText("None");
             oldAgentPrompt.setDisable(true);
         }

@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import main.controllers.prompts.ConfirmCarReturnController;
 import main.controllers.prompts.ConfirmPaymentController;
 import main.controllers.views.DashboardMain;
 import main.controllers.views.ViewRentalsController;
@@ -120,28 +121,31 @@ public class UnitRentalController {
         this.viewRentalsController = viewRentalsController;
     }
 
+    public Rental getCurrentRental() {
+        return currentRental;
+    }
 
     @FXML
-    void onPendingClicked(Event event) throws IOException {
+    void onPendingClicked(Event event) throws IOException, SQLException {
         switch (condition) {
             case 1:
-                StageUtil payment = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+                StageUtil payment = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController = (ConfirmPaymentController) payment.getController();
                 paymentController.setDeposit(currentRental.getTotalCost() * .8);
                 break;
             case 2:
-                StageUtil collection = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-                ConfirmPaymentController paymentController2 = (ConfirmPaymentController) collection .getController();
-                paymentController2.setDeposit(currentRental.getTotalCost() * .8);
+                StageUtil collection = new StageUtil("/fxml/confirmCarReturn.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+                ConfirmCarReturnController carReturnController = (ConfirmCarReturnController) collection .getController();
+                Car car = SQLHandlerUtil.getOneCar(currentRental.getCarId());
+                carReturnController.setCarName(car.getCar_model() + " " + car.getCar_make() + " " + car.getCar_year());
                 break;
             case 3:
-                StageUtil missing = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+                StageUtil missing = new StageUtil("/fxml/confirmCarReturn.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController3 = (ConfirmPaymentController) missing.getController();
                 paymentController3.setDeposit(currentRental.getTotalCost() * .8);
                 break;
         }
     }
-
 
 }
 

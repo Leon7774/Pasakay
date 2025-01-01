@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.renterselection.ConfirmDepositController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.renterselection.ConfirmDepositController">
    <top>
       <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
          <children>
@@ -55,7 +55,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label fx:id="depositValue" layoutX="280.0" layoutY="13.0" prefHeight="51.0" prefWidth="271.0" text="\$400.00" textFill="#5d39ff">
+            <Label fx:id="depositValue" layoutX="293.0" layoutY="13.0" prefHeight="51.0" prefWidth="271.0" text="\$400.00" textFill="#5d39ff">
                <font>
                   <Font size="30.0" />
                </font>

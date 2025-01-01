@@ -65,7 +65,7 @@ public class ViewTransactionsController implements Initializable {
     void initializeTable() throws SQLException {
 
         vboxContent.getChildren().clear();
-        vboxContent.setAlignment(Pos.CENTER);
+        vboxContent.setAlignment(Pos.TOP_CENTER);
 
         try {
             for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
@@ -73,7 +73,7 @@ public class ViewTransactionsController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
                 HBox hbox = loader.load();
                 ViewTransactionController transactionController = loader.getController();
-                transactionController.setData(transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
                 vboxContent.getChildren().add(hbox);
             }
         } catch (IOException | SQLException e) {

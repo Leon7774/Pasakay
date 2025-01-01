@@ -91,6 +91,8 @@ public class SQLHandlerUtil {
                 Account.addRentals(rental);
             }
 
+            loadCarType();
+
         } else {
             System.out.println("User not found");
         }
@@ -465,8 +467,9 @@ public class SQLHandlerUtil {
             String transaction_name = resultSet.getString("transaction_name");
             double amount = resultSet.getDouble("amount");
             String date = resultSet.getString("date");
+            int transaction_id = resultSet.getInt("transaction_id");
 
-            rentalTransactionList.add(new RentalTransaction(rental_id, transaction_name, amount, date));
+            rentalTransactionList.add(new RentalTransaction(transaction_id, rental_id, transaction_name, amount, date));
         }
 
         return rentalTransactionList;
@@ -500,6 +503,17 @@ public class SQLHandlerUtil {
         }
 
         return inactiveCarsList;
+    }
+
+    public static void addTransaction(int rental_id, String transaction_name, double amount, String date) throws SQLException {
+
+        String query = "INSERT INTO rentals_transaction(rental_id, transaction_name, amount, date) VALUES(?, ?, ?, ?)";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, rental_id);
+        statement.setString(2, transaction_name);
+        statement.setDouble(3, amount);
+        statement.setString(4, date);
+        statement.executeUpdate();
     }
 
     // TODO

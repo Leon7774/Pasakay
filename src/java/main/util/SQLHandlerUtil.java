@@ -420,7 +420,12 @@ public class SQLHandlerUtil {
             int license_number = rs.getInt("license_number");
             String sex = rs.getString("sex");
 
-            renterList.add(new Renter(renter_id, firstName, lastName, status, sex, age, contact_number, license_number));
+            if(
+                !renterList.stream().anyMatch(renter -> renter.getRenterID() == renter_id)
+            ){
+                renterList.add(new Renter(renter_id, firstName, lastName, status, sex, age, contact_number, license_number));
+            }
+
         }
 
         return renterList;

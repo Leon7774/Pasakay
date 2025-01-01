@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import main.controllers.BaseCarController;
 import main.controllers.EditCarController;
 import main.controllers.ReassignCarController;
+import main.controllers.renterselection.RegisterRentalController_New;
 import main.controllers.renterselection.RegisterRentalController_Old;
 import main.controllers.views.ViewCarController;
 import main.objects.Account;
@@ -76,8 +77,17 @@ public class UnitCarController implements BaseCarController {
         StageUtil addRental = new StageUtil("/fxml/registerRental-Old.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
         RegisterRentalController_Old registerRentalControllerOld = (RegisterRentalController_Old) addRental.getController();
         registerRentalControllerOld.setAgentViewController(parentController);
+        registerRentalControllerOld.setUnitCarController(this);
         registerRentalControllerOld.setCar(this.car);
     }
+
+    public void onScheduleRentalNew(ActionEvent event) throws IOException {
+        StageUtil addRental = new StageUtil("/fxml/registerRental-New.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        RegisterRentalController_New registerRentalControllerOld = (RegisterRentalController_New) addRental.getController();
+        registerRentalControllerOld.setAgentViewController(parentController);
+        registerRentalControllerOld.setCar(this.car);
+    }
+
 
     @FXML
     void onDeleteClick(ActionEvent event) throws SQLException {

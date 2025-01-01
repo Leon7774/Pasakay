@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.controllers.renterselection.UnitRenterController;
+import main.controllers.units.UnitRenterController;
 import main.objects.Account;
 import main.objects.Renter;
 import main.util.SQLHandlerUtil;
@@ -66,7 +66,6 @@ public class ViewRenterController implements Initializable {
                 HBox hbox = loader.load();
                 UnitRenterController unitRenterController = loader.getController();
                 unitRenterController.setData(renter);
-                unitRenterController.setParentController(this);
                 vboxContent.getChildren().add(hbox);
             }
 

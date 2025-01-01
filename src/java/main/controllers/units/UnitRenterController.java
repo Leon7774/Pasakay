@@ -1,10 +1,9 @@
-package main.controllers.renterselection;
+package main.controllers.units;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import main.controllers.views.ViewRenterController;
 import main.objects.Renter;
 
 public class UnitRenterController {
@@ -13,7 +12,6 @@ public class UnitRenterController {
             renterContactNumberLabel, renterLicenseNumberLabel, renterStatusLabel;
     @FXML private JFXButton editButton;
 
-    private ViewRenterController parentController;
 
     @FXML
     void onEditClick(ActionEvent event) {
@@ -30,10 +28,4 @@ public class UnitRenterController {
         renterContactNumberLabel.setText("Contact Number: " + renter.getContact_number());
         renterLicenseNumberLabel.setText("License Number: " + renter.getLicense_number());
     }
-
-    public void setParentController(ViewRenterController parentController) {
-        this.parentController = parentController;
-    }
-
-
 }

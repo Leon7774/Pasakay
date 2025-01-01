@@ -3,7 +3,9 @@ package main.controllers.renterselection;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import main.objects.Renter;
 
 public class UnitRenterController_Select {
@@ -33,6 +35,7 @@ public class UnitRenterController_Select {
     private Label renterStatusLabel;
 
     private SelectRenterController parentController;
+    private Renter renter;
 
     @FXML
     void onEditClick(ActionEvent event) {
@@ -40,6 +43,7 @@ public class UnitRenterController_Select {
     }
 
     public void setData(Renter renter) {
+        this.renter = renter;
         renterNameLabel.setText(renter.getFirstName() + " " + renter.getLastName());
         renterIDLabel.setText("ID: " + renter.getRenterID());
         renterStatusLabel.setText("Status: " + renter.getStatus());
@@ -56,7 +60,8 @@ public class UnitRenterController_Select {
 
     @FXML
     void onSelectClick(ActionEvent event) {
-        //parentController.
+        parentController.setData(renter);
+        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
 

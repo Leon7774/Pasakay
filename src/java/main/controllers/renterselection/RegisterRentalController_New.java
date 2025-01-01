@@ -116,5 +116,8 @@ public class RegisterRentalController_New implements Initializable {
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
     public void setAgentViewController(ViewCarController viewCarController) {this.viewCarController = viewCarController;}
-    public void setCar(Car car) {this.car = car;}
+    public void setCar(Car car) {
+        this.car = car;
+        this.carName.setText(car.getCar_make() + " " + car.getCar_model() + " " + car.getCar_year());
+    }
 }

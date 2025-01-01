@@ -21,6 +21,7 @@ public class Account{
 
         agentList = new ArrayList<>();
         rentalList = new ArrayList<>();
+        carTypeList = new ArrayList<>();
         balance = 0;
     }
 

@@ -2,6 +2,8 @@ package main.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,9 +18,11 @@ import main.objects.RentalTransaction;
 import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ViewTransactionsController {
+public class ViewTransactionsController implements Initializable {
 
     @FXML
     private ImageView closeButton;
@@ -35,6 +39,16 @@ public class ViewTransactionsController {
     @FXML
     private VBox vboxContent;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        try {
+            initializeTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @FXML
     void closeButtonOnActionEvent(MouseEvent event) {
 
@@ -50,6 +64,9 @@ public class ViewTransactionsController {
 
     void initializeTable() throws SQLException {
 
+        vboxContent.getChildren().clear();
+        vboxContent.setAlignment(Pos.CENTER);
+
         try {
             for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
 
@@ -63,5 +80,4 @@ public class ViewTransactionsController {
             throw new RuntimeException(e);
         }
     }
-
 }

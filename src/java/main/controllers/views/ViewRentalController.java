@@ -98,7 +98,7 @@ public class ViewRentalController implements Initializable {
 
         if(result == ButtonType.OK) {
 
-            System.out.println(SQLHandlerUtil.deleteRental(currentRental.getId(), currentRental.getRenterID()));
+            System.out.println(SQLHandlerUtil.deleteRental(currentRental.getId()));
             rentalDashboardController.initializeTable();
         }
     }

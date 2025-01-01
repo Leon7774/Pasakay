@@ -58,7 +58,7 @@ public class ViewRenterController implements Initializable {
     @FXML
     void highlightClose(MouseEvent event) {closeButton.setImage(new Image("/images/close.png"));}
 
-    void initializeTable() throws SQLException {
+    public void initializeTable() throws SQLException {
 
         vboxContent.getChildren().clear();
 
@@ -68,6 +68,7 @@ public class ViewRenterController implements Initializable {
                 HBox hbox = loader.load();
                 UnitRenterController_Select unitRenterControllerSelect = loader.getController();
                 unitRenterControllerSelect.setData(renter);
+                unitRenterControllerSelect.setParentController(this);
                 vboxContent.getChildren().add(hbox);
             }
 
@@ -95,6 +96,7 @@ public class ViewRenterController implements Initializable {
                             // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
                             UnitRenterController_Select unitRenterControllerSelect = loader.getController();
                             unitRenterControllerSelect.setData(renter);
+                            unitRenterControllerSelect.setParentController(this);
                             // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                             vboxContent.getChildren().add(hbox);
                         } catch (IOException e) {
@@ -110,6 +112,7 @@ public class ViewRenterController implements Initializable {
                     // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
                     UnitRenterController_Select unitRenterControllerSelect = loader.getController();
                     unitRenterControllerSelect.setData(renter);
+                    unitRenterControllerSelect.setParentController(this);
                     // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                     vboxContent.getChildren().add(hbox);
                 } catch (IOException e) {

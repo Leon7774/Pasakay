@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import main.objects.Renter;
 
-public class UnitRenterController {
+public class UnitRenterController_Select {
 
     @FXML private Label renterIDLabel, renterNameLabel, renterSexLabel, renterAgeLabel,
             renterContactNumberLabel, renterLicenseNumberLabel, renterStatusLabel;

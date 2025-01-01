@@ -35,7 +35,7 @@
    <center>
       <AnchorPane prefHeight="453.0" prefWidth="450.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="searchTab" layoutX="238.0" layoutY="37.0" style="-fx-background-color: #dddddd;" />
+            <TextField fx:id="searchTab" layoutX="238.0" layoutY="37.0" onKeyTyped="#search" style="-fx-background-color: #dddddd;" />
             <ImageView fx:id="searchButton" fitHeight="22.0" fitWidth="26.0" layoutX="404.0" layoutY="38.0" onMouseClicked="#searchClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/search.png" />

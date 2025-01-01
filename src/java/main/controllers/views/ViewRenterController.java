@@ -14,10 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.controllers.units.UnitCarController;
-import main.controllers.units.UnitRenterController;
+import main.controllers.units.UnitRenterController_Select;
 import main.objects.Account;
-import main.objects.Car;
 import main.objects.Renter;
 import main.util.SQLHandlerUtil;
 
@@ -68,8 +66,8 @@ public class ViewRenterController implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRenter.fxml"));
                 HBox hbox = loader.load();
-                UnitRenterController unitRenterController = loader.getController();
-                unitRenterController.setData(renter);
+                UnitRenterController_Select unitRenterControllerSelect = loader.getController();
+                unitRenterControllerSelect.setData(renter);
                 vboxContent.getChildren().add(hbox);
             }
 
@@ -95,8 +93,8 @@ public class ViewRenterController implements Initializable {
                             // Makes a horizontal box for every agent
                             HBox hbox = loader.load();
                             // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                            UnitRenterController unitRenterController = loader.getController();
-                            unitRenterController.setData(renter);
+                            UnitRenterController_Select unitRenterControllerSelect = loader.getController();
+                            unitRenterControllerSelect.setData(renter);
                             // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                             vboxContent.getChildren().add(hbox);
                         } catch (IOException e) {
@@ -110,8 +108,8 @@ public class ViewRenterController implements Initializable {
                     // Makes a horizontal box for every agent
                     HBox hbox = loader.load();
                     // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                    UnitRenterController unitRenterController = loader.getController();
-                    unitRenterController.setData(renter);
+                    UnitRenterController_Select unitRenterControllerSelect = loader.getController();
+                    unitRenterControllerSelect.setData(renter);
                     // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                     vboxContent.getChildren().add(hbox);
                 } catch (IOException e) {

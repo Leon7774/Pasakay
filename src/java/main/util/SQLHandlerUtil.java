@@ -473,6 +473,23 @@ public class SQLHandlerUtil {
         statement.executeUpdate();
     }
 
+    public static void updateRenter(int renter_id, String first_name, String last_name, int age, String status, String sex, int contact_number, int license_number) throws SQLException {
+
+        String query = "UPDATE renter SET first_name = ?, last_name = ?, age = ?, status = ?, sex = ?, contact_number = ?, license_number = ? WHERE renter_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setString(1, first_name);
+        statement.setString(2, last_name);
+        statement.setInt(3, age);
+        statement.setString(4, status);
+        statement.setString(5, sex);
+        statement.setInt(6, contact_number);
+        statement.setInt(7, license_number);
+        statement.setInt(8, renter_id);
+        statement.executeUpdate();
+
+        findUser(Account.getUserName());
+    }
+
     // TODO
     // AGENT QUERIES ---
 

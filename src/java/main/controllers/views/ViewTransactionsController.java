@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -78,6 +80,112 @@ public class ViewTransactionsController implements Initializable {
             }
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void search(KeyEvent event) throws SQLException {
+
+        String keyword = ((TextField)event.getSource()).getText().toLowerCase();
+        vboxContent.getChildren().clear();
+
+        for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
+
+            if (keyword.startsWith("name=")) {
+
+                String name = keyword.substring("name=".length());
+                if(transaction.getTransactionName().toLowerCase().equals(name)) {
+
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if (keyword.startsWith("date=")) {
+
+                String date = keyword.substring("date=".length());
+                if(transaction.getDate().toLowerCase().equals(date)) {
+
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if (keyword.startsWith("amount=")) {
+
+                double amount = Double.parseDouble(keyword.substring("amount=".length()));
+                if(transaction.getAmount() == amount) {
+
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if (keyword.startsWith("rental_id=")) {
+
+                int rentalID = Integer.parseInt(keyword.substring("rental_id=".length()));
+                if(transaction.getRentalID() == rentalID) {
+
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if(String.valueOf(transaction.getTransactionID()).startsWith(keyword)) {
+
+                try{
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                    HBox hbox = loader.load();
+                    ViewTransactionController transactionController = loader.getController();
+                    transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                    vboxContent.getChildren().add(hbox);
+                }
+
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

@@ -123,12 +123,6 @@ public class DashboardMain implements Initializable {
     }
 
     @FXML
-    void onInactiveCarsClick (ActionEvent event) throws IOException {
-        changeButtonsColor(inactiveCarsButton);
-        loadPane("/fxml/viewInactiveCars.fxml");
-    }
-
-    @FXML
     void onReportClicked(ActionEvent event) {
         changeButtonsColor(reportButton);
         //loadPane("/fxml/viewRenter.fxml");
@@ -196,7 +190,6 @@ public class DashboardMain implements Initializable {
         transactionsButton.setStyle("-fx-background-color: " + inactive + ";");
         rentersButton.setStyle("-fx-background-color: " + inactive + ";");
         reportButton.setStyle("-fx-background-color: " + inactive + ";");
-        inactiveCarsButton.setStyle("-fx-background-color: " + inactive + ";");
 
         button.setStyle("-fx-background-color: " + active + ";");
     }

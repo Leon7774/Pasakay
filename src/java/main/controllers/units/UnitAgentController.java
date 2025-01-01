@@ -90,6 +90,7 @@ public class UnitAgentController {
     public void onDeleteClick(ActionEvent event) throws SQLException, IOException {
 
         boolean carsInRent = false;
+        boolean haveCars = false;
 
         for(Car car : activeAgent.getCars()) {
 
@@ -97,11 +98,20 @@ public class UnitAgentController {
 
                 carsInRent = true;
             }
+
+            if (car != null) {
+                haveCars = true;
+            }
         }
 
         if (carsInRent) {
 
             new Alert(Alert.AlertType.ERROR, "Cars in this agent is currently rented",  ButtonType.OK).show();
+        }
+
+        else if (haveCars) {
+
+            new Alert(Alert.AlertType.ERROR, "Please transfer first the cars to other agents",  ButtonType.OK).show();
         }
 
         else {
@@ -114,7 +124,6 @@ public class UnitAgentController {
 
             if(result == ButtonType.OK) {
 
-                SQLHandlerUtil.unAssignCars(activeAgent.getAgentID());
                 System.out.println(SQLHandlerUtil.deleteAgent(activeAgent.getAgentID()));
                 SQLHandlerUtil.findUser(Account.getUserName());
             }

@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.controllers.views.ViewCarController;
-import main.controllers.views.ViewInactiveCarsController;
 import main.objects.Car;
 import main.util.SQLHandlerUtil;
 
@@ -50,13 +49,6 @@ public class ReassignCarController {
                     viewCarController.initializeTable();
                 }
 
-                else if(parentController instanceof ViewInactiveCarsController) {
-
-                    ViewInactiveCarsController viewCarController = (ViewInactiveCarsController) parentController;
-                    viewCarController.initializeTable();
-                }
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,13 +66,6 @@ public class ReassignCarController {
             System.out.println("AYEEOO");
             ViewCarController viewCarController = (ViewCarController) parentController;
             oldAgentPrompt.setText(String.valueOf(viewCarController.getActiveAgent().getAgentID()));
-        }
-
-        else if(parentController instanceof ViewInactiveCarsController) {
-
-            System.out.println("EYEEOO");
-            oldAgentPrompt.setText("None");
-            oldAgentPrompt.setDisable(true);
         }
     }
 

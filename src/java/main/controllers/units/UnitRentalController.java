@@ -49,7 +49,7 @@ public class UnitRentalController {
 
         if(result == ButtonType.OK) {
 
-            System.out.println(SQLHandlerUtil.deleteRental(currentRental.getId(), currentRental.getRenterID()));
+            System.out.println(SQLHandlerUtil.deleteRental(currentRental.getId()));
             viewRentalsController.initializeTable();
         }
     }

@@ -5,8 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import main.controllers.views.DashboardMain;
 import main.objects.Rental;
 import main.util.SQLHandlerUtil;
+
+import java.sql.SQLException;
 
 public class ConfirmPaymentController {
 
@@ -35,9 +38,10 @@ public class ConfirmPaymentController {
     }
 
     @FXML
-    void onConfirmClick(ActionEvent event) {
+    void onConfirmClick(ActionEvent event) throws SQLException {
         rental.setFully_paid(true);
-        //SQLHandlerUtil.updateRental(rental);
+        SQLHandlerUtil.setFullyPaid(rental.getId(), true);
+        SQLHandlerUtil.addTransaction(rental.getId(), "Full Pay", rental.getTotalCost() * 0.8, DashboardMain.getCurrentDate().toString());
         ((Stage) cancelButton.getScene().getWindow()).close();
     }
 

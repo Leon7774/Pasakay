@@ -452,11 +452,11 @@ public class SQLHandlerUtil {
 
         while(resultSet.next()) {
 
+            int transaction_id = resultSet.getInt("transaction_id");
             int rental_id = resultSet.getInt("rental_id");
             String transaction_name = resultSet.getString("transaction_name");
             double amount = resultSet.getDouble("amount");
             String date = resultSet.getString("date");
-            int transaction_id = resultSet.getInt("transaction_id");
 
             rentalTransactionList.add(new RentalTransaction(transaction_id, rental_id, transaction_name, amount, date));
         }
@@ -495,7 +495,6 @@ public class SQLHandlerUtil {
     }
 
     public static void addTransaction(int rental_id, String transaction_name, double amount, String date) throws SQLException {
-
         String query = "INSERT INTO rentals_transaction(rental_id, transaction_name, amount, date) VALUES(?, ?, ?, ?)";
         PreparedStatement statement = connection1.prepareStatement(query);
         statement.setInt(1, rental_id);

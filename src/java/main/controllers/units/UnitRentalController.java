@@ -127,16 +127,19 @@ public class UnitRentalController {
             case 1:
                 StageUtil payment = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController = (ConfirmPaymentController) payment.getController();
+                paymentController.setRental(currentRental);
                 paymentController.setDeposit(currentRental.getTotalCost() * .8);
                 break;
             case 2:
                 StageUtil collection = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController2 = (ConfirmPaymentController) collection .getController();
+                paymentController2.setRental(currentRental);
                 paymentController2.setDeposit(currentRental.getTotalCost() * .8);
                 break;
             case 3:
                 StageUtil missing = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController3 = (ConfirmPaymentController) missing.getController();
+                paymentController3.setRental(currentRental);
                 paymentController3.setDeposit(currentRental.getTotalCost() * .8);
                 break;
         }

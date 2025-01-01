@@ -136,6 +136,7 @@ public class UnitRentalController {
             case 2:
                 StageUtil collection = new StageUtil("/fxml/confirmCarReturn.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmCarReturnController carReturnController = (ConfirmCarReturnController) collection .getController();
+                carReturnController.setParentController(this);
                 Car car = SQLHandlerUtil.getOneCar(currentRental.getCarId());
                 carReturnController.setCarName(car.getCar_model() + " " + car.getCar_make() + " " + car.getCar_year());
                 break;

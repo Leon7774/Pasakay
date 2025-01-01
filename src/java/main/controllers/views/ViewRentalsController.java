@@ -113,14 +113,11 @@ public class ViewRentalsController implements Initializable {
         initializeTable();
     }
 
-
     @FXML
     void priorityClick(ActionEvent event) {
         vboxContent.getChildren().clear();
         initializeTable();
     }
-
-
 
     public void updateCounter() {
         counter++;

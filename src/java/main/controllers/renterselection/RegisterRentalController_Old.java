@@ -73,8 +73,7 @@ public class RegisterRentalController_Old implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         emptyFieldWarning.setVisible(false);
-        startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
-        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
+
     }
 
     @FXML
@@ -148,6 +147,8 @@ public class RegisterRentalController_Old implements Initializable {
         renterFirstName.setText(renter.getFirstName());
         renterLastname.setText(renter.getLastName());
         renterID.setText(String.valueOf(renter.getRenterID()));
+        startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate(), this.car));
+        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate(), this.car));
 
     }
 

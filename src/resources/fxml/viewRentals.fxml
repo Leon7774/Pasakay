@@ -76,7 +76,8 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <JFXToggleButton fx:id="showOldRentals" layoutX="494.0" layoutY="73.0" onAction="#selectAction" prefHeight="42.0" prefWidth="177.0" selected="true" size="8.0" text="Show Old Rentals" />
+                  <JFXToggleButton fx:id="showOldRentals" layoutX="494.0" layoutY="73.0" onAction="#selectAction" prefHeight="42.0" prefWidth="177.0" size="8.0" text="Show Old Rentals" />
+                  <JFXToggleButton fx:id="showPriorityRentals" layoutX="329.0" layoutY="73.0" onAction="#priorityClick" prefHeight="42.0" prefWidth="177.0" size="8.0" text="Only Priority Rentals" />
                </children>
             </AnchorPane>
          </top>

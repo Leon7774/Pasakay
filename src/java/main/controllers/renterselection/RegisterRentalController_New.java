@@ -78,8 +78,6 @@ public class RegisterRentalController_New implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         emptyFieldWarning.setVisible(false);
-        startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
-        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
 
         String [] sexs = {"Male", "Female", "Other"};
         String [] status = {"Single", "Married", "Widowed", "Complicated"};
@@ -115,7 +113,7 @@ public class RegisterRentalController_New implements Initializable {
         ConfirmDepositController controller = confirmRental.getLoader().getController();
         controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
 
-        if(!controller.isConfirmed()) {
+        if(controller.isConfirmed()) {
             return;
         }
 
@@ -133,5 +131,7 @@ public class RegisterRentalController_New implements Initializable {
     public void setCar(Car car) {
         this.car = car;
         this.carName.setText(car.getCar_make() + " " + car.getCar_model() + " " + car.getCar_year());
+        startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate(), this.car));
+        endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate(), this.car));
     }
 }

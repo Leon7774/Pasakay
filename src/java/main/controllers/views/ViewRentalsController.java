@@ -38,6 +38,9 @@ public class ViewRentalsController implements Initializable {
     @FXML private Label notifCounter;
     @FXML private AnchorPane notifIcon;
     @FXML private JFXToggleButton showOldRentals;
+    @FXML private JFXToggleButton showPriorityRentals;
+
+    int counter = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,7 +72,7 @@ public class ViewRentalsController implements Initializable {
     }
 
     public void initializeTable() {
-
+        counter = 0;
         vboxContent.getChildren().clear();
 
         for(Rental rental : Account.getRentalsList()) {
@@ -79,14 +82,21 @@ public class ViewRentalsController implements Initializable {
                 HBox hbox = loader.load();
                 UnitRentalController unitRentalController = loader.getController();
                 Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                unitRentalController.setData(car, rental);
                 unitRentalController.setParentController(this);
+                unitRentalController.setData(car, rental);
 
-                if (!showOldRentals.isSelected()) {
+
+                if (showPriorityRentals.isSelected()) {
+                    if (unitRentalController.isPending()) {
+                        vboxContent.getChildren().add(hbox);
+                    }
+                }
+                else if (!showOldRentals.isSelected()) {
                     if (rental.getRentEnd().isAfter(DashboardMain.getCurrentDate()) || rental.getRentEnd().isEqual(DashboardMain.getCurrentDate())) {
                         vboxContent.getChildren().add(hbox);
                     }
-                }else {
+                }
+                else {
                     vboxContent.getChildren().add(hbox);
                 }
             }
@@ -101,6 +111,25 @@ public class ViewRentalsController implements Initializable {
     void selectAction(ActionEvent event) {
         vboxContent.getChildren().clear();
         initializeTable();
+    }
+
+
+    @FXML
+    void priorityClick(ActionEvent event) {
+        vboxContent.getChildren().clear();
+        initializeTable();
+    }
+
+
+
+    public void updateCounter() {
+        counter++;
+        notifCounter.setText(String.valueOf(counter));
+        if (counter > 0) {
+            notifIcon.setVisible(true);
+        } else {
+            notifIcon.setVisible(false);
+        }
     }
 
     @FXML
@@ -121,8 +150,8 @@ public class ViewRentalsController implements Initializable {
                             // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
                             UnitRentalController unitRentalController = loader.getController();
                             Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                            unitRentalController.setData(car, rental);
                             unitRentalController.setParentController(this);
+                            unitRentalController.setData(car, rental);
                             // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                             vboxContent.getChildren().add(hbox);
                         } catch (IOException e) {
@@ -138,8 +167,8 @@ public class ViewRentalsController implements Initializable {
                     // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
                     UnitRentalController unitRentalController = loader.getController();
                     Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                    unitRentalController.setData(car, rental);
                     unitRentalController.setParentController(this);
+                    unitRentalController.setData(car, rental);
                     // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
                     vboxContent.getChildren().add(hbox);
                 } catch (IOException e) {

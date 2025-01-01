@@ -8,6 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.naming.ldap.Control;
 import java.io.IOException;
 
 public class StageUtil extends Stage{
@@ -66,7 +67,7 @@ public class StageUtil extends Stage{
         stage.show();
     }
 
-    public StageUtil(String path, Stage owner, int num) throws IOException {
+    public StageUtil(String path, Stage owner,  int num) throws IOException {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(owner);
@@ -89,7 +90,6 @@ public class StageUtil extends Stage{
             stage.setY(event.getScreenY() - yOffset);
         });
 
-        stage.showAndWait();
     }
 
     public FXMLLoader getLoader() {
@@ -104,5 +104,7 @@ public class StageUtil extends Stage{
         stage.close();
     }
 
-
+    public Stage getStage() {
+        return stage;
+    }
 }

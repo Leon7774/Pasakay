@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import main.controllers.prompts.ConfirmCarReturnController;
 import main.controllers.prompts.ConfirmPaymentController;
+import main.controllers.prompts.MissingCarController;
 import main.controllers.views.DashboardMain;
 import main.controllers.views.ViewRentalsController;
 import main.objects.Account;
@@ -109,11 +110,6 @@ public class UnitRentalController {
             viewRentalsController.updateCounter();
             condition = 3;
         }
-
-
-
-
-
         currentRental = rental;
     }
 
@@ -127,22 +123,23 @@ public class UnitRentalController {
 
     @FXML
     void onPendingClicked(Event event) throws IOException, SQLException {
+        Car car = SQLHandlerUtil.getOneCar(currentRental.getCarId());
         switch (condition) {
             case 1:
-                StageUtil payment = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+                StageUtil payment = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController = (ConfirmPaymentController) payment.getController();
-                paymentController.setDeposit(currentRental.getTotalCost() * .8);
+                paymentController.setDeposit((double) currentRental.getTotalCost() * .8);
                 break;
             case 2:
                 StageUtil collection = new StageUtil("/fxml/confirmCarReturn.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmCarReturnController carReturnController = (ConfirmCarReturnController) collection .getController();
-                Car car = SQLHandlerUtil.getOneCar(currentRental.getCarId());
                 carReturnController.setCarName(car.getCar_model() + " " + car.getCar_make() + " " + car.getCar_year());
                 break;
             case 3:
-                StageUtil missing = new StageUtil("/fxml/confirmCarReturn.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-                ConfirmPaymentController paymentController3 = (ConfirmPaymentController) missing.getController();
-                paymentController3.setDeposit(currentRental.getTotalCost() * .8);
+                StageUtil missing = new StageUtil("/fxml/carMissing.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+                MissingCarController missingController = (MissingCarController) missing.getController();
+                missingController.setOverdueAmount(car.getDailyRate() * ChronoUnit.DAYS.between(currentRental.getRentStart(), currentRental.getRentEnd()) * 2);
+                missingController.setOverdueDays((int) ChronoUnit.DAYS.between(currentRental.getRentStart(), currentRental.getRentEnd()));
                 break;
         }
     }

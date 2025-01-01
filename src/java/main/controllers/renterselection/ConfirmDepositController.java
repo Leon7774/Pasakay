@@ -39,12 +39,12 @@ public class ConfirmDepositController {
     }
 
     public boolean isConfirmed() {
-        System.out.println("ass23123");
         System.out.println(isConfirmed);
         return isConfirmed;
     }
 
     public void setDepositValue(double value) {
+        System.out.println("hi");
         depositValue.setText(String.valueOf(value));
     }
 }

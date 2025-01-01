@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.controllers.RegisterAgentController;
+import main.controllers.units.UnitAgentController;
 import main.objects.Account;
 import main.objects.Agent;
 import main.util.StageUtil;

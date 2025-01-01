@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.controllers.views.ViewAgentController;
 import main.objects.Account;
 import main.util.SQLHandlerUtil;
 

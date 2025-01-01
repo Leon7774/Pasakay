@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.controllers.units.UnitRentalController;
 import main.objects.Account;
 import main.objects.Car;
 import main.objects.Rental;
@@ -61,7 +62,7 @@ public class ViewRentalsController implements Initializable {
         closeButton.setImage(new Image("/images/close.png"));
     }
 
-    void initializeTable() {
+    public void initializeTable() {
 
         vboxContent.getChildren().clear();
 

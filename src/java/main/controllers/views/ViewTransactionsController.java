@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +55,7 @@ public class ViewTransactionsController {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
                 HBox hbox = loader.load();
-                TransactionViewController transactionController = loader.getController();
+                ViewTransactionController transactionController = loader.getController();
                 transactionController.setData(transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
                 vboxContent.getChildren().add(hbox);
             }

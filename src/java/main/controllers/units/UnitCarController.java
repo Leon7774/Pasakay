@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.units;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -8,6 +8,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import main.controllers.BaseCarController;
+import main.controllers.EditCarController;
+import main.controllers.ReassignCarController;
+import main.controllers.renterselection.RegisterRentalController_Old;
+import main.controllers.views.ViewCarController;
 import main.objects.Account;
 import main.objects.Car;
 import main.objects.Rental;
@@ -18,7 +23,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 
-public class UnitCarController implements BaseCarController{
+public class UnitCarController implements BaseCarController {
 
     @FXML
     private Label carColor;
@@ -68,10 +73,10 @@ public class UnitCarController implements BaseCarController{
 
     @FXML
     void onScheduleRental(ActionEvent event) throws IOException {
-        StageUtil addRental = new StageUtil("/fxml/registerRental-New.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
-        RegisterRentalController registerRentalController = (RegisterRentalController) addRental.getController();
-        registerRentalController.setAgentViewController(parentController);
-        registerRentalController.setCar(this.car);
+        StageUtil addRental = new StageUtil("/fxml/registerRental-Old.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        RegisterRentalController_Old registerRentalControllerOld = (RegisterRentalController_Old) addRental.getController();
+        registerRentalControllerOld.setAgentViewController(parentController);
+        registerRentalControllerOld.setCar(this.car);
     }
 
     @FXML
@@ -111,7 +116,7 @@ public class UnitCarController implements BaseCarController{
         reassignController.setControllers(car, parentController);
     }
 
-    void setData(Car car) {
+    public void setData(Car car) {
         this.car = car;
         this.carColor.setText("Color: " + car.getCar_color());
         this.carID.setText("ID: " + car.getCar_id());
@@ -134,7 +139,7 @@ public class UnitCarController implements BaseCarController{
         return totalRentalDays;
     }
 
-    void setParentController(ViewCarController controller) {
+    public void setParentController(ViewCarController controller) {
         this.parentController = controller;
     }
 

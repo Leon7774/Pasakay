@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
@@ -189,7 +189,7 @@ public class DashboardMain implements Initializable {
 
     private void changeButtonsColor(JFXButton button) {
         String inactive = " #01A2E9"; // Example hex color code
-        String active = "#ff00ee"; // Example hex color code
+        String active = "#f77272"; // Example hex color code
     
         agentsButton.setStyle("-fx-background-color: " + inactive + ";");
         rentalsButton.setStyle("-fx-background-color: " + inactive + ";");

@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;

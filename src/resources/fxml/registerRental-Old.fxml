@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RegisterRentalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.renterselection.RegisterRentalController_Old">
    <top>
       <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
          <children>
@@ -64,21 +64,21 @@
                </font>
             </Label>
             <Label fx:id="emptyFieldWarning" layoutX="230.0" layoutY="326.0" text="Please fill out all the fields." textFill="#b90808" />
-            <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="83.0" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #aaaaaa;" text="Select Renter" />
-            <JFXButton buttonType="RAISED" layoutX="217.0" layoutY="83.0" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #aaaaaa;" text="Register Renter" />
+            <JFXButton fx:id="selectRenterButton" buttonType="RAISED" layoutX="48.0" layoutY="81.0" onAction="#selectRenterClicked" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #aaaaaa;" text="Select Renter" />
+            <JFXButton buttonType="RAISED" layoutX="178.0" layoutY="81.0" onAction="#selectRegisterClicked" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #aaaaaa;" text="Register Renter" />
             <Label layoutX="47.0" layoutY="209.0" text="Last Name:" />
-            <TextField fx:id="firstNamePrompt" editable="false" layoutX="229.0" layoutY="168.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
+            <TextField fx:id="renterFirstName" editable="false" layoutX="229.0" layoutY="168.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
-            <TextField fx:id="lastNamePrompt" editable="false" layoutX="229.0" layoutY="200.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
+            <TextField fx:id="renterLastname" editable="false" layoutX="229.0" layoutY="200.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
             <Label layoutX="47.0" layoutY="173.0" text="First Name:" />
-            <TextField fx:id="firstNamePrompt1" editable="false" layoutX="229.0" layoutY="135.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
+            <TextField fx:id="renterID" editable="false" layoutX="229.0" layoutY="135.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

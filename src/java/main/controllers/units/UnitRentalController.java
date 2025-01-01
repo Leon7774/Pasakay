@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.units;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import main.controllers.views.DashboardMain;
+import main.controllers.views.ViewRentalsController;
 import main.objects.Account;
 import main.objects.Car;
 import main.objects.Rental;
@@ -52,7 +54,7 @@ public class UnitRentalController {
         }
     }
 
-    void setData(Car car, Rental rental) throws SQLException {
+    public void setData(Car car, Rental rental) throws SQLException {
 
         System.out.println(car.getCar_currentlyRented());
 
@@ -80,7 +82,7 @@ public class UnitRentalController {
         currentRental = rental;
     }
 
-    void setParentController(ViewRentalsController viewRentalsController){
+    public void setParentController(ViewRentalsController viewRentalsController){
         this.viewRentalsController = viewRentalsController;
     }
 

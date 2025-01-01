@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +12,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.controllers.renterselection.UnitRenterController;
 import main.objects.Account;
-import main.objects.Car;
+import main.objects.Renter;
 import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
@@ -21,25 +22,19 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ViewInactiveCarsController implements Initializable {
+public class ViewRenterController implements Initializable {
 
-    @FXML
-    private ImageView closeButton;
-
-    @FXML
-    private AnchorPane dashboardContent;
-
-    @FXML
-    private Text dashboardTitle;
-
-    @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
-    private VBox vboxContent;
+    @FXML private ImageView closeButton;
+    @FXML private AnchorPane dashboardContent;
+    @FXML private Text dashboardTitle;
+    @FXML private ScrollPane scrollPane;
+    @FXML private VBox vboxContent;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        scrollPane.setStyle("-fx-background: white;");
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         try {
             initializeTable();
@@ -56,39 +51,28 @@ public class ViewInactiveCarsController implements Initializable {
     }
 
     @FXML
-    void dilightClose(MouseEvent event) {
-        closeButton.setImage(new Image("/images/close-highlight.png"));
-    }
+    void dilightClose(MouseEvent event) {closeButton.setImage(new Image("/images/close-highlight.png"));}
 
     @FXML
-    void highlightClose(MouseEvent event) {
-        closeButton.setImage(new Image("/images/close.png"));
-    }
+    void highlightClose(MouseEvent event) {closeButton.setImage(new Image("/images/close.png"));}
 
     void initializeTable() throws SQLException {
 
         vboxContent.getChildren().clear();
 
-        // Disables horizontal scrolling
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-
-        for(Car car : SQLHandlerUtil.getInactiveCarsList(Account.getUserID())) {
-
+        for(Renter renter : SQLHandlerUtil.getRenters(Account.getUserID())) {
             try {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitInactiveCars.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRenter.fxml"));
                 HBox hbox = loader.load();
-                UnitInactiveCarController inactiveCarController = loader.getController();
-                inactiveCarController.setData(car);
-                inactiveCarController.setParentController(this);
+                UnitRenterController unitRenterController = loader.getController();
+                unitRenterController.setData(renter);
+                unitRenterController.setParentController(this);
                 vboxContent.getChildren().add(hbox);
             }
 
             catch (IOException e) {
-
                 throw new RuntimeException(e);
             }
-
         }
     }
 }

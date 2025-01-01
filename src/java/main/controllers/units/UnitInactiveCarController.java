@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.units;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -8,6 +8,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import main.controllers.BaseCarController;
+import main.controllers.EditCarController;
+import main.controllers.ReassignCarController;
+import main.controllers.views.ViewInactiveCarsController;
 import main.objects.Account;
 import main.objects.Car;
 import main.util.SQLHandlerUtil;
@@ -16,7 +20,7 @@ import main.util.StageUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class UnitInactiveCarController implements BaseCarController{
+public class UnitInactiveCarController implements BaseCarController {
 
     @FXML private JFXButton assignButton, deleteButton, editButton;
     @FXML private Label carColor, carID, carName, carSeats, carType, dailyRent;
@@ -56,7 +60,7 @@ public class UnitInactiveCarController implements BaseCarController{
         editCarController.setParentController(this);
     }
 
-    void setData(Car car) {
+    public void setData(Car car) {
 
         this.car = car;
         this.carColor.setText("Color: " + car.getCar_color());
@@ -67,7 +71,7 @@ public class UnitInactiveCarController implements BaseCarController{
         this.dailyRent.setText("Daily Rate: $" + car.getDailyRate());
     }
 
-    void setParentController(ViewInactiveCarsController parentController) {
+    public void setParentController(ViewInactiveCarsController parentController) {
 
         this.parentController = parentController;
     }

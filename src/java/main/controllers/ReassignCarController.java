@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import main.controllers.views.ViewCarController;
+import main.controllers.views.ViewInactiveCarsController;
 import main.objects.Car;
 import main.util.SQLHandlerUtil;
 
@@ -62,7 +64,7 @@ public class ReassignCarController {
 
     }
 
-    void setControllers(Car car, Object parentController) {
+    public void setControllers(Car car, Object parentController) {
 
         this.currentCar = car;
         this.parentController = parentController;

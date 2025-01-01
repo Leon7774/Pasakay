@@ -1,7 +1,6 @@
-package main.controllers;
+package main.controllers.renterselection;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,30 +10,26 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.objects.Account;
+import main.controllers.views.DashboardMain;
+import main.controllers.views.ViewCarController;
 import main.objects.Car;
 import main.objects.Renter;
 import main.util.DateUtil;
-import main.util.SQLHandlerUtil;
+import main.util.StageUtil;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
-public class RegisterRentalController implements Initializable {
-
-    @FXML
-    private TextField agePrompt;
+public class RegisterRentalController_Old implements Initializable {
 
     @FXML
     private JFXButton cancelButton;
 
     @FXML
     private Label carName;
-
-    @FXML
-    private TextField contactNumberPrompt;
 
     @FXML
     private Label emptyFieldWarning;
@@ -46,28 +41,26 @@ public class RegisterRentalController implements Initializable {
     private DatePicker endDatePicker;
 
     @FXML
-    private TextField firstNamePrompt;
+    private TextField renterFirstName;
 
     @FXML
-    private TextField lastNamePrompt;
+    private TextField renterID;
 
     @FXML
-    private TextField licenseNumberPrompt;
+    private TextField renterLastname;
 
     @FXML
     private JFXButton scheduleButton;
 
     @FXML
-    private JFXComboBox<String> sexPrompt;
+    private JFXButton selectRenterButton;
 
     @FXML
     private DatePicker startDatePicker;
 
-    @FXML
-    private JFXComboBox<String> statusPrompt;
-
     private ViewCarController viewCarController;
     private Car car;
+    private Renter renter;
 
 
     @Override
@@ -75,12 +68,6 @@ public class RegisterRentalController implements Initializable {
         emptyFieldWarning.setVisible(false);
         startDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate()));
         endDatePicker.setDayCellFactory(DateUtil.createDayCellFactory(DashboardMain.getCurrentDate().plus(1, ChronoUnit.DAYS)));
-
-        String [] sexs = {"Male", "Female", "Other"};
-        String [] status = {"Single", "Married", "Widowed", "Complicated"};
-
-        sexPrompt.getItems().addAll(sexs);
-        statusPrompt.getItems().addAll(status);
     }
 
     @FXML
@@ -88,17 +75,10 @@ public class RegisterRentalController implements Initializable {
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
+
     @FXML
     void onScheduleClick(ActionEvent event) throws SQLException {
-
-        String firstName = firstNamePrompt.getText();
-        String lastName = lastNamePrompt.getText();
-        String status = statusPrompt.getValue();
-        String sex = sexPrompt.getValue();
-        String age = agePrompt.getText();
-        String contactNumber = contactNumberPrompt.getText().trim();
-        String licenseNumber = licenseNumberPrompt.getText().trim();
-
+        /*
         if(firstName.isEmpty() || lastName.isEmpty() || status == null || sex == null || age.isEmpty() || contactNumber.isEmpty() || licenseNumber.isEmpty()) {
             emptyFieldWarning.setVisible(true);
             return;
@@ -112,7 +92,22 @@ public class RegisterRentalController implements Initializable {
         viewCarController.getActiveAgent().setCars(SQLHandlerUtil.getAgentCars(viewCarController.getActiveAgent().getAgentID()));
 
         ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+
+         */
     }
+
+
+    @FXML
+    void selectRegisterClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectRenterClicked(ActionEvent event) throws IOException {
+        StageUtil addRenter = new StageUtil("/fxml/selectRenter.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
+        SelectRenterController selectRenterController = addRenter.getLoader().getController();
+    }
+
     public void setAgentViewController(ViewCarController viewCarController) {this.viewCarController = viewCarController;}
     public void setCar(Car car) {this.car = car;}
 }

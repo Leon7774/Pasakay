@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.renterselection;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -6,21 +6,40 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import main.objects.Renter;
 
-public class UnitRenterController {
+public class UnitRenterController_Select {
 
-    @FXML private Label renterIDLabel, renterNameLabel, renterSexLabel, renterAgeLabel,
-            renterContactNumberLabel, renterLicenseNumberLabel, renterStatusLabel;
-    @FXML private JFXButton editButton;
+    @FXML
+    private JFXButton editButton;
 
-    private ViewRenterController parentController;
+    @FXML
+    private Label renterAgeLabel;
+
+    @FXML
+    private Label renterContactNumberLabel;
+
+    @FXML
+    private Label renterIDLabel;
+
+    @FXML
+    private Label renterLicenseNumberLabel;
+
+    @FXML
+    private Label renterNameLabel;
+
+    @FXML
+    private Label renterSexLabel;
+
+    @FXML
+    private Label renterStatusLabel;
+
+    private SelectRenterController parentController;
 
     @FXML
     void onEditClick(ActionEvent event) {
 
     }
 
-    void setData(Renter renter) {
-
+    public void setData(Renter renter) {
         renterNameLabel.setText(renter.getFirstName() + " " + renter.getLastName());
         renterIDLabel.setText("ID: " + renter.getRenterID());
         renterStatusLabel.setText("Status: " + renter.getStatus());
@@ -30,7 +49,15 @@ public class UnitRenterController {
         renterLicenseNumberLabel.setText("License Number: " + renter.getLicense_number());
     }
 
-    void setParentController(ViewRenterController parentController) {
+    public void setParentController(SelectRenterController parentController) {
         this.parentController = parentController;
     }
+
+
+    @FXML
+    void onSelectClick(ActionEvent event) {
+        //parentController.
+    }
+
+
 }

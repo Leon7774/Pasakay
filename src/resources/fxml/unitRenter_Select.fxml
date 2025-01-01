@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" minHeight="0.0" minWidth="0.0" prefHeight="164.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.renterselection.UnitRenterController_Select">
+   <children>
+      <AnchorPane prefHeight="164.0" prefWidth="355.0">
+         <children>
+            <Label fx:id="renterIDLabel" layoutX="23.0" layoutY="43.0" prefHeight="18.0" prefWidth="150.0" text="ID:">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="renterStatusLabel" alignment="TOP_LEFT" layoutX="23.0" layoutY="67.0" prefHeight="20.0" prefWidth="302.0" text="Renter Status" wrapText="true">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+            <Label fx:id="renterSexLabel" layoutX="23.0" layoutY="85.0" prefHeight="23.0" prefWidth="273.0" text="Renter Sex">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+            <Label fx:id="renterNameLabel" alignment="BOTTOM_LEFT" layoutX="23.0" layoutY="9.0" prefHeight="34.0" prefWidth="179.0" text="Renter Name" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="276.0" layoutY="104.0" onAction="#onSelectClick" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #01A2E9;" text="Select" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <Line endX="81.0" layoutX="286.0" layoutY="154.0" startX="-266.70001220703125" stroke="#00000065" />
+            <Label fx:id="renterAgeLabel" layoutX="23.0" layoutY="105.0" prefHeight="23.0" prefWidth="172.0" text="Renter Age">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+            <Label fx:id="renterContactNumberLabel" layoutX="160.0" layoutY="19.0" prefHeight="23.0" prefWidth="273.0" text="Renter Contact Number">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+            <Label fx:id="renterLicenseNumberLabel" layoutX="160.0" layoutY="45.0" prefHeight="23.0" prefWidth="273.0" text="Renter License Number:">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

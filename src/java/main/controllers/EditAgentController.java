@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import main.controllers.units.UnitAgentController;
+import main.controllers.views.ViewAgentController;
 import main.util.SQLHandlerUtil;
 
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class EditPropertyController implements Initializable {
+public class EditAgentController implements Initializable {
 
     @FXML
     private TextField agentAddressPrompt;

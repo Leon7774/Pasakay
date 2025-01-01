@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.units;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -8,6 +8,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import main.controllers.EditAgentController;
+import main.controllers.views.ViewAgentController;
 import main.objects.Account;
 import main.objects.Agent;
 import main.objects.Car;
@@ -77,7 +79,7 @@ public class UnitAgentController {
             Stage currentStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
             stage = new StageUtil("/fxml/editAgent.fxml", currentStage);
-            EditPropertyController controller = (EditPropertyController) stage.getController();
+            EditAgentController controller = (EditAgentController) stage.getController();
             controller.setDashboardController(dashboardController); // Pass DashboardController reference
             controller.initializeData(this);
             editOpen = true;

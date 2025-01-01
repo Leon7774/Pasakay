@@ -1,13 +1,13 @@
-package main.controllers;
+package main.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class TransactionViewController {
+public class ViewTransactionController {
 
     @FXML private Label amountLabel, transactionLabel, dateLabel, rentalIDLabel;
 
-    void setData(int rental_id, String date, double amount, String transactionName) {
+    public void setData(int rental_id, String date, double amount, String transactionName) {
         rentalIDLabel.setText(String.valueOf(rental_id));
         dateLabel.setText(date);
         amountLabel.setText(String.valueOf(amount));

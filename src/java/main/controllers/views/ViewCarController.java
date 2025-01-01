@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.controllers.RegisterCarController;
+import main.controllers.units.UnitCarController;
 import main.objects.Agent;
 import main.objects.Car;
 import main.util.SQLHandlerUtil;

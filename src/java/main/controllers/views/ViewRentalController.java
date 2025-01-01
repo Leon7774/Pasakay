@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controllers.views;
 
 import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;

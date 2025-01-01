@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import main.controllers.views.DashboardMain;
 import main.controllers.views.ViewRentalsController;
 import main.objects.Account;
@@ -20,12 +21,13 @@ import java.time.temporal.ChronoUnit;
 public class UnitRentalController {
 
     @FXML private Label agentIDLabel, renterIDLabel, carColorLabel, carIDLabel, carName, isRentedLabel, netIncomeLabel, noSeatsLabel,
-                        rentEndLabel, rentStartLabel;
+                        rentEndLabel, rentStartLabel, rentalID;
     @FXML private JFXButton deleteButton, editButton;
     @FXML private Label totalRentDays;
     @FXML private ImageView notifIcon;
     @FXML private AnchorPane notifArea;
     @FXML private JFXButton pendingButton;
+    @FXML private HBox container;
 
     private ViewRentalsController viewRentalsController;
     private Rental currentRental;
@@ -56,9 +58,8 @@ public class UnitRentalController {
 
     public void setData(Car car, Rental rental) throws SQLException {
 
-        System.out.println(car.getCar_currentlyRented());
-
         this.carName.setText(car.getCar_model());
+        this.rentalID.setText("Rental ID: " + String.valueOf(rental.getId()));
         this.carIDLabel.setText("Car ID: " + String.valueOf(car.getCar_id()));
         this.carColorLabel.setText("Color: " + car.getCar_color());
         this.noSeatsLabel.setText("Number of Seats: " + String.valueOf(SQLHandlerUtil.getCarType(car.getCar_type_id()).getPassengerCount()));
@@ -70,6 +71,10 @@ public class UnitRentalController {
         this.rentEndLabel.setText("Rent End Date: " + String.valueOf(rental.getRentEnd()));
         this.netIncomeLabel.setText("Expected Income: $" + String.valueOf(rental.getTotalCost()));
         this.totalRentDays.setText("Total Rental Days: " + String.valueOf( ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd()) + 1));
+        if(rental.getRentEnd().isBefore(DashboardMain.getCurrentDate())) {
+            rental.setOld(true);
+            container.setStyle("-fx-background-color: #cccccc; -fx-background-radius: 10;");
+        }
 
         Tooltip tooltip = new Tooltip(Account.findAgentByID(rental.getAgentId()).getFirstname() + " " + Account.findAgentByID(rental.getAgentId()).getLastname());
 

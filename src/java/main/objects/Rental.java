@@ -8,7 +8,7 @@ public class Rental {
     private int rental_id, agentID, renterID, carID;
     private LocalDate rentStart, rentEnd;
     private double totalCost;
-    private boolean fully_paid, deposited;
+    private boolean fully_paid, deposited, old;
 
     public Rental(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost, boolean fully_paid, boolean deposited) {
         this.agentID = agentID;
@@ -77,4 +77,7 @@ public class Rental {
                 ", fully_paid=" + fully_paid +
                 '}';
     }
+
+    public void setOld(boolean old) {this.old = old;}
+    public boolean isOld() {return this.old;}
 }

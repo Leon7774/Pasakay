@@ -23,21 +23,24 @@ public class ConfirmDepositController {
 
     @FXML
     private Label depositValue;
-    private boolean isConfirmed = false;
+    private boolean isConfirmed;
 
     @FXML
     void onCancelClick(ActionEvent event) {
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
         isConfirmed = false;
+       // ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML
     void onConfirmClick(ActionEvent event) {
+        System.out.println("ass");
         isConfirmed = true;
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+       // ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
     }
 
     public boolean isConfirmed() {
+        System.out.println("ass23123");
+        System.out.println(isConfirmed);
         return isConfirmed;
     }
 

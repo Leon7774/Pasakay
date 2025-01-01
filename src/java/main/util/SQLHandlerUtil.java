@@ -261,7 +261,7 @@ public class SQLHandlerUtil {
         statement.setDate(4, Date.valueOf(rent_start));
         statement.setDate(5, Date.valueOf(rent_end));
         statement.setDouble(6, totalCost);
-        statement.setBoolean(7, false);
+        statement.setBoolean(7, true);
         statement.setBoolean(8, false);
         statement.setBoolean(9, false);
         statement.executeUpdate();

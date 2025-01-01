@@ -114,7 +114,9 @@ public class RegisterRentalController_New implements Initializable {
         ConfirmDepositController controller = confirmRental.getLoader().getController();
         controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
 
-        if(controller.isConfirmed()) {
+        System.out.println("ass");
+
+        if(!controller.isConfirmed()) {
             return;
         }
 

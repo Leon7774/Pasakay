@@ -48,8 +48,10 @@ public class UnitRentalController {
     @FXML
     void initialize() {
         notifArea.setVisible(false);
+        if (viewRentalsController == null) {
+            deleteButton.setVisible(false);
+        }
     }
-
     @FXML
     void onDeleteClick(ActionEvent event) throws SQLException {
 
@@ -95,7 +97,7 @@ public class UnitRentalController {
 
         agentIDLabel.setTooltip(tooltip);
 
-        if (!rental.isReturned()) {
+        if (!rental.isReturned() && viewRentalsController != null) {
             if (DashboardMain.getCurrentDate().equals(rental.getRentStart()) && !rental.isFullyPaid()) {
                 isPending = true;
                 notifArea.setVisible(true);

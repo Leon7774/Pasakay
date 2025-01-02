@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -23,7 +24,7 @@
                <children>
                   <ScrollPane fx:id="scrollPane" layoutX="24.0" layoutY="176.0" prefHeight="490.0" prefWidth="753.0" stylesheets="@../css/styles.css">
                      <content>
-                        <VBox fx:id="vboxContent" prefHeight="517.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
+                        <VBox fx:id="vboxContent" prefHeight="483.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
                            <padding>
                               <Insets top="30.0" />
                            </padding>
@@ -54,33 +55,38 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Text fx:id="agentLabel" layoutX="24.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mike Wazowski" wrappingWidth="244.8173828125">
+                  <Text fx:id="agentLabel" layoutX="24.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mike Wazowski" wrappingWidth="244.8173828125">
                      <font>
                         <Font name="System Bold" size="31.0" />
                      </font>
                   </Text>
-                  <Text fx:id="agentIDLabel" layoutX="24.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 5" wrappingWidth="144.8173828125">
+                  <Text fx:id="agentIDLabel" layoutX="24.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 5" wrappingWidth="144.8173828125">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fx:id="carLabel" layoutX="289.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota Vios 2018" wrappingWidth="244.8173828125">
+                  <Text fx:id="carLabel" layoutX="289.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota Vios 2018" wrappingWidth="305.8173828125">
                      <font>
                         <Font name="System Bold" size="31.0" />
                      </font>
                   </Text>
-                  <Text fx:id="carIDLabel" layoutX="289.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 10" wrappingWidth="144.8173828125">
+                  <Text fx:id="carIDLabel" layoutX="289.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 10" wrappingWidth="144.8173828125">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Text>
-                  <JFXButton layoutX="24.0" layoutY="130.0" onAction="#chooseAgent" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #cccccc;" text="Set Agent" />
-                  <JFXButton layoutX="289.0" layoutY="130.0" onAction="#chooseCar" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #cccccc;" text="Choose Car" />
-                  <Text fx:id="carLabel1" layoutX="551.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16 Records Found" textAlignment="RIGHT" wrappingWidth="215.8173828125">
+                  <JFXButton layoutX="24.0" layoutY="130.0" onAction="#chooseAgent" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #01A2E9;" text="Set Agent" textFill="WHITE" />
+                  <JFXButton fx:id="chooseCarButton" disable="true" layoutX="289.0" layoutY="130.0" onAction="#chooseCar" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #01A2E9;" text="Choose Car" textFill="WHITE" />
+                  <Text fx:id="recordCount" layoutX="551.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16 Records Found" textAlignment="RIGHT" wrappingWidth="215.8173828125">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Text>
+                  <JFXButton fx:id="clearAgentButton" disable="true" layoutX="158.0" layoutY="130.0" onAction="#clearAgent" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: #cccccc;" text="Clear" />
+                  <JFXButton fx:id="clearCarButton" disable="true" layoutX="423.0" layoutY="130.0" onAction="#clearCar" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: #cccccc;" text="Clear" />
+                  <JFXToggleButton fx:id="recordToggle" layoutX="614.0" layoutY="62.0" onAction="#toggleClick" text="ToggleButton" textFill="TRANSPARENT" toggleColor="#f0f0f0" toggleLineColor="LIGHTGRAY" unToggleColor="LIGHTGRAY" />
+                  <Text layoutX="574.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" />
+                  <Text layoutX="679.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" />
                </children>
             </AnchorPane>
          </top>

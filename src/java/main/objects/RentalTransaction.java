@@ -10,7 +10,6 @@ public class RentalTransaction {
     double amount;
 
     public RentalTransaction(int transactionID, int rentalID, String transactionName, double amount, String date) {
-
         this.rentalID = rentalID;
         this.transactionName = transactionName;
         this.amount = amount;
@@ -47,5 +46,13 @@ public class RentalTransaction {
                 Objects.equals(transactionName, transaction.getTransactionName()) &&
                 Objects.equals(amount, transaction.getAmount()) &&
                 Objects.equals(date, transaction.getDate());
+    }
+
+    public int getAgentID() {
+        return Account.getRental(rentalID).getAgentId();
+    }
+
+    public int getCarID() {
+        return Account.getRental(rentalID).getCarId();
     }
 }

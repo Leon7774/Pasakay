@@ -104,4 +104,16 @@ public class Account{
         }
         return allCars;
     }
+
+    public static Rental getRental(int id) {
+        for (Rental r : rentalList) {
+            if (r.getId() == id) {
+                return r;
+            }
+        }
+
+        return null;
+    }
+
+
 }

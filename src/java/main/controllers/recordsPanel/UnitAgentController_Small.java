@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.objects.Agent;
 
+import java.sql.SQLException;
+
 public class UnitAgentController_Small {
 
 
@@ -22,7 +24,7 @@ public class UnitAgentController_Small {
     private SelectAgentController controller;
 
     @FXML
-    void choose(ActionEvent event) {
+    void choose(ActionEvent event) throws SQLException {
         controller.setAgent(agent);
         ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow()).close();
     }

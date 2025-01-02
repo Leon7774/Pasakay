@@ -51,8 +51,9 @@ public class SelectAgentController {
 
     }
 
-    public void setAgent(Agent agent) {
+    public void setAgent(Agent agent) throws SQLException {
         parentController.setAgent(agent);
+        parentController.initializeTable();
     }
 
     public void initializeTable() {

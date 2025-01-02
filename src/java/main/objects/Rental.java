@@ -1,6 +1,9 @@
 package main.objects;
 
+import main.util.SQLHandlerUtil;
+
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Rental {
@@ -81,6 +84,7 @@ public class Rental {
                 ", returned=" + returned +
                 '}';
     }
+
 
 
 

@@ -9,6 +9,7 @@ import main.objects.Account;
 import main.objects.Car;
 import main.objects.Rental;
 
+import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 
 public class UnitCarController_Small {
@@ -32,8 +33,8 @@ public class UnitCarController_Small {
     private SelectCarController parentController;
 
     @FXML
-    void onChoose(ActionEvent event) {
-        parentController.setCar(car);
+    void onChoose(ActionEvent event) throws SQLException {
+        parentController.setCar (car);
         ((Stage)chooseButton.getScene().getWindow()).close();
     }
 

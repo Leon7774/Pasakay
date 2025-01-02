@@ -52,8 +52,9 @@ public class SelectCarController {
 
     }
 
-    void setCar(Car car) {
+    void setCar(Car car) throws SQLException {
         parentController.setCar(car);
+        parentController.initializeTable();
     }
 
 

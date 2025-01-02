@@ -13,13 +13,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import main.objects.Account;
 import main.objects.Rental;
+import main.util.SQLHandlerUtil;
 import main.util.StageUtil;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -32,7 +36,7 @@ public class DashboardMain implements Initializable {
     private ImageView closeButton;
 
     @FXML
-    private AnchorPane dashboardContent;
+    private AnchorPane dashboardContent, profilePane;
 
     @FXML
     private DatePicker dateInput;
@@ -57,6 +61,9 @@ public class DashboardMain implements Initializable {
 
     @FXML
     private JFXButton inactiveCarsButton;
+
+    @FXML
+    private ImageView profileView;
 
     private static LocalDate currentDate = LocalDate.now();
 
@@ -99,6 +106,13 @@ public class DashboardMain implements Initializable {
     }
 
     @FXML
+    void onClickProfile(MouseEvent event) {
+
+        loadPane("/fxml/viewUserInformation.fxml");
+
+    }
+
+    @FXML
     void onAgentTabClick(ActionEvent event) throws IOException {
         changeButtonsColor(agentsButton);
         loadPane("/fxml/viewAgents.fxml");
@@ -134,6 +148,10 @@ public class DashboardMain implements Initializable {
         BorderPane rentalsPane;
         try {
             rentalsPane = loader.load();
+            if(loader.getController() instanceof ViewUserInformationController) {
+
+                ((ViewUserInformationController)loader.getController()).setParentController(this);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -192,6 +210,47 @@ public class DashboardMain implements Initializable {
         reportButton.setStyle("-fx-background-color: " + inactive + ";");
 
         button.setStyle("-fx-background-color: " + active + ";");
+    }
+
+    public void setProfileView() throws SQLException {
+
+        Image image;
+
+        image = SQLHandlerUtil.getProfile(Account.getUserID());
+
+        if(image != null) {
+
+            double width = image.getWidth();
+            double height = image.getHeight();
+            double scale = Math.min(100 / width, 100 / height);
+
+            profileView.setImage(image);
+            profileView.setFitWidth(width * scale);
+            profileView.setFitHeight(height * scale);
+            profileView.setPreserveRatio(true);
+            profileView.setX(profileView.getX() - 5);
+
+            double scaledWidth = width * scale;
+            double scaledHeight = height * scale;
+            double radius = Math.min(scaledWidth, scaledHeight) / 2;
+
+            Circle circle = new Circle(radius);
+            circle.setCenterX(scaledWidth / 2);
+            circle.setLayoutX(circle.getLayoutX() - 5);
+            circle.setCenterY(scaledHeight / 2);
+            profileView.setClip(circle);
+
+            Circle border = new Circle(radius);
+            border.setCenterX(scaledWidth / 2);
+            border.setCenterY(scaledHeight / 2);
+            border.setStroke(Color.BLACK);
+            border.setStrokeWidth(2);
+            border.setFill(null);
+            border.setLayoutX(border.getLayoutX()-3);
+            border.setLayoutY(border.getLayoutY()+1);
+
+            profilePane.getChildren().add(border);
+        }
     }
 }
 

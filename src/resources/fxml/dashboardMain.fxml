@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.views.DashboardMain">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.views.DashboardMain">
    <left>
       <AnchorPane prefHeight="666.0" prefWidth="207.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
          <children>
@@ -54,19 +54,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="59.0" layoutY="99.0">
-               <image>
-                  <Image url="@../images/user.png" />
-               </image>
-               <effect>
-                  <DropShadow height="25.68" offsetX="2.0" offsetY="2.0" radius="12.925" spread="0.17" width="28.02">
-                     <color>
-                        <Color red="0.15789473056793213" green="0.15789473056793213" blue="0.15789473056793213" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </ImageView>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="3.0" layoutY="186.0" prefHeight="38.0" prefWidth="203.0" text="Welcome, (name)" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="3.0" layoutY="191.0" prefHeight="38.0" prefWidth="203.0" text="Welcome, (name)" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Futura Bold" size="13.0" />
                </font>
@@ -100,6 +88,22 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
+            <AnchorPane fx:id="profilePane" layoutX="61.0" layoutY="100.0" maxHeight="90.0" maxWidth="90.0" prefHeight="90.0" prefWidth="90.0">
+               <children>
+                  <ImageView fx:id="profileView" fitHeight="90.0" fitWidth="90.0" layoutX="2.0" layoutY="2.0" onMouseClicked="#onClickProfile" style="-fx-cursor: hand;;">
+                     <image>
+                        <Image url="@../images/user.png" />
+                     </image>
+                     <effect>
+                        <DropShadow height="25.68" offsetX="2.0" offsetY="2.0" radius="12.925" spread="0.17" width="28.02">
+                           <color>
+                              <Color red="0.15789473056793213" green="0.15789473056793213" blue="0.15789473056793213" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
          <effect>
             <DropShadow height="0.0" radius="4.75" />

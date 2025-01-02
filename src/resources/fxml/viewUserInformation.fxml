@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="784.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.views.ViewUserInformationController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <AnchorPane fx:id="dashboardContent" prefHeight="666.0" prefWidth="810.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="dashboardTitle" fontSmoothingType="LCD" layoutX="40.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Information" wrappingWidth="393.74842834472656">
+                     <font>
+                        <Font name="Century Gothic Bold" size="38.0" />
+                     </font>
+                  </Text>
+                  <Line endX="642.6000366210938" endY="1.0000152587890625" layoutX="123.0" layoutY="131.0" startX="-100.0" />
+                  <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="764.0" layoutY="5.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/close-highlight.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="userIDLabel" layoutX="298.0" layoutY="169.0" prefHeight="35.0" prefWidth="449.0" text="User ID:">
+                     <font>
+                        <Font name="Century Gothic Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="firstNameLabel" layoutX="304.0" layoutY="204.0" prefHeight="35.0" prefWidth="449.0" text="First Name: ">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastNameLabel" layoutX="307.0" layoutY="239.0" prefHeight="35.0" prefWidth="449.0" text="Last Name:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="userNameLabel" layoutX="312.0" layoutY="274.0" prefHeight="35.0" prefWidth="449.0" text="Username: ">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="passwordLabel" layoutX="316.0" layoutY="309.0" prefHeight="35.0" prefWidth="449.0" text="Password:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="editButton" buttonType="RAISED" layoutX="669.0" layoutY="388.0" onAction="#onEditClick" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #BBBBBB;" text="Edit">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <AnchorPane fx:id="imagePane" layoutX="55.0" layoutY="157.0" maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="profileView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;;" />
+                        <ImageView fx:id="addIcon" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#onProfileClick" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 60%; -fx-cursor: hand;;">
+                           <image>
+                              <Image url="@../../../../../MyFiles/Pasakay/src/resources/images/addICon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+   </center>
+</BorderPane>

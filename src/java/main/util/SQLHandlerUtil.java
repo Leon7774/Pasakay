@@ -1,7 +1,12 @@
 package main.util;
 
+import javafx.scene.image.Image;
 import main.objects.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -120,6 +125,18 @@ public static Rental getOneRental(int rental_id) throws SQLException {
         } else {
             System.out.println("User not found");
         }
+    }
+
+    public static void updateUser(int user_id, String first_name, String last_name, String username, String password) throws SQLException {
+
+        String query = "UPDATE user SET first_name = ?, last_name = ?, username = ?, password = ? WHERE user_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setString(1, first_name);
+        statement.setString(2, last_name);
+        statement.setString(3, username);
+        statement.setString(4, password);
+        statement.setInt(5, user_id);
+        statement.executeUpdate();
     }
 
     public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
@@ -518,6 +535,50 @@ public static Rental getOneRental(int rental_id) throws SQLException {
         statement.executeUpdate();
 
         findUser(Account.getUserName());
+    }
+
+    public static void addProfile(File image, int user_id) throws SQLException, FileNotFoundException {
+
+        FileInputStream fis = new FileInputStream(image);
+
+        String query = "UPDATE user SET profile_icon = ? WHERE user_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setBinaryStream(1, fis, (int) image.length());
+        statement.setInt(2, user_id);
+
+        statement.executeUpdate();
+    }
+
+    public static Image getProfile(int user_id) throws SQLException {
+
+        String query = "SELECT profile_icon FROM user WHERE user_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, user_id);
+
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()) {
+
+            byte[] imageBytes = rs.getBytes("profile_icon");
+            if(imageBytes != null) {
+
+                return new Image(new ByteArrayInputStream(imageBytes));
+            }
+        }
+
+        return null;
+    }
+
+    public static String getPassword(int user_id) throws SQLException {
+
+        String query = "SELECT password FROM user WHERE user_id = ?";
+        PreparedStatement statement = connection1.prepareStatement(query);
+        statement.setInt(1, user_id);
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()) {
+            return rs.getString("password");
+        }
+
+        return null;
     }
 
     // TODO

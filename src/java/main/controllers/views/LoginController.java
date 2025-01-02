@@ -110,6 +110,8 @@ public class LoginController implements Initializable {
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
                     StageUtil ui = new StageUtil("/fxml/dashboardMain.fxml");
+                    DashboardMain main = (DashboardMain) ui.getController();
+                    main.setProfileView();
                     loginLabel.setText("Login Sucessful");
                     loginLabel.setVisible(true);
                 }else{

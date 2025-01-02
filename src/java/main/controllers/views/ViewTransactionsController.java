@@ -214,6 +214,24 @@ public class ViewTransactionsController implements Initializable {
                 }
             }
 
+            else if (keyword.startsWith("id=")) {
+                int transactionID = Integer.parseInt(keyword.substring("id=".length()));
+                if(transaction.getTransactionID() == transactionID) {
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
             else if(String.valueOf(transaction.getTransactionID()).startsWith(keyword)) {
 
                 try{

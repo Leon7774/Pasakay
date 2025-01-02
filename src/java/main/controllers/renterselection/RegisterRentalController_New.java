@@ -24,13 +24,14 @@ import main.util.StageUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 public class RegisterRentalController_New implements Initializable {
 
     @FXML
-    private TextField agePrompt;
+    private DatePicker birthdatePrompt;
 
     @FXML
     private JFXButton cancelButton;
@@ -98,11 +99,11 @@ public class RegisterRentalController_New implements Initializable {
         String lastName = lastNamePrompt.getText();
         String status = statusPrompt.getValue();
         String sex = sexPrompt.getValue();
-        String age = agePrompt.getText();
+        LocalDate birthdate = birthdatePrompt.getValue();
         String contactNumber = contactNumberPrompt.getText().trim();
         String licenseNumber = licenseNumberPrompt.getText().trim();
 
-        if(firstName.isEmpty() || lastName.isEmpty() || status == null || sex == null || age.isEmpty() || contactNumber.isEmpty() || licenseNumber.isEmpty()) {
+        if(firstName.isEmpty() || lastName.isEmpty() || status == null || sex == null || birthdate.toString().isEmpty() || contactNumber.isEmpty() || licenseNumber.isEmpty()) {
             emptyFieldWarning.setVisible(true);
             return;
         }
@@ -118,7 +119,7 @@ public class RegisterRentalController_New implements Initializable {
             return;
         }
 
-        Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, Integer.parseInt(age), Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
+        Renter renter = SQLHandlerUtil.addRenter(firstName, lastName, status, sex, birthdate, Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
         Rental newRental = SQLHandlerUtil.addRental(viewCarController.getActiveAgent().getAgentID(), renter.getRenterID(), car.getCar_id(), startDatePicker.getValue(), endDatePicker.getValue(), totalDays * car.getDailyRate());
 
         Account.addRentals(newRental);

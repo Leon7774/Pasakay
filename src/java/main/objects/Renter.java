@@ -1,5 +1,7 @@
 package main.objects;
 
+import java.time.LocalDate;
+
 public class Renter {
     int renterID;
     String firstName;
@@ -7,8 +9,9 @@ public class Renter {
     String status;
     String sex;
     int age, contact_number, license_number;
+    private LocalDate birthdate;
 
-    public Renter(int renter_id, String firstName, String lastName, String status, String sex, int age, int contact_number, int license_number) {
+    public Renter(int renter_id, String firstName, String lastName, String status, String sex, LocalDate birthdate, int age, int contact_number, int license_number) {
 
         this.renterID = renter_id;
         this.firstName = firstName;
@@ -18,6 +21,7 @@ public class Renter {
         this.sex = sex;
         this.contact_number = contact_number;
         this.license_number = license_number;
+        this.birthdate = birthdate;
     }
 
     public int getRenterID() {
@@ -72,4 +76,6 @@ public class Renter {
     public void setContact_number(int contact_number) {this.contact_number = contact_number;}
     public int getLicense_number() {return license_number;}
     public void setLicense_number(int license_number) {this.license_number = license_number;}
+    public LocalDate getBirthdate() {return birthdate;}
+    public void setBirthdate(LocalDate birthdate) {this.birthdate = birthdate;}
 }

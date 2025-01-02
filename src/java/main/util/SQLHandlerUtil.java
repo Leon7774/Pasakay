@@ -93,8 +93,9 @@ public static Rental getOneRental(int rental_id) throws SQLException {
                 int age = rs2.getInt("age");
                 int contactNumber = rs2.getInt("contact_number");
                 int agentID = rs2.getInt("agent_id");
+                LocalDate date = rs2.getDate("birth_date").toLocalDate();
 
-                Agent agent = new Agent(first_name, last_name, agentID, address, age, contactNumber);
+                Agent agent = new Agent(first_name, last_name, agentID, address, date, age, contactNumber);
                 Account.addAgent(agent);
             }
 
@@ -141,20 +142,49 @@ public static Rental getOneRental(int rental_id) throws SQLException {
         statement.executeUpdate();
     }
 
-    public static Agent addAgent(String first_name, String last_name, int age, String address, int contactNumber) throws SQLException {
-        String query = "INSERT INTO agents(first_name, last_name, age, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
+    public static Agent addAgent(String first_name, String last_name, LocalDate date, String address, int contactNumber) throws SQLException {
+        String query = "INSERT INTO agents(first_name, last_name, birth_date, address, contact_number, user_id) VALUES(?, ?, ?, ?, ?, ?)";
 
-        PreparedStatement statement = connection1.prepareStatement(query);
+        Date sqldate = Date.valueOf(date);
+
+        PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, first_name);
         statement.setString(2, last_name);
-        statement.setInt(3, age);
+        statement.setDate(3, sqldate);
         statement.setString(4, address);
         statement.setInt(5, contactNumber);
         statement.setInt(6, Account.getUserID());
         statement.executeUpdate();
 
-        Agent agent = new Agent(first_name, last_name, age, address, contactNumber);
-        return agent;
+        ResultSet gs = statement.getGeneratedKeys();
+
+        if(gs.next()) {
+
+            int id = gs.getInt(1);
+
+            String query2 = "UPDATE agents SET age = TIMESTAMPDIFF(YEAR, ?, CURDATE()) WHERE agent_id = ?";
+            PreparedStatement statement2 = connection1.prepareStatement(query2);
+            statement2.setDate(1, sqldate);
+            statement2.setInt(2, id);
+            statement2.executeUpdate();
+
+            String query3 = "SELECT agents.age from agents WHERE agent_id = ?";
+            PreparedStatement statement3 = connection1.prepareStatement(query3);
+            statement3.setInt(1, id);
+            ResultSet rs = statement3.executeQuery();
+
+            int age = 0;
+
+            if(rs.next()) {
+
+                age = rs.getInt("age");
+            }
+
+            Agent agent = new Agent(first_name, last_name, age, address, contactNumber);
+            return agent;
+        }
+
+        return null;
     }
 
     // Grabs all the cars of an agent
@@ -183,16 +213,25 @@ public static Rental getOneRental(int rental_id) throws SQLException {
         return carList;
     }
 
-    public static boolean updateAgent(int agent_Id, String first_name, String last_name, int age, String address, int contactNumber) {
+    public static boolean updateAgent(int agent_Id, String first_name, String last_name, LocalDate date , String address, int contactNumber) {
         try {
-            String query = "UPDATE agents SET first_name = ?, last_name = ?, age = ?, address = ?, contact_number = ? WHERE agent_id = " + agent_Id;
+            String query = "UPDATE agents SET first_name = ?, last_name = ?, birth_date = ?, address = ?, contact_number = ? WHERE agent_id = " + agent_Id;
+
+            Date sqldate = Date.valueOf(date);
+
             PreparedStatement statement = connection1.prepareStatement(query);
             statement.setString(1, first_name);
             statement.setString(2, last_name);
-            statement.setInt(3, age);
+            statement.setDate(3, sqldate);
             statement.setString(4, address);
             statement.setInt(5, contactNumber);
             statement.executeUpdate();
+
+            String query2 = "UPDATE agents SET age = TIMESTAMPDIFF(YEAR, ?, CURDATE()) WHERE agent_id = ?";
+            PreparedStatement statement2 = connection1.prepareStatement(query2);
+            statement2.setDate(1, sqldate);
+            statement2.setInt(2, agent_Id);
+            statement2.executeUpdate();
             return true;
         } catch (SQLException e) {
             System.out.println("Agent Update Error: " + e.getMessage());
@@ -345,14 +384,14 @@ public static Rental getOneRental(int rental_id) throws SQLException {
         return true;
     }
 
-    public static Renter addRenter(String firstName, String lastName, String status, String sex, int age, int contact_number, int license_number) throws SQLException {
+    public static Renter addRenter(String firstName, String lastName, String status, String sex, LocalDate birthdate, int contact_number, int license_number) throws SQLException {
 
-        String query = "INSERT INTO renter(first_name, last_name, age, status, sex, contact_number, license_number) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO renter(first_name, last_name, birth_date, status, sex, contact_number, license_number) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement statement = connection1.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, firstName);
         statement.setString(2, lastName);
-        statement.setInt(3, age);
+        statement.setDate(3, Date.valueOf(birthdate));
         statement.setString(4, status);
         statement.setString(5, sex.trim());
         statement.setInt(6, contact_number);
@@ -365,14 +404,32 @@ public static Rental getOneRental(int rental_id) throws SQLException {
 
             int renter_id = generatedKeys.getInt(1);
 
-            Renter newRenter = new Renter(renter_id, firstName, lastName, status, sex, age, contact_number, license_number);
-            return newRenter;
+            String query3 = "UPDATE renter SET age = TIMESTAMPDIFF(YEAR, ?, CURDATE()) WHERE renter_id = ?";
+            PreparedStatement statement3 = connection1.prepareStatement(query3);
+            statement3.setDate(1, Date.valueOf(birthdate));
+            statement3.setInt(2, renter_id);
+            statement3.executeUpdate();
+
+            String query2 = "Select age from renter where renter_id = ?";
+            PreparedStatement statement2 = connection1.prepareStatement(query2);
+            statement2.setInt(1, renter_id);
+            ResultSet rs = statement2.executeQuery();
+
+            if(rs.next()) {
+
+                int age = rs.getInt("age");
+
+                Renter newRenter = new Renter(renter_id, firstName, lastName, status, sex, birthdate, age, contact_number, license_number);
+                return newRenter;
+            }
         }
 
         else {
 
             throw new SQLException("Creating a renter failed, no ID obtained.");
         }
+
+        return null;
     }
 
     public static Car getOneCar(int car_id) throws SQLException {
@@ -448,11 +505,12 @@ public static Rental getOneRental(int rental_id) throws SQLException {
             int contact_number = rs.getInt("contact_number");
             int license_number = rs.getInt("license_number");
             String sex = rs.getString("sex");
+            LocalDate birthdate = rs.getDate("birth_date").toLocalDate();
 
             if(
                 !renterList.stream().anyMatch(renter -> renter.getRenterID() == renter_id)
             ){
-                renterList.add(new Renter(renter_id, firstName, lastName, status, sex, age, contact_number, license_number));
+                renterList.add(new Renter(renter_id, firstName, lastName, status, sex, birthdate, age, contact_number, license_number));
             }
 
         }
@@ -522,19 +580,25 @@ public static Rental getOneRental(int rental_id) throws SQLException {
         statement.executeUpdate();
     }
 
-    public static void updateRenter(int renter_id, String first_name, String last_name, int age, String status, String sex, int contact_number, int license_number) throws SQLException {
+    public static void updateRenter(int renter_id, String first_name, String last_name, LocalDate birthdate, String status, String sex, int contact_number, int license_number) throws SQLException {
 
-        String query = "UPDATE renter SET first_name = ?, last_name = ?, age = ?, status = ?, sex = ?, contact_number = ?, license_number = ? WHERE renter_id = ?";
+        String query = "UPDATE renter SET first_name = ?, last_name = ?, birth_date = ?, status = ?, sex = ?, contact_number = ?, license_number = ? WHERE renter_id = ?";
         PreparedStatement statement = connection1.prepareStatement(query);
         statement.setString(1, first_name);
         statement.setString(2, last_name);
-        statement.setInt(3, age);
+        statement.setDate(3, Date.valueOf(birthdate));
         statement.setString(4, status);
         statement.setString(5, sex);
         statement.setInt(6, contact_number);
         statement.setInt(7, license_number);
         statement.setInt(8, renter_id);
         statement.executeUpdate();
+
+        String query2 = "UPDATE renter SET age = TIMESTAMPDIFF(YEAR, ?, CURDATE()) WHERE renter_id = ?";
+        PreparedStatement statement2 = connection1.prepareStatement(query2);
+        statement2.setDate(1, Date.valueOf(birthdate));
+        statement2.setInt(2, renter_id);
+        statement2.executeUpdate();
 
         findUser(Account.getUserName());
     }

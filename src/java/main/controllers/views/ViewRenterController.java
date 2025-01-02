@@ -1,8 +1,10 @@
 package main.controllers.views;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,6 +34,7 @@ public class ViewRenterController implements Initializable {
     @FXML private ScrollPane scrollPane;
     @FXML private VBox vboxContent;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -50,6 +53,17 @@ public class ViewRenterController implements Initializable {
 
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
+    }
+
+
+    @FXML
+    void dateFrom(ActionEvent event) {
+
+    }
+
+    @FXML
+    void dateTo(ActionEvent event) {
+
     }
 
     @FXML

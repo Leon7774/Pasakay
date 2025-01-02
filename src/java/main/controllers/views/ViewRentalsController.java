@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ViewRentalsController implements Initializable {
@@ -39,6 +41,14 @@ public class ViewRentalsController implements Initializable {
     @FXML private AnchorPane notifIcon;
     @FXML private JFXToggleButton showOldRentals;
     @FXML private JFXToggleButton showPriorityRentals;
+    @FXML
+    private DatePicker dateFromButton;
+
+    @FXML
+    private DatePicker dateToButton;
+
+    private LocalDate fromDate = LocalDate.MIN;
+    private LocalDate toDate = LocalDate.MAX;
 
     int counter = 0;
 
@@ -85,19 +95,24 @@ public class ViewRentalsController implements Initializable {
                 unitRentalController.setParentController(this);
                 unitRentalController.setData(car, rental);
 
-
                 if (showPriorityRentals.isSelected()) {
                     if (unitRentalController.isPending()) {
-                        vboxContent.getChildren().add(hbox);
+                        if (rental.getRentStart().isAfter(fromDate) && rental.getRentEnd().isBefore(toDate)){
+                            vboxContent.getChildren().add(hbox);
+                        }
                     }
                 }
                 else if (!showOldRentals.isSelected()) {
                     if (!unitRentalController.isFinished()) {
-                        vboxContent.getChildren().add(hbox);
+                        if (rental.getRentStart().isAfter(fromDate) && rental.getRentEnd().isBefore(toDate)){
+                            vboxContent.getChildren().add(hbox);
+                        }
                     }
                 }
                 else {
-                    vboxContent.getChildren().add(hbox);
+                    if (rental.getRentStart().isAfter(fromDate) && rental.getRentEnd().isBefore(toDate)){
+                        vboxContent.getChildren().add(hbox);
+                    }
                 }
             }
 
@@ -128,6 +143,7 @@ public class ViewRentalsController implements Initializable {
             notifIcon.setVisible(false);
         }
     }
+
 
     @FXML
     void search(KeyEvent event) throws SQLException {

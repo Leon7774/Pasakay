@@ -56,7 +56,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="freehold-service@gmail.com">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="pasahero-service@gmail.com">
                      <font>
                         <Font name="Avenir Next Bold" size="10.0" />
                      </font>

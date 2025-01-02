@@ -34,7 +34,7 @@
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="netIncome" alignment="CENTER_RIGHT" layoutX="212.0" layoutY="133.0" prefHeight="23.0" prefWidth="265.0" text="Expected Income: $4,592,123.00" textAlignment="RIGHT">
+            <Label fx:id="netIncome" alignment="CENTER_RIGHT" layoutX="212.0" layoutY="133.0" prefHeight="23.0" prefWidth="265.0" text="Expected Income: $4,592,123.00" textAlignment="RIGHT" visible="false">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>

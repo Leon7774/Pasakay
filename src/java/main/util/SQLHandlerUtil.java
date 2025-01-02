@@ -57,6 +57,8 @@ public static Rental getOneRental(int rental_id) throws SQLException {
 
         Statement statement = connection1.createStatement();
 
+        Account.getCarTypeList().clear();
+
         ResultSet rs = statement.executeQuery(query);
 
         // JDBC needs to move to next line before retrieving data, otherwise error will occur, since the ResultSet object index starts at -1

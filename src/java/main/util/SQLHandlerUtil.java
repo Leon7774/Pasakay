@@ -23,6 +23,29 @@ public class SQLHandlerUtil {
         statement.executeUpdate(query);
     }
 
+public static Rental getOneRental(int rental_id) throws SQLException {
+
+    String query = "SELECT * FROM rentals WHERE rental_id = ?";
+    PreparedStatement statement = connection1.prepareStatement(query);
+    statement.setInt(1, rental_id);
+
+    ResultSet rs = statement.executeQuery();
+
+    rs.next();
+    int agent_id = rs.getInt("agent_id");
+    int renter_id = rs.getInt("renter_id");
+    int car_id = rs.getInt("car_id");
+    LocalDate rental_date = rs.getDate("rental_start_date").toLocalDate();
+    LocalDate return_date = rs.getDate("rental_end_date").toLocalDate();
+    double totalCost = rs.getDouble("total_cost");
+    boolean isDeposited = rs.getBoolean("deposited");
+    boolean isFullyPaid = rs.getBoolean("fully_paid");
+    boolean isReturned = rs.getBoolean("car_returned");
+
+    Rental rental = new Rental(agent_id, renter_id, car_id, rental_date, return_date, totalCost, isDeposited, isFullyPaid, isReturned);
+    return rental;
+}
+
     //IMPORTANT! Returns user based on username
     public static void findUser(String username) throws SQLException {
         String query = "SELECT * FROM user WHERE username = '" + username + "'";
@@ -85,8 +108,9 @@ public class SQLHandlerUtil {
                 double total_cost = rs3.getDouble("total_cost");
                 boolean deposited = rs3.getBoolean("deposited");
                 boolean fully_paid = rs3.getBoolean("fully_paid");
+                boolean returned = rs3.getBoolean("car_returned");
 
-                Rental rental = new Rental(agent_id, renter_id, car_id, LocalDate.parse(rental_start_date), LocalDate.parse(rental_end_date), total_cost, deposited, fully_paid);
+                Rental rental = new Rental(agent_id, renter_id, car_id, LocalDate.parse(rental_start_date), LocalDate.parse(rental_end_date), total_cost, deposited, fully_paid, returned);
                 rental.setId(rental_id);
                 Account.addRentals(rental);
             }
@@ -273,7 +297,7 @@ public class SQLHandlerUtil {
 
             int rental_id = generatedKeys.getInt(1);
 
-            Rental newRental = new Rental(agent_id, renter_id, car_id, rent_start, rent_end, totalCost, false, false);
+            Rental newRental = new Rental(agent_id, renter_id, car_id, rent_start, rent_end, totalCost, false, false, false);
             newRental.setId(rental_id);
 
             query = "UPDATE car SET car_currentlyRented = ? WHERE car_id = ?";
@@ -428,15 +452,21 @@ public class SQLHandlerUtil {
         findUser(Account.getUserName());
     }
 
-    public static void setCarReturned(int rental_id, boolean isTrue) throws SQLException {
+    public static void setCarReturned(int rental_id, boolean isTrue) {
+        try{
+            String query = "UPDATE rentals SET car_returned = ? WHERE rental_id = ?";
+            PreparedStatement statement = connection1.prepareStatement(query);
+            statement.setBoolean(1, isTrue);
+            statement.setInt(2, rental_id);
+            statement.executeUpdate();
 
-        String query = "UPDATE rentals SET car_returned = ? WHERE rental_id = ?";
-        PreparedStatement statement = connection1.prepareStatement(query);
-        statement.setBoolean(1, isTrue);
-        statement.setInt(2, rental_id);
-        statement.executeUpdate();
+            System.out.println("OK");
 
-        findUser(Account.getUserName());
+            findUser(Account.getUserName());
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static List<RentalTransaction> getRentalTransactions(int user_id) throws SQLException {

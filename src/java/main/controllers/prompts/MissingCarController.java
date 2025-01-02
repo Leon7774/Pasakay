@@ -5,7 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import main.controllers.views.DashboardMain;
+import main.objects.Account;
 import main.objects.Rental;
+import main.util.SQLHandlerUtil;
+
+import java.sql.SQLException;
 
 public class MissingCarController {
 
@@ -38,20 +43,23 @@ public class MissingCarController {
     }
 
     @FXML
-    void onConfirmClick(ActionEvent event) {
+    void onConfirmClick(ActionEvent event) throws SQLException {
         rental.setReturned(true);
+        SQLHandlerUtil.setCarReturned(rental.getId(), true);
+        SQLHandlerUtil.addTransaction(rental.getId(), "Overdue Payment", rental.getTotalCost() * 0.8, DashboardMain.getCurrentDate().toString());
+        SQLHandlerUtil.findUser(Account.getUserName());
         ((Stage) cancelButton.getScene().getWindow()).close();
     }
 
     public void setOverdueDays(int days) {
-        overdueDays.setText(String.valueOf(days));
+        overdueDays.setText(String.valueOf(days) + " days");
     }
 
     public void setOverdueAmount(double amount) {
-        overdueAmount.setText(String.valueOf(amount));
+        overdueAmount.setText("$"+String.valueOf(amount));
     }
 
-    void setRental(Rental rental) {
+    public void setRental(Rental rental) {
         this.rental = rental;
     }
 

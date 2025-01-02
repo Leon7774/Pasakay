@@ -10,7 +10,7 @@ public class Rental {
     private double totalCost;
     private boolean fully_paid, deposited, returned;
 
-    public Rental(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost, boolean fully_paid, boolean deposited) {
+    public Rental(int agentID, int renterID, int carID, LocalDate rentStart, LocalDate rentEnd, double totalCost, boolean fully_paid, boolean deposited,boolean returned) {
         this.agentID = agentID;
         this.renterID = renterID;
         this.carID = carID;
@@ -19,6 +19,7 @@ public class Rental {
         this.totalCost = totalCost;
         this.fully_paid = fully_paid;
         this.deposited = deposited;
+        this.returned = returned;
     }
 
     //Getters
@@ -77,6 +78,7 @@ public class Rental {
                 ", totalCost=" + totalCost +
                 ", deposited=" + deposited +
                 ", fully_paid=" + fully_paid +
+                ", returned=" + returned +
                 '}';
     }
 

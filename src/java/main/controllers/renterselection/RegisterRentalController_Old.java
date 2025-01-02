@@ -108,6 +108,7 @@ public class RegisterRentalController_Old implements Initializable {
         StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow(),1);
         ConfirmDepositController controller = confirmRental.getLoader().getController();
         controller.setDepositValue((totalDays * car.getDailyRate())*0.2);
+        confirmRental.getStage().showAndWait();
 
         // If the confirmation UI clicked cancel, return
         if (!controller.isConfirmed()) {

@@ -52,7 +52,7 @@
                         <Image url="@../images/search.png" />
                      </image>
                   </ImageView>
-                  <TextField alignment="CENTER_RIGHT" layoutX="574.0" layoutY="27.0" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
+                  <TextField alignment="CENTER_RIGHT" layoutX="574.0" layoutY="27.0" onKeyTyped="#search" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
                   <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="764.0" layoutY="5.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/close-highlight.png" />

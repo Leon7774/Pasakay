@@ -53,11 +53,6 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <Label fx:id="agentRentedCars" layoutX="362.0" layoutY="39.0" prefHeight="23.0" prefWidth="230.0" text="Cars Currently in Rent:">
-               <font>
-                  <Font name="Century Gothic" size="13.0" />
-               </font>
-            </Label>
             <Line endX="263.20001220703125" layoutX="304.0" layoutY="176.0" startX="-303.20001220703125" stroke="#00000065" />
             <JFXButton fx:id="viewAgent" buttonType="RAISED" layoutX="18.0" layoutY="132.0" onAction="#onViewAgent" style="-fx-background-color: #01A2E9;" text="View Agent Dashboard" textFill="WHITE">
                <cursor>

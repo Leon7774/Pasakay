@@ -12,11 +12,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.views.DashboardMain">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="998.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.views.DashboardMain">
    <left>
       <AnchorPane prefHeight="666.0" prefWidth="207.0" style="-fx-background-color: #595959;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="67.0" fitWidth="83.0" layoutX="12.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="83.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icon.png" />
                </image>
@@ -24,7 +24,7 @@
                   <DropShadow radius="7.0525" width="9.21" />
                </effect>
             </ImageView>
-            <Label layoutX="80.0" layoutY="33.0" prefHeight="27.0" prefWidth="122.0" text="FreeHold" textFill="WHITE">
+            <Label layoutX="78.0" layoutY="33.0" prefHeight="27.0" prefWidth="122.0" text="PasaHero" textFill="WHITE">
                <font>
                   <Font name="Futura Bold" size="22.0" />
                </font>
@@ -95,7 +95,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="reportButton" buttonType="RAISED" defaultButton="true" layoutX="1.0" layoutY="432.0" onAction="#onReportClicked" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Report" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="reportButton" buttonType="RAISED" defaultButton="true" disable="true" layoutX="1.0" layoutY="432.0" onAction="#onReportClicked" prefHeight="33.0" prefWidth="210.0" ripplerFill="BLACK" style="-fx-background-color: #01A2E9;" text="Report" textAlignment="CENTER" textFill="WHITE" visible="false">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

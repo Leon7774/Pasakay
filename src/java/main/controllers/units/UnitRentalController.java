@@ -39,6 +39,7 @@ public class UnitRentalController {
     private ViewRentalsController viewRentalsController;
     private Rental currentRental;
     private boolean isPending = false;
+    private boolean finished = false;
 
     // condition for the Pending variable
     // -2 = in rent, -1 = pending, 0 = completed, 1 = day of payment/pickup, 2 = day of return, 3 = not returned
@@ -85,7 +86,8 @@ public class UnitRentalController {
         this.netIncomeLabel.setText("Expected Income: $" + String.valueOf(rental.getTotalCost()));
         this.totalRentDays.setText("Total Rental Days: " + String.valueOf( ChronoUnit.DAYS.between(rental.getRentStart(), rental.getRentEnd()) + 1));
 
-        if(rental.getRentEnd().isBefore(DashboardMain.getCurrentDate())) {
+        if(rental.getRentEnd().isBefore(DashboardMain.getCurrentDate()) && rental.isReturned()) {
+            finished = true;
             container.setStyle("-fx-background-color: #cccccc; -fx-background-radius: 10;");
         }
 
@@ -93,27 +95,25 @@ public class UnitRentalController {
 
         agentIDLabel.setTooltip(tooltip);
 
-        if (DashboardMain.getCurrentDate().equals(rental.getRentStart())) {
-            isPending = true;
-            notifArea.setVisible(true);
-            viewRentalsController.updateCounter();
-            condition = 1;
+        if (!rental.isReturned()) {
+            if (DashboardMain.getCurrentDate().equals(rental.getRentStart()) && !rental.isFullyPaid()) {
+                isPending = true;
+                notifArea.setVisible(true);
+                viewRentalsController.updateCounter();
+                condition = 1;
 
-        }else if (DashboardMain.getCurrentDate().equals(rental.getRentEnd())) {
-            isPending = true;
-            notifArea.setVisible(true);
-            viewRentalsController.updateCounter();
-            condition = 2;
-        }else if (DashboardMain.getCurrentDate().isAfter(rental.getRentEnd())) {
-            isPending = true;
-            notifArea.setVisible(true);
-            viewRentalsController.updateCounter();
-            condition = 3;
+            }else if (DashboardMain.getCurrentDate().equals(rental.getRentEnd()) && !rental.isReturned()) {
+                isPending = true;
+                notifArea.setVisible(true);
+                viewRentalsController.updateCounter();
+                condition = 2;
+            }else if (DashboardMain.getCurrentDate().isAfter(rental.getRentEnd()) && !rental.isReturned()) {
+                isPending = true;
+                notifArea.setVisible(true);
+                viewRentalsController.updateCounter();
+                condition = 3;
+            }
         }
-
-
-
-
 
         currentRental = rental;
     }
@@ -126,6 +126,10 @@ public class UnitRentalController {
         return currentRental;
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
+
     @FXML
     void onPendingClicked(Event event) throws IOException, SQLException {
         Car car = SQLHandlerUtil.getOneCar(currentRental.getCarId());
@@ -133,18 +137,24 @@ public class UnitRentalController {
             case 1:
                 StageUtil payment = new StageUtil("/fxml/confirmPayment.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmPaymentController paymentController = (ConfirmPaymentController) payment.getController();
+                paymentController.setRental(this.getCurrentRental());
+                paymentController.setViewRentalsController(viewRentalsController);
                 paymentController.setDeposit((double) currentRental.getTotalCost() * .8);
                 break;
             case 2:
                 StageUtil collection = new StageUtil("/fxml/confirmCarReturn.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 ConfirmCarReturnController carReturnController = (ConfirmCarReturnController) collection .getController();
-                carReturnController.setCarName(car.getCar_model() + " " + car.getCar_make() + " " + car.getCar_year());
+                carReturnController.setParentController(this);
+                carReturnController.setRental(this.getCurrentRental());
+                carReturnController.setViewRentalsController(viewRentalsController);
+                carReturnController.setCarName(car.getCar_make() + " " + car.getCar_model() + " " + car.getCar_year());
                 break;
             case 3:
                 StageUtil missing = new StageUtil("/fxml/carMissing.fxml", (Stage)((Node)event.getSource()).getScene().getWindow());
                 MissingCarController missingController = (MissingCarController) missing.getController();
-                missingController.setOverdueAmount(car.getDailyRate() * ChronoUnit.DAYS.between(currentRental.getRentStart(), currentRental.getRentEnd()) * 2);
-                missingController.setOverdueDays((int) ChronoUnit.DAYS.between(currentRental.getRentStart(), currentRental.getRentEnd()));
+                missingController.setRental(this.currentRental);
+                missingController.setOverdueAmount(car.getDailyRate() * (ChronoUnit.DAYS.between(currentRental.getRentEnd(), DashboardMain.getCurrentDate()) + 1) * 2);
+                missingController.setOverdueDays((int) ChronoUnit.DAYS.between(currentRental.getRentEnd(), DashboardMain.getCurrentDate()));
                 break;
         }
     }

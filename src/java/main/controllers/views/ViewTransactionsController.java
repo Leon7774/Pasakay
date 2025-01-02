@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.objects.Account;
+import main.objects.Rental;
 import main.objects.RentalTransaction;
 import main.util.SQLHandlerUtil;
 
@@ -155,6 +156,48 @@ public class ViewTransactionsController implements Initializable {
 
                 int rentalID = Integer.parseInt(keyword.substring("rental_id=".length()));
                 if(transaction.getRentalID() == rentalID) {
+
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if (keyword.startsWith("car_id=")) {
+
+                int carID = Integer.parseInt(keyword.substring("car_id=".length()));
+                Rental rental = SQLHandlerUtil.getOneRental(transaction.getRentalID());
+                if(rental.getCarId() == carID) {
+
+                    try{
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                        vboxContent.getChildren().add(hbox);
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if (keyword.startsWith("agent_id=")) {
+
+                int agentID = Integer.parseInt(keyword.substring("agent_id=".length()));
+                Rental rental = SQLHandlerUtil.getOneRental(transaction.getRentalID());
+                if(rental.getAgentId() == agentID) {
 
                     try{
 

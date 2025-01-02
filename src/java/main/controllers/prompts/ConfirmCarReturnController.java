@@ -12,7 +12,6 @@ import main.objects.Account;
 import main.objects.Rental;
 import main.util.SQLHandlerUtil;
 
-import javax.swing.text.View;
 import java.sql.SQLException;
 
 public class ConfirmCarReturnController {

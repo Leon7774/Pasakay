@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.prompts.ConfirmCarReturnController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.prompts.ConfirmCarReturnController">
    <top>
       <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
          <children>
@@ -50,12 +50,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <Label fx:id="carName" layoutX="16.0" layoutY="25.0" prefHeight="51.0" prefWidth="204.0" text="Return Car Due:">
+            <Label fx:id="carName" layoutX="16.0" layoutY="25.0" prefHeight="51.0" prefWidth="216.0" text="Return Car Due:">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label fx:id="carName" layoutX="223.0" layoutY="24.0" prefHeight="51.0" prefWidth="334.0" text="Toyota Vios 2008" textFill="#5d39ff">
+            <Label fx:id="carName" layoutX="232.0" layoutY="25.0" prefHeight="51.0" prefWidth="334.0" text="Toyota Vios 2008" textFill="#5d39ff">
                <font>
                   <Font size="30.0" />
                </font>

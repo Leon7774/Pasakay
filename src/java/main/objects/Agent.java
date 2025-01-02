@@ -2,7 +2,9 @@ package main.objects;
 
 import javafx.scene.control.ListCell;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Agent {
@@ -15,10 +17,11 @@ public class Agent {
     private int age;
     private int occupiedCars;
     private int availableCars;
+    private LocalDate birthdate;
     private List<Car> cars;
 
 
-    public Agent(String firstname, String lastname, int agentID, String address, int age, int contactNumber) {
+    public Agent(String firstname, String lastname, int agentID, String address, LocalDate birthdate, int age, int contactNumber) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.agentID = agentID;
@@ -29,6 +32,7 @@ public class Agent {
         this.age = age;
         this.netIncome = 0;
         this.cars = new ArrayList<>();
+        this.birthdate = birthdate;
     }
 
     public Agent(String firstname, String lastname, int age, String address, int contactNumber) {
@@ -126,4 +130,11 @@ public class Agent {
     public void addOccupiedCar() {
         this.occupiedCars++;
     }
+
+    public void setBirthdate(LocalDate birthdate) {
+
+        this.birthdate = birthdate;
+    }
+
+    public LocalDate getBirthdate() {return this.birthdate;}
 }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ public class RegisterAgentController implements Initializable {
     private TextField agentAddressPrompt;
 
     @FXML
-    private TextField agentAgePrompt;
+    private DatePicker birthdatePrompt;
 
     @FXML
     private TextField agentContactPrompt;
@@ -59,7 +60,7 @@ public class RegisterAgentController implements Initializable {
                 agentFirstNamePrompt.getText().isBlank() ||
                         agentLastNamePrompt.getText().isBlank() ||
                         agentAddressPrompt.getText().isBlank() ||
-                        agentAgePrompt.getText().isBlank() ||
+                        birthdatePrompt.getValue() == null ||
                         agentContactPrompt.getText().isBlank()
         ) {
             emptyWarningLabel.setVisible(true);
@@ -69,7 +70,7 @@ public class RegisterAgentController implements Initializable {
                     // - which is added to the agent list of the user
                     SQLHandlerUtil.addAgent(agentFirstNamePrompt.getText(),
                             agentLastNamePrompt.getText(),
-                            Integer.parseInt(agentAgePrompt.getText()),
+                            birthdatePrompt.getValue(),
                             agentAddressPrompt.getText(),
                             Integer.parseInt(agentContactPrompt.getText().replace(" ", "")))
             );

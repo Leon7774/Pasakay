@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.EditAgentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.EditAgentController">
    <top>
       <AnchorPane prefHeight="114.0" prefWidth="521.0" style="-fx-background-color: #1D1D1D;" BorderPane.alignment="CENTER">
          <children>
@@ -43,11 +44,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor></TextField>
             <Label layoutX="37.0" layoutY="77.0" text="Last Name:" />
-            <TextField fx:id="agentAgePrompt" layoutX="219.0" layoutY="110.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="AgentDetail">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </TextField>
             <TextField fx:id="agentAddressPrompt" layoutX="219.0" layoutY="150.0" prefHeight="26.0" prefWidth="297.0" styleClass="semitransparent" stylesheets="@../css/styles.css" text="AgentDetail">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -66,8 +62,9 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <Label layoutX="37.0" layoutY="115.0" text="Age:" />
+            <Label layoutX="37.0" layoutY="115.0" text="Birthdate:" />
             <Text fx:id="emptyWarningLabel" fill="#d74545" layoutX="245.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fields can't be blank" visible="false" />
+            <DatePicker fx:id="birthdatePrompt" layoutX="219.0" layoutY="111.0" prefHeight="26.0" prefWidth="297.0" />
          </children>
       </AnchorPane>
    </center>

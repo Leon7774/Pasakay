@@ -23,6 +23,9 @@ import main.util.SQLHandlerUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ViewTransactionsController implements Initializable {
@@ -108,6 +111,35 @@ public class ViewTransactionsController implements Initializable {
 
                     catch (IOException e) {
                         throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            else if (keyword.startsWith("date_from=")) {
+
+                String [] dates = keyword.split(",");
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                LocalDate dateStart = LocalDate.parse(dates[0].substring("date_from=".length()).trim(), formatter);
+                LocalDate dateEnd = LocalDate.parse(dates[1].trim().substring("date_to=".length()).trim(), formatter);
+
+                for(LocalDate date = dateStart ; !date.isAfter(dateEnd) ; date = date.plusDays(1)) {
+
+                    if(LocalDate.parse(transaction.getDate()).isEqual(date)) {
+
+                        try{
+
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                            HBox hbox = loader.load();
+                            ViewTransactionController transactionController = loader.getController();
+                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                            vboxContent.getChildren().add(hbox);
+                        }
+
+                        catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }

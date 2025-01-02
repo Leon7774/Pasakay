@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -15,12 +16,13 @@ import main.util.SQLHandlerUtil;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EditRenterController {
 
     @FXML
-    private TextField agePrompt, contactNumberPrompt, firstNamePrompt, lastNamePrompt, licenseNumberPrompt;
+    private TextField contactNumberPrompt, firstNamePrompt, lastNamePrompt, licenseNumberPrompt;
 
     @FXML
     private JFXButton cancelButton, scheduleButton;
@@ -37,13 +39,16 @@ public class EditRenterController {
     @FXML
     private JFXComboBox<String> statusPrompt;
 
+    @FXML
+    private DatePicker birthdatePrompt;
+
     private Renter renter;
     private ViewRenterController viewRenterController;
 
     @FXML
     void onCancelClick(ActionEvent event) {
 
-        ((Stage)agePrompt.getScene().getWindow()).close();
+        ((Stage)sexPrompt.getScene().getWindow()).close();
     }
 
     @FXML
@@ -53,18 +58,18 @@ public class EditRenterController {
         String lastName = lastNamePrompt.getText();
         String status = statusPrompt.getValue();
         String sex = sexPrompt.getValue();
-        String age = agePrompt.getText();
+        LocalDate birthdate = birthdatePrompt.getValue();
         String contactNumber = contactNumberPrompt.getText().trim();
         String licenseNumber = licenseNumberPrompt.getText().trim();
 
-        if(firstName.isEmpty() || lastName.isEmpty() || status == null || sex == null || age.isEmpty() || contactNumber.isEmpty() || licenseNumber.isEmpty()) {
+        if(firstName.isEmpty() || lastName.isEmpty() || status == null || sex == null || birthdate.toString().isEmpty() || contactNumber.isEmpty() || licenseNumber.isEmpty()) {
             emptyFieldWarning.setVisible(true);
             return;
         }
 
-        SQLHandlerUtil.updateRenter(renter.getRenterID(), firstName, lastName, Integer.parseInt(age), status, sex, Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
+        SQLHandlerUtil.updateRenter(renter.getRenterID(), firstName, lastName, birthdate, status, sex, Integer.parseInt(contactNumber), Integer.parseInt(licenseNumber));
         viewRenterController.initializeTable();
-        ((Stage)agePrompt.getScene().getWindow()).close();
+        ((Stage)sexPrompt.getScene().getWindow()).close();
     }
 
     public void setData(Renter renter) {
@@ -79,7 +84,7 @@ public class EditRenterController {
         sexPrompt.getItems().addAll(sex);
         statusPrompt.getItems().addAll(status);
 
-        agePrompt.setText(String.valueOf(renter.getAge()));
+        birthdatePrompt.setValue(renter.getBirthdate());
         contactNumberPrompt.setText(String.valueOf(renter.getContact_number()));
         firstNamePrompt.setText(renter.getFirstName());
         lastNamePrompt.setText(renter.getLastName());

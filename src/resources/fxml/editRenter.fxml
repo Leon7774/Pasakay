@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.prompts.EditRenterController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.prompts.EditRenterController">
    <top>
       <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #01A2E9;" BorderPane.alignment="CENTER">
          <children>
@@ -47,7 +48,7 @@
          <children>
             <Label layoutX="48.0" layoutY="62.0" text="Last Name:" />
             <Label layoutX="48.0" layoutY="100.0" text="Status:" />
-            <Label layoutX="48.0" layoutY="179.0" text="Age:" />
+            <Label layoutX="48.0" layoutY="179.0" text="Birthdate:" />
             <JFXButton fx:id="scheduleButton" buttonType="RAISED" defaultButton="true" layoutX="308.0" layoutY="347.0" onAction="#onScheduleClick" prefHeight="22.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-focus-color: #212426; -fx-background-color: #01A2E9;" text="Confirm" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -69,10 +70,6 @@
                </cursor></TextField>
             <JFXComboBox fx:id="statusPrompt" layoutX="230.0" layoutY="94.0" prefHeight="26.0" prefWidth="297.0" />
             <JFXComboBox fx:id="sexPrompt" layoutX="230.0" layoutY="133.0" prefHeight="26.0" prefWidth="297.0" />
-            <TextField fx:id="agePrompt" layoutX="230.0" layoutY="174.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Age" styleClass="semitransparent" stylesheets="@../css/styles.css">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></TextField>
             <TextField fx:id="contactNumberPrompt" layoutX="230.0" layoutY="212.0" prefHeight="26.0" prefWidth="297.0" promptText="Enter Contact Number" styleClass="semitransparent" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -87,6 +84,7 @@
             <Label layoutX="46.0" layoutY="217.0" text="Contact Number:" />
             <Label layoutX="46.0" layoutY="255.0" text="License Number:" />
             <Label fx:id="emptyFieldWarning" layoutX="230.0" layoutY="317.0" text="Please fill out all the fields." textFill="#b90808" />
+            <DatePicker fx:id="birthdatePrompt" layoutX="230.0" layoutY="175.0" prefHeight="26.0" prefWidth="298.0" />
          </children>
       </AnchorPane>
    </left>

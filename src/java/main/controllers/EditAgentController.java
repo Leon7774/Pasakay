@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.controllers.units.UnitAgentController;
@@ -13,6 +14,8 @@ import main.util.SQLHandlerUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class EditAgentController implements Initializable {
@@ -21,7 +24,7 @@ public class EditAgentController implements Initializable {
     private TextField agentAddressPrompt;
 
     @FXML
-    private TextField agentAgePrompt;
+    private DatePicker birthdatePrompt;
 
     @FXML
     private TextField agentContactPrompt;
@@ -60,7 +63,7 @@ public class EditAgentController implements Initializable {
         agentFirstNamePrompt.setText(unitAgentController.getActiveAgent().getFirstname());
         agentLastNamePrompt.setText(unitAgentController.getActiveAgent().getLastname());
         agentAddressPrompt.setText(unitAgentController.getActiveAgent().getAddress());
-        agentAgePrompt.setText(String.valueOf(unitAgentController.getActiveAgent().getAge()));
+        birthdatePrompt.setValue(unitAgentController.getActiveAgent().getBirthdate());
         agentContactPrompt.setText(String.valueOf(unitAgentController.getActiveAgent().getContactNumber()));
 
         agentID = unitAgentController.getActiveAgent().getAgentID();
@@ -69,17 +72,18 @@ public class EditAgentController implements Initializable {
     @FXML
     public void applyButtonClicked(ActionEvent event) throws IOException, SQLException {
 
-        int agentAge = Integer.parseInt(agentAgePrompt.getText());
+        LocalDate date = birthdatePrompt.getValue();
         int agentContact = Integer.parseInt(agentContactPrompt.getText());
         String agentAddress = agentAddressPrompt.getText();
         String agentFirstName = agentFirstNamePrompt.getText();
         String agentLastName = agentLastNamePrompt.getText();
 
-        if(SQLHandlerUtil.updateAgent(agentID, agentFirstName, agentLastName, agentAge, agentAddress, agentContact)) {
+        if(SQLHandlerUtil.updateAgent(agentID, agentFirstName, agentLastName, date, agentAddress, agentContact)) {
 
             unitAgentController.getActiveAgent().setFirstname(agentFirstName);
             unitAgentController.getActiveAgent().setLastname(agentLastName);
-            unitAgentController.getActiveAgent().setAge(agentAge);
+            unitAgentController.getActiveAgent().setBirthdate(date);
+            unitAgentController.getActiveAgent().setAge(Period.between(date, LocalDate.now()).getYears());
             unitAgentController.getActiveAgent().setContactNumber(agentContact);
             unitAgentController.getActiveAgent().setAddress(agentAddress);
         }

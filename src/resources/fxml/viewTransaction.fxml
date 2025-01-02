@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -58,6 +59,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <JFXButton fx:id="setDatesButton" layoutX="534.0" layoutY="94.0" onAction="#chooseDates" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #01A2E9;" text="Set Dates" textFill="WHITE" />
+                  <JFXButton fx:id="clearDateButton" disable="true" layoutX="668.0" layoutY="94.0" onAction="#clearDates" prefHeight="28.0" prefWidth="95.0" style="-fx-background-color: #cccccc;" text="Clear" />
+                  <Text fx:id="dateRange" layoutX="537.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Date Range" textAlignment="CENTER" wrappingWidth="222.41741943359375">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </top>

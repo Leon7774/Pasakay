@@ -209,7 +209,6 @@ public class ViewRecordsController {
             vboxContent.getChildren().clear();
             int counter = 0;
 
-
             List<RentalTransaction> transactions = SQLHandlerUtil.getRentalTransactions(Account.getUserID());
 
             for(RentalTransaction transaction : transactions) {
@@ -229,8 +228,6 @@ public class ViewRecordsController {
                         counter++;
                         vboxContent.getChildren().add(hbox);
                     }
-
-
                 }
                 catch (IOException e) {
                     throw new RuntimeException(e);
@@ -241,7 +238,6 @@ public class ViewRecordsController {
         }
 
     }
-
 
     @FXML
     void search(KeyEvent event) throws SQLException {

@@ -5,6 +5,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -55,22 +56,22 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Text fx:id="agentLabel" layoutX="24.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mike Wazowski" wrappingWidth="244.8173828125">
+                  <Text fx:id="agentLabel" layoutX="24.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mike Wazowski" wrappingWidth="244.8173828125">
                      <font>
                         <Font name="System Bold" size="31.0" />
                      </font>
                   </Text>
-                  <Text fx:id="agentIDLabel" layoutX="24.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 5" wrappingWidth="144.8173828125">
+                  <Text fx:id="agentIDLabel" layoutX="24.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 5" wrappingWidth="144.8173828125">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fx:id="carLabel" layoutX="289.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota Vios 2018" wrappingWidth="305.8173828125">
+                  <Text fx:id="carLabel" layoutX="289.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota Vios 2018" wrappingWidth="305.8173828125">
                      <font>
                         <Font name="System Bold" size="31.0" />
                      </font>
                   </Text>
-                  <Text fx:id="carIDLabel" layoutX="289.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 10" wrappingWidth="144.8173828125">
+                  <Text fx:id="carIDLabel" layoutX="289.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 10" wrappingWidth="144.8173828125">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -87,6 +88,10 @@
                   <JFXToggleButton fx:id="recordToggle" layoutX="614.0" layoutY="62.0" onAction="#toggleClick" text="ToggleButton" textFill="TRANSPARENT" toggleColor="#f0f0f0" toggleLineColor="LIGHTGRAY" unToggleColor="LIGHTGRAY" />
                   <Text layoutX="574.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" />
                   <Text layoutX="679.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" />
+                  <DatePicker fx:id="dateFromButton" layoutX="22.0" layoutY="24.0" onAction="#fromPicked" />
+                  <DatePicker fx:id="dateToButton" layoutX="236.0" layoutY="24.0" onAction="#toPicked" />
+                  <Text layoutX="236.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date to:" />
+                  <Text layoutX="22.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date from:" />
                </children>
             </AnchorPane>
          </top>

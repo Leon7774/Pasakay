@@ -79,8 +79,8 @@
                   </AnchorPane>
                   <JFXToggleButton fx:id="showOldRentals" layoutX="494.0" layoutY="73.0" onAction="#selectAction" prefHeight="42.0" prefWidth="177.0" size="8.0" text="Show Old Rentals" />
                   <JFXToggleButton fx:id="showPriorityRentals" layoutX="329.0" layoutY="73.0" onAction="#priorityClick" prefHeight="42.0" prefWidth="177.0" size="8.0" text="Only Priority Rentals" />
-                  <DatePicker fx:id="dateFromButton" layoutX="41.0" layoutY="38.0" onAction="#initializeTable" />
-                  <DatePicker fx:id="dateToButton" layoutX="255.0" layoutY="38.0" onAction="#initializeTable" />
+                  <DatePicker fx:id="dateFromButton" layoutX="41.0" layoutY="38.0" onAction="#fromPicked" />
+                  <DatePicker fx:id="dateToButton" layoutX="255.0" layoutY="38.0" onAction="#toPicked" />
                   <Text layoutX="255.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date to:" />
                   <Text layoutX="41.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date from:" />
                </children>

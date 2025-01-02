@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,7 +28,9 @@ import main.util.StageUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ViewRecordsController {
@@ -74,10 +77,18 @@ public class ViewRecordsController {
     @FXML
     private JFXToggleButton recordToggle;
 
+    @FXML
+    private DatePicker dateFromButton;
+
+    @FXML
+    private DatePicker dateToButton;
+
 
     private Agent activeAgent;
     private Car activeCar;
     private boolean toggled = false;
+    private LocalDate fromDate = LocalDate.MIN;
+    private LocalDate toDate = LocalDate.MAX;
 
     @FXML
     void initialize() throws SQLException {
@@ -114,6 +125,18 @@ public class ViewRecordsController {
         closeButton.setImage(new Image("/images/close.png"));
     }
 
+
+    @FXML
+    void toPicked(ActionEvent event) throws SQLException {
+        this.toDate = dateToButton.getValue();
+        initializeTable();
+    }
+
+    @FXML
+    void fromPicked(ActionEvent event) throws SQLException {
+        this.fromDate = dateFromButton.getValue();
+        initializeTable();
+    }
 
     public void closeButtonOnActionEvent(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -188,20 +211,25 @@ public class ViewRecordsController {
             }
 
             for(Rental rental : rentals) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
-                    HBox hbox = loader.load();
-                    UnitRentalController unitRentalController = loader.getController();
-                    Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                    unitRentalController.setData(car, rental);
+                if(rental.getRentStart().isAfter(fromDate) && rental.getRentEnd().isBefore(toDate)) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
+                        HBox hbox = loader.load();
+                        UnitRentalController unitRentalController = loader.getController();
+                        Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
+                        unitRentalController.setData(car, rental);
 
-                    vboxContent.getChildren().add(hbox);
+                        vboxContent.getChildren().add(hbox);
 
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
-                catch (IOException | SQLException e) {
-                    throw new RuntimeException(e);
-                }
+
+
             }
 
             recordCount.setText(String.valueOf(rentals.size()) + " records found");
@@ -213,28 +241,31 @@ public class ViewRecordsController {
             List<RentalTransaction> transactions = SQLHandlerUtil.getRentalTransactions(Account.getUserID());
 
             for(RentalTransaction transaction : transactions) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                    HBox hbox = loader.load();
-                    ViewTransactionController transactionController = loader.getController();
-                    transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                if(Account.getRental(transaction.getRentalID()).getRentStart().isAfter(fromDate) && Account.getRental(transaction.getRentalID()).getRentEnd().isBefore(toDate)) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                        HBox hbox = loader.load();
+                        ViewTransactionController transactionController = loader.getController();
+                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
 
-                    if(getAgent() == null) {
-                        counter++;
-                        vboxContent.getChildren().add(hbox);
-                    }else if(transaction.getAgentID() == getAgent().getAgentID() && activeCar == null) {
-                        counter++;
-                        vboxContent.getChildren().add(hbox);
-                    } else if (transaction.getAgentID() == getAgent().getAgentID() && transaction.getCarID() == activeCar.getCar_id()) {
-                        counter++;
-                        vboxContent.getChildren().add(hbox);
+                        if(getAgent() == null) {
+                            counter++;
+                            vboxContent.getChildren().add(hbox);
+                        }else if(transaction.getAgentID() == getAgent().getAgentID() && activeCar == null) {
+                            counter++;
+                            vboxContent.getChildren().add(hbox);
+                        } else if (transaction.getAgentID() == getAgent().getAgentID() && transaction.getCarID() == activeCar.getCar_id()) {
+                            counter++;
+                            vboxContent.getChildren().add(hbox);
+                        }
+
+
                     }
-
-
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-                catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+
             }
 
             recordCount.setText(String.valueOf(counter) + " records found");
@@ -246,169 +277,140 @@ public class ViewRecordsController {
     @FXML
     void search(KeyEvent event) throws SQLException {
         if (toggled) {
-            String keyword = ((TextField)event.getSource()).getText().toLowerCase();
+            String keyword = ((TextField) event.getSource()).getText().toLowerCase();
             vboxContent.getChildren().clear();
 
             for (RentalTransaction transaction : SQLHandlerUtil.getRentalTransactions(Account.getUserID())) {
+                if (Account.getRental(transaction.getRentalID()).getRentStart().isAfter(fromDate) && Account.getRental(transaction.getRentalID()).getRentEnd().isBefore(toDate)) {
+                    if (keyword.startsWith("name=")) {
 
-                if (keyword.startsWith("name=")) {
+                        String name = keyword.substring("name=".length());
+                        if (transaction.getTransactionName().toLowerCase().equals(name)) {
 
-                    String name = keyword.substring("name=".length());
-                    if(transaction.getTransactionName().toLowerCase().equals(name)) {
+                            try {
 
-                        try{
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (keyword.startsWith("date=")) {
+
+                        String date = keyword.substring("date=".length());
+                        if (transaction.getDate().toLowerCase().equals(date)) {
+
+                            try {
+
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (keyword.startsWith("amount=")) {
+
+                        double amount = Double.parseDouble(keyword.substring("amount=".length()));
+                        if (transaction.getAmount() == amount) {
+
+                            try {
+
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (keyword.startsWith("rental_id=")) {
+
+                        int rentalID = Integer.parseInt(keyword.substring("rental_id=".length()));
+                        if (transaction.getRentalID() == rentalID) {
+
+                            try {
+
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (keyword.startsWith("car_id=")) {
+
+                        int carID = Integer.parseInt(keyword.substring("car_id=".length()));
+                        Rental rental = SQLHandlerUtil.getOneRental(transaction.getRentalID());
+                        if (rental.getCarId() == carID) {
+
+                            try {
+
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (keyword.startsWith("agent_id=")) {
+
+                        int agentID = Integer.parseInt(keyword.substring("agent_id=".length()));
+                        Rental rental = SQLHandlerUtil.getOneRental(transaction.getRentalID());
+                        if (rental.getAgentId() == agentID) {
+
+                            try {
+
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (keyword.startsWith("id=")) {
+                        int transactionID = Integer.parseInt(keyword.substring("id=".length()));
+                        if (transaction.getTransactionID() == transactionID) {
+                            try {
+
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
+                                HBox hbox = loader.load();
+                                ViewTransactionController transactionController = loader.getController();
+                                transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
+                                vboxContent.getChildren().add(hbox);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    } else if (String.valueOf(transaction.getTransactionID()).startsWith(keyword)) {
+
+                        try {
 
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
                             HBox hbox = loader.load();
                             ViewTransactionController transactionController = loader.getController();
                             transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
                             vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
+                        } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                    }
-                }
-
-                else if (keyword.startsWith("date=")) {
-
-                    String date = keyword.substring("date=".length());
-                    if(transaction.getDate().toLowerCase().equals(date)) {
-
-                        try{
-
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                            HBox hbox = loader.load();
-                            ViewTransactionController transactionController = loader.getController();
-                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                            vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                else if (keyword.startsWith("amount=")) {
-
-                    double amount = Double.parseDouble(keyword.substring("amount=".length()));
-                    if(transaction.getAmount() == amount) {
-
-                        try{
-
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                            HBox hbox = loader.load();
-                            ViewTransactionController transactionController = loader.getController();
-                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                            vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                else if (keyword.startsWith("rental_id=")) {
-
-                    int rentalID = Integer.parseInt(keyword.substring("rental_id=".length()));
-                    if(transaction.getRentalID() == rentalID) {
-
-                        try{
-
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                            HBox hbox = loader.load();
-                            ViewTransactionController transactionController = loader.getController();
-                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                            vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                else if (keyword.startsWith("car_id=")) {
-
-                    int carID = Integer.parseInt(keyword.substring("car_id=".length()));
-                    Rental rental = SQLHandlerUtil.getOneRental(transaction.getRentalID());
-                    if(rental.getCarId() == carID) {
-
-                        try{
-
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                            HBox hbox = loader.load();
-                            ViewTransactionController transactionController = loader.getController();
-                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                            vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                else if (keyword.startsWith("agent_id=")) {
-
-                    int agentID = Integer.parseInt(keyword.substring("agent_id=".length()));
-                    Rental rental = SQLHandlerUtil.getOneRental(transaction.getRentalID());
-                    if(rental.getAgentId() == agentID) {
-
-                        try{
-
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                            HBox hbox = loader.load();
-                            ViewTransactionController transactionController = loader.getController();
-                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                            vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                else if (keyword.startsWith("id=")) {
-                    int transactionID = Integer.parseInt(keyword.substring("id=".length()));
-                    if(transaction.getTransactionID() == transactionID) {
-                        try{
-
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                            HBox hbox = loader.load();
-                            ViewTransactionController transactionController = loader.getController();
-                            transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                            vboxContent.getChildren().add(hbox);
-                        }
-
-                        catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-                else if(String.valueOf(transaction.getTransactionID()).startsWith(keyword)) {
-
-                    try{
-
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitTransaction.fxml"));
-                        HBox hbox = loader.load();
-                        ViewTransactionController transactionController = loader.getController();
-                        transactionController.setData(transaction.getTransactionID(), transaction.getRentalID(), transaction.getDate(), transaction.getAmount(), transaction.getTransactionName());
-                        vboxContent.getChildren().add(hbox);
-                    }
-
-                    catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
                 }
             }
-        }else{
-            String keyword = ((TextField)event.getSource()).getText().toLowerCase();
+        } else {
+            String keyword = ((TextField) event.getSource()).getText().toLowerCase();
             vboxContent.getChildren().clear();
 
             for (Rental rental : Account.getRentalsList()) {
@@ -430,7 +432,8 @@ public class ViewRecordsController {
                                 throw new RuntimeException(e);
                             }
                         }
-                    } catch (NumberFormatException ignored) {}
+                    } catch (NumberFormatException ignored) {
+                    }
                 } else if (keyword.startsWith("agent_id=")) {
                     try {
                         // Grabs the agent id
@@ -450,7 +453,8 @@ public class ViewRecordsController {
                                 throw new RuntimeException(e);
                             }
                         }
-                    } catch (NumberFormatException ignored) {}
+                    } catch (NumberFormatException ignored) {
+                    }
                 } else if (keyword.startsWith("renter_id=")) {
                     try {
                         // Grabs the renter id
@@ -470,7 +474,8 @@ public class ViewRecordsController {
                                 throw new RuntimeException(e);
                             }
                         }
-                    } catch (NumberFormatException ignored) {}
+                    } catch (NumberFormatException ignored) {
+                    }
                 } else if (SQLHandlerUtil.getOneCar(rental.getCarId()).getCar_make().toLowerCase().startsWith(keyword) || SQLHandlerUtil.getOneCar(rental.getCarId()).getCar_model().toLowerCase().startsWith(keyword)) {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
@@ -489,8 +494,4 @@ public class ViewRecordsController {
             }
         }
     }
-
-
-
-
 }

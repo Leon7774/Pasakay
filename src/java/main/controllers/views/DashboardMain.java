@@ -139,7 +139,7 @@ public class DashboardMain implements Initializable {
     @FXML
     void onReportClicked(ActionEvent event) {
         changeButtonsColor(reportButton);
-        //loadPane("/fxml/viewRenter.fxml");
+        loadPane("/fxml/viewReport.fxml");
     }
 
     // Loads the given fxml into the dashboard

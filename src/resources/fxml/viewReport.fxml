@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="783.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.recordsPanel.ViewRecordsController">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <AnchorPane fx:id="dashboardContent" prefHeight="666.0" prefWidth="797.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scrollPane" layoutX="24.0" layoutY="176.0" prefHeight="490.0" prefWidth="753.0" stylesheets="@../css/styles.css">
+                     <content>
+                        <VBox fx:id="vboxContent" prefHeight="517.0" prefWidth="735.0" spacing="10.0" style="-fx-background-color: #ffffff;">
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <styleClass>
+                        <String fx:value="transparent" />
+                        <String fx:value="decrement-button" />
+                        <String fx:value="increment-button" />
+                        <String fx:value="scroll-bar" />
+                        <String fx:value="scroll-pane" />
+                        <String fx:value="thumb" />
+                        <String fx:value="viewport" />
+                     </styleClass>
+                  </ScrollPane>
+                  <Line endX="642.6000366210938" endY="1.0000152587890625" layoutX="123.0" layoutY="174.0" startX="-100.0" />
+                  <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="740.0" layoutY="28.0">
+                     <image>
+                        <Image url="@../images/search.png" />
+                     </image>
+                  </ImageView>
+                  <TextField alignment="CENTER_RIGHT" layoutX="574.0" layoutY="27.0" onKeyTyped="#search" promptText="Search" styleClass="semitransparent" stylesheets="@../css/styles.css" />
+                  <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="20.0" layoutX="764.0" layoutY="5.0" onMouseClicked="#closeButtonOnActionEvent" onMouseEntered="#highlightClose" onMouseExited="#dilightClose" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/close-highlight.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Text fx:id="agentLabel" layoutX="24.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mike Wazowski" wrappingWidth="244.8173828125">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="agentIDLabel" layoutX="24.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 5" wrappingWidth="144.8173828125">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="carLabel" layoutX="289.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toyota Vios 2018" wrappingWidth="244.8173828125">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="carIDLabel" layoutX="289.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID = 10" wrappingWidth="144.8173828125">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <JFXButton layoutX="24.0" layoutY="130.0" onAction="#chooseAgent" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #cccccc;" text="Set Agent" />
+                  <JFXButton layoutX="289.0" layoutY="130.0" onAction="#chooseCar" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #cccccc;" text="Choose Car" />
+                  <Text fx:id="carLabel1" layoutX="551.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16 Records Found" textAlignment="RIGHT" wrappingWidth="215.8173828125">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+   </center>
+</BorderPane>

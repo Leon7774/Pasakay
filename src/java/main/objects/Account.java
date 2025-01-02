@@ -96,4 +96,12 @@ public class Account{
 
         return null;
     }
+
+    public static List<Car> getAllCars() {
+        List<Car> allCars = new ArrayList<>();
+        for (Agent agent : agentList) {
+            allCars.addAll(agent.getCars());
+        }
+        return allCars;
+    }
 }

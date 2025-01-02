@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" minWidth="400.0" prefHeight="146.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.recordsPanel.UnitCarController_Small">
+   <children>
+      <AnchorPane prefHeight="190.0" prefWidth="86.0">
+         <children>
+            <ImageView fitHeight="69.0" fitWidth="69.0" layoutX="9.0" layoutY="36.0">
+               <image>
+                  <Image url="@../images/icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="214.0" prefWidth="430.0">
+         <children>
+            <Label fx:id="carID" layoutX="7.0" layoutY="60.0" prefHeight="18.0" prefWidth="150.0" text="ID: 3124">
+               <font>
+                  <Font name="Century Gothic" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="carType" alignment="TOP_LEFT" layoutX="7.0" layoutY="81.0" prefHeight="19.0" prefWidth="197.0" text="Type:" wrapText="true" />
+            <Label fx:id="carName" alignment="BOTTOM_LEFT" layoutX="7.0" layoutY="16.0" prefHeight="43.0" prefWidth="317.0" text="Toyota Vios 2018" wrapText="true">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Line endX="-2.0" endY="-44.0" layoutX="300.0" layoutY="176.0" startX="-356.0" startY="-44.0" stroke="#00000065" />
+            <JFXButton fx:id="chooseButton" buttonType="RAISED" layoutX="181.0" layoutY="88.0" onAction="#onChoose" style="-fx-background-color: #01A2E9;" text="Choose Car" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label fx:id="carColor" layoutX="7.0" layoutY="98.0" prefHeight="23.0" prefWidth="215.0" text="Color:" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.recordsPanel.SelectAgentController">
+   <top>
+      <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #444444;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="51.0" prefWidth="271.0" text="Select Agent" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <effect>
+      <DropShadow height="112.24" radius="46.2625" spread="0.36" width="74.81">
+         <color>
+            <Color opacity="0.693009078502655" />
+         </color>
+      </DropShadow>
+   </effect>
+   <center>
+      <AnchorPane prefHeight="453.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="searchTab" layoutX="238.0" layoutY="37.0" onKeyTyped="#search" style="-fx-background-color: #dddddd;" />
+            <ImageView fx:id="searchButton" fitHeight="22.0" fitWidth="26.0" layoutX="404.0" layoutY="38.0" onMouseClicked="#searchClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/search.png" />
+               </image>
+            </ImageView>
+            <ScrollPane hbarPolicy="NEVER" layoutX="27.0" layoutY="70.0" prefHeight="316.0" prefWidth="397.0">
+               <content>
+                  <VBox fx:id="vboxContent" prefHeight="308.0" prefWidth="394.0" />
+               </content>
+            </ScrollPane>
+            <JFXButton buttonType="RAISED" layoutX="338.0" layoutY="399.0" onAction="#onCancelClick" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #E62B00;" text="Cancel" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

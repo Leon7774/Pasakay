@@ -6,10 +6,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -61,6 +58,70 @@ public class ViewRentalsController implements Initializable {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         notifIcon.setVisible(false);
+
+        dateFromButton.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue != null) {
+
+                LocalDate dateFrom = dateFromButton.getValue().plusDays(1);
+
+                if(dateToButton.getValue() != null) {
+
+                    if (dateToButton.getValue().isEqual(dateFromButton.getValue()) ||
+                            dateToButton.getValue().isBefore(dateFromButton.getValue())) {
+
+                        dateToButton.setValue(null);
+                    }
+                }
+
+                dateToButton.setDayCellFactory(dp -> new DateCell() {
+
+                    @Override
+                    public void updateItem(LocalDate date, boolean empty) {
+
+                        super.updateItem(date, empty);
+
+                        if(date.isBefore(dateFrom)) {
+
+                            setDisable(true);
+                            setStyle("-fx-background-color: #cccccc;");
+                        }
+                    }
+                });
+            }
+        });
+
+        dateToButton.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue != null) {
+
+                LocalDate dateFrom = dateToButton.getValue().minusDays(1);
+
+                if(dateFromButton.getValue() != null) {
+
+                    if (dateFromButton.getValue().isEqual(dateToButton.getValue()) ||
+                            dateFromButton.getValue().isAfter(dateToButton.getValue())) {
+
+                        dateFromButton.setValue(null);
+                    }
+                }
+
+                dateFromButton.setDayCellFactory(dp -> new DateCell() {
+
+                    @Override
+                    public void updateItem(LocalDate date, boolean empty) {
+
+                        super.updateItem(date, empty);
+
+                        if(date.isAfter(dateFrom)) {
+
+                            setDisable(true);
+                            setStyle("-fx-background-color: #cccccc;");
+                        }
+                    }
+                });
+            }
+        });
 
         initializeTable();
     }

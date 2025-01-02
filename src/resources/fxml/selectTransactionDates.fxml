@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.prompts.SelectTransactionDatesController">
+   <top>
+      <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #444444;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="21.0" layoutY="8.0" prefHeight="51.0" prefWidth="271.0" text="Select Date Range" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <effect>
+      <DropShadow height="112.24" radius="46.2625" spread="0.36" width="74.81">
+         <color>
+            <Color opacity="0.693009078502655" />
+         </color>
+      </DropShadow>
+   </effect>
+   <center>
+      <AnchorPane prefHeight="322.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="349.0" layoutY="261.0" onAction="#onCancelClick" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #E62B00;" text="Cancel" textFill="WHITE" />
+            <AnchorPane layoutX="42.0" layoutY="31.0" prefHeight="206.0" prefWidth="366.0" style="-fx-border-radius: 20; -fx-border-color: black; -fx-border-width: 1;">
+               <children>
+                  <Text layoutX="29.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="29.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="startDatePicker" layoutX="151.0" layoutY="46.0" />
+                  <DatePicker fx:id="endDatePicker" layoutX="151.0" layoutY="113.0" />
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="applyButton" layoutX="270.0" layoutY="260.0" onAction="#onApplyClick" prefHeight="28.0" prefWidth="67.0" style="-fx-background-color: #01A2E9;" text="Apply" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

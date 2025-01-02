@@ -414,81 +414,83 @@ public class ViewRecordsController {
             vboxContent.getChildren().clear();
 
             for (Rental rental : Account.getRentalsList()) {
-                if (keyword.startsWith("id=")) {
-                    try {
-                        // Grabs the renter id
-                        int id = Integer.parseInt(keyword.substring(3));
-                        if (rental.getId() == id) {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
-                                // Makes a horizontal box for every agent
-                                HBox hbox = loader.load();
-                                UnitRentalController unitRentalController = loader.getController();
-                                Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                                unitRentalController.setData(car, rental);
-                                // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                                vboxContent.getChildren().add(hbox);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
+                if (rental.getRentStart().isAfter(fromDate) && rental.getRentEnd().isBefore(toDate)) {
+                    if (keyword.startsWith("id=")) {
+                        try {
+                            // Grabs the renter id
+                            int id = Integer.parseInt(keyword.substring(3));
+                            if (rental.getId() == id) {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
+                                    // Makes a horizontal box for every agent
+                                    HBox hbox = loader.load();
+                                    UnitRentalController unitRentalController = loader.getController();
+                                    Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
+                                    unitRentalController.setData(car, rental);
+                                    // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                                    vboxContent.getChildren().add(hbox);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
+                        } catch (NumberFormatException ignored) {
                         }
-                    } catch (NumberFormatException ignored) {
-                    }
-                } else if (keyword.startsWith("agent_id=")) {
-                    try {
-                        // Grabs the agent id
-                        int agentId = Integer.parseInt(keyword.substring(9));
-                        if (rental.getAgentId() == agentId) {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
-                                // Makes a horizontal box for every agent
-                                HBox hbox = loader.load();
-                                // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                                UnitRentalController unitRentalController = loader.getController();
-                                Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                                unitRentalController.setData(car, rental);
-                                // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                                vboxContent.getChildren().add(hbox);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
+                    } else if (keyword.startsWith("agent_id=")) {
+                        try {
+                            // Grabs the agent id
+                            int agentId = Integer.parseInt(keyword.substring(9));
+                            if (rental.getAgentId() == agentId) {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
+                                    // Makes a horizontal box for every agent
+                                    HBox hbox = loader.load();
+                                    // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                                    UnitRentalController unitRentalController = loader.getController();
+                                    Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
+                                    unitRentalController.setData(car, rental);
+                                    // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                                    vboxContent.getChildren().add(hbox);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
+                        } catch (NumberFormatException ignored) {
                         }
-                    } catch (NumberFormatException ignored) {
-                    }
-                } else if (keyword.startsWith("renter_id=")) {
-                    try {
-                        // Grabs the renter id
-                        int renterId = Integer.parseInt(keyword.substring(10));
-                        if (rental.getRenterID() == renterId) {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
-                                // Makes a horizontal box for every agent
-                                HBox hbox = loader.load();
-                                // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                                UnitRentalController unitRentalController = loader.getController();
-                                Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                                unitRentalController.setData(car, rental);
-                                // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                                vboxContent.getChildren().add(hbox);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
+                    } else if (keyword.startsWith("renter_id=")) {
+                        try {
+                            // Grabs the renter id
+                            int renterId = Integer.parseInt(keyword.substring(10));
+                            if (rental.getRenterID() == renterId) {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
+                                    // Makes a horizontal box for every agent
+                                    HBox hbox = loader.load();
+                                    // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                                    UnitRentalController unitRentalController = loader.getController();
+                                    Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
+                                    unitRentalController.setData(car, rental);
+                                    // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                                    vboxContent.getChildren().add(hbox);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
+                        } catch (NumberFormatException ignored) {
                         }
-                    } catch (NumberFormatException ignored) {
-                    }
-                } else if (SQLHandlerUtil.getOneCar(rental.getCarId()).getCar_make().toLowerCase().startsWith(keyword) || SQLHandlerUtil.getOneCar(rental.getCarId()).getCar_model().toLowerCase().startsWith(keyword)) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
-                        // Makes a horizontal box for every agent
-                        HBox hbox = loader.load();
-                        // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
-                        UnitRentalController unitRentalController = loader.getController();
-                        Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
-                        unitRentalController.setData(car, rental);
-                        // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
-                        vboxContent.getChildren().add(hbox);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    } else if (SQLHandlerUtil.getOneCar(rental.getCarId()).getCar_make().toLowerCase().startsWith(keyword) || SQLHandlerUtil.getOneCar(rental.getCarId()).getCar_model().toLowerCase().startsWith(keyword)) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/unitRental.fxml"));
+                            // Makes a horizontal box for every agent
+                            HBox hbox = loader.load();
+                            // Grabs the controller of each agent hbox made -- This allows us to edit each hbox
+                            UnitRentalController unitRentalController = loader.getController();
+                            Car car = SQLHandlerUtil.getOneCar(rental.getCarId());
+                            unitRentalController.setData(car, rental);
+                            // Passes the dashboard controller to each hbox, so that when a component is accessed from the hbox, the dashboard will be editable
+                            vboxContent.getChildren().add(hbox);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }

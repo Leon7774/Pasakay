@@ -108,6 +108,20 @@ public class RegisterRentalController_New implements Initializable {
             return;
         }
 
+        for(Rental rental : Account.getRentalsList()) {
+            if(rental.getCarId() == car.getCar_id() && rental.getRentStart().isBefore(endDatePicker.getValue()) && rental.getRentEnd().isAfter(startDatePicker.getValue())) {
+                emptyFieldWarning.setText("There is already a rental schedule between the start and end date");
+                emptyFieldWarning.setVisible(true);
+                return;
+            }
+        }
+
+        if(endDatePicker.getValue().isBefore(startDatePicker.getValue())) {
+            emptyFieldWarning.setText("End Date must be after Start Date");
+            emptyFieldWarning.setVisible(true);
+            return;
+        }
+
         int totalDays = (int) ChronoUnit.DAYS.between(startDatePicker.getValue(), endDatePicker.getValue()) + 1;
 
         StageUtil confirmRental = new StageUtil("/fxml/confirmDeposit.fxml", (Stage)((Node)event.getSource()).getScene().getWindow(), 1);

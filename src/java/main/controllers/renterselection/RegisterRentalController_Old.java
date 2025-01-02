@@ -90,7 +90,7 @@ public class RegisterRentalController_Old implements Initializable {
         }
 
         for(Rental rental : Account.getRentalsList()) {
-            if(rental.getRentStart().isBefore(endDatePicker.getValue()) && rental.getRentEnd().isAfter(startDatePicker.getValue())) {
+            if(rental.getCarId() == car.getCar_id() && rental.getRentStart().isBefore(endDatePicker.getValue()) && rental.getRentEnd().isAfter(startDatePicker.getValue())) {
                 emptyFieldWarning.setText("There is already a rental schedule between the start and end date");
                 emptyFieldWarning.setVisible(true);
                 return;

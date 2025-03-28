@@ -1,7 +1,7 @@
 # PasaHero
 PasaHero is a Car Rental Management system based on Java, MySQL, and JavaFX. 
 
-This was a two-person collaborative project made as a learning evidence during my second year of college. It is a **_rudimentary and messy-put__** project with much room for improvement, as of Januray 5, 2025. 
+This was a two-person collaborative project made as a learning evidence during my second year of college. It is a **_rudimentary and messy-put_** project with much room for improvement, as of Januray 5, 2025. 
 
 ## Samples
 
